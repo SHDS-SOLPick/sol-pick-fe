@@ -1,6 +1,6 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import modalBar from "../../assets/modalBar.svg";
+import modalBar from "../../../assets/modalBar.svg";
 import "./Modal.css";
 
 const Modal = ({ isOpen, onClose, title, children, height }) => {

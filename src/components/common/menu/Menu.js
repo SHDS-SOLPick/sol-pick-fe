@@ -1,13 +1,13 @@
 import { useState } from "react";
 import "./Menu.css";
-import refrigerator from "../../assets/refrigerator.svg";
-import refrigeratorActive from "../../assets/refrigeratorActive.svg";
-import card from "../../assets/card.svg";
-import cardActive from "../../assets/cardActive.svg";
-import home from "../../assets/home.svg";
-import homeActive from "../../assets/homeActive.svg";
-import mypage from "../../assets/mypage.svg";
-import mypageActive from "../../assets/mypageActive.svg";
+import refrigerator from "../../../assets/refrigerator.svg";
+import refrigeratorActive from "../../../assets/refrigeratorActive.svg";
+import card from "../../../assets/card.svg";
+import cardActive from "../../../assets/cardActive.svg";
+import home from "../../../assets/home.svg";
+import homeActive from "../../../assets/homeActive.svg";
+import mypage from "../../../assets/mypage.svg";
+import mypageActive from "../../../assets/mypageActive.svg";
 
 const Menu = () => {
   const [activeMenu, setActiveMenu] = useState("home");

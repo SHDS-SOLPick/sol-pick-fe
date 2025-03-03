@@ -1,21 +1,21 @@
 import { useState } from "react";
-import ButtonS from "../components/button/ButtonS";
-import ButtonL from "../components/button/ButtonL";
-import Input from "../components/input/Input";
-import Select from "../components/select/Select";
-import Modal from "../components/modal/Modal";
-import Popup from "../components/popup/Popup";
-import Header from "../components/header/Header";
+import ButtonS from "../components/common/button/ButtonS";
+import ButtonL from "../components/common/button/ButtonL";
+import Input from "../components/common/input/Input";
+import Select from "../components/common/select/Select";
+import Modal from "../components/common/modal/Modal";
+import Popup from "../components/common/popup/Popup";
+import Header from "../components/common/header/Header";
 import backArrow from "../assets/backArrow.svg";
 import close from "../assets/close.svg";
-import MainHeader from "../components/header/MainHeader";
+import MainHeader from "../components/common/header/MainHeader";
 import noti from "../assets/noti.svg";
 import notiActive from "../assets/notiActive.svg";
 import shop from "../assets/shop.svg";
 import shopActive from "../assets/shopActive.svg";
-import Menu from "../components/menu/Menu";
-import ToastMessage from "../components/toastmessage/ToastMessage";
-import Chip from "../components/chip/Chip";
+import Menu from "../components/common/menu/Menu";
+import ToastMessage from "../components/common/toastmessage/ToastMessage";
+import Chip from "../components/common/chip/Chip";
 
 const Components = () => {
   // 셀렉트 옵션
@@ -139,8 +139,10 @@ const Components = () => {
       />
       <br />
 
-      <Chip items={chipItems} initialSelected={0} />
-      <br />
+      <div style={{ paddingBottom: "40px" }}>
+        <Chip items={chipItems} initialSelected={0} />
+        <br />
+      </div>
 
       <Menu />
       <br />

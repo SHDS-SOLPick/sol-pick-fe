@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import "./Select.css";
-import selectArrow from "../../assets/selectArrow.svg";
-import selectArrowActive from "../../assets/selectArrowActive.svg";
+import selectArrow from "../../../assets/selectArrow.svg";
+import selectArrowActive from "../../../assets/selectArrowActive.svg";
 
 const Select = ({
   name,

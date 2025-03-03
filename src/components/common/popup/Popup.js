@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import closeIcon from "../../assets/close.svg";
+import closeIcon from "../../../assets/close.svg";
 import ButtonS from "../button/ButtonS";
 import "./Popup.css";
 
