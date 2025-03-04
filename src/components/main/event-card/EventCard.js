@@ -1,8 +1,5 @@
 import "./EventCard.css";
 
-import React from "react";
-import "./EventCard.css";
-
 const EventCard = ({ title, description, image, bgColor, additionalDate }) => {
   // \n을 <br />로 변환
   const formattedDescription = description.replace(/\n/g, "<br />");
