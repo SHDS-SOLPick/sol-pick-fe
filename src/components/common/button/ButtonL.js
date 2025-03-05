@@ -1,6 +1,6 @@
 import "./ButtonL.css";
 
-const Button = ({
+const ButtonL = ({
   text,
   onClick,
   id,
@@ -29,4 +29,4 @@ const Button = ({
   );
 };
 
-export default Button;
+export default ButtonL;

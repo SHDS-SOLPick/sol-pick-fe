@@ -86,7 +86,7 @@ const Main = () => {
 
       <EventSection sectionTitle="오늘의 영양 뉴스" events={news} />
 
-      <div style={{ height: "88px" }}></div>
+      <div style={{ height: "76px" }}></div>
 
       <Menu />
     </>
