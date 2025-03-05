@@ -1,16 +1,16 @@
 import React, { useRef } from "react";
-import "./Select.css";
+import "./SelectS.css";
 import selectArrow from "../../../assets/selectArrow.svg";
 import selectArrowActive from "../../../assets/selectArrowActive.svg";
 
-const Select = ({
+const SelectS = ({
   name,
   id,
   options = [],
   defaultValue = "",
   onChange,
-  width = "108px",
-  height = "36px",
+  width = "76px",
+  height = "28px",
   className,
 }) => {
   const selectRef = useRef(null);
@@ -25,14 +25,14 @@ const Select = ({
   };
 
   return (
-    <div className="select-container">
+    <div className="selectS-container">
       <select
         ref={selectRef}
         name={name}
         id={id}
         onChange={handleChange}
         defaultValue={defaultValue}
-        className={`select ${className || ""}`}
+        className={`selectS ${className || ""}`}
         style={{ width, height }}
       >
         {options.map((option) => (
@@ -44,15 +44,15 @@ const Select = ({
       <img
         src={selectArrow}
         alt="Select Arrow"
-        className="selectArrow-icon default"
+        className="selectSArrow-icon default"
       />
       <img
         src={selectArrowActive}
         alt="Select Arrow Active"
-        className="selectArrow-icon active"
+        className="selectSArrow-icon active"
       />
     </div>
   );
 };
 
-export default Select;
+export default SelectS;
