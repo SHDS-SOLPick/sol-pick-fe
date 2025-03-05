@@ -1,9 +1,10 @@
-.select-container {
+.selectL-container {
   position: relative;
   display: inline-block;
+  width: 108px;
 }
 
-.select {
+.selectL {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -22,11 +23,11 @@
   text-align: left;
 }
 
-.select:focus {
+.selectL:focus {
   border-color: #7b68ee;
 }
 
-.selectArrow-icon {
+.selectLArrow-icon {
   position: absolute;
   top: 50%;
   right: 16px;
@@ -35,23 +36,23 @@
   width: 12px;
 }
 
-.selectArrow-icon.default {
+.selectLArrow-icon.default {
   display: block;
 }
 
-.selectArrow-icon.active {
+.selectLArrow-icon.active {
   display: none;
 }
 
-.select:focus ~ .selectArrow-icon.default {
+.selectL:focus ~ .selectLArrow-icon.default {
   display: none;
 }
 
-.select:focus ~ .selectArrow-icon.active {
+.selectL:focus ~ .selectLArrow-icon.active {
   display: block;
 }
 
 /* IE에서 기본 화살표 숨기기 */
-.select::-ms-expand {
+.selectL::-ms-expand {
   display: none;
 }

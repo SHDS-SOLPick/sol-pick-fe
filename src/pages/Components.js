@@ -2,7 +2,8 @@ import { useState } from "react";
 import ButtonS from "../components/common/button/ButtonS";
 import ButtonL from "../components/common/button/ButtonL";
 import Input from "../components/common/input/Input";
-import Select from "../components/common/select/Select";
+import SelectL from "../components/common/select/SelectL";
+import SelectS from "../components/common/select/SelectS";
 import Modal from "../components/common/modal/Modal";
 import Popup from "../components/common/popup/Popup";
 import Header from "../components/common/header/Header";
@@ -16,6 +17,7 @@ import shopActive from "../assets/shopActive.svg";
 import Menu from "../components/common/menu/Menu";
 import ToastMessage from "../components/common/toastmessage/ToastMessage";
 import Chip from "../components/common/chip/Chip";
+import SelectSimple from "../components/common/select/SelectSimple";
 
 const Components = () => {
   // 셀렉트 옵션
@@ -90,7 +92,13 @@ const Components = () => {
       <Input placeholder="플레이스홀더" />
       <br />
 
-      <Select options={selectOptions} />
+      <SelectL options={selectOptions} />
+      <br />
+
+      <SelectS options={selectOptions} />
+      <br />
+
+      <SelectSimple options={selectOptions} />
       <br />
 
       <button onClick={openModal}>모달 열기</button>
