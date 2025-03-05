@@ -117,7 +117,7 @@ const IngredientAddForm = () => {
         </div>
       </div>
 
-      <div className="button-container">
+      <div className="form-button-container">
         <ButtonL text="취소" variant="outlined" />
         <ButtonL text="등록하기" />
       </div>

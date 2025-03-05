@@ -41,7 +41,7 @@ const Popup = ({
               />
             </div>
             <p className="popup-description">{description}</p>
-            <div className="button-container">
+            <div className="popup-button-container">
               <ButtonS
                 text={outlinedButtonText}
                 variant="outlined"
