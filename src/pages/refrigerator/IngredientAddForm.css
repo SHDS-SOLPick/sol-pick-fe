@@ -1,4 +1,4 @@
-.input-wrapper {
+.form-wrapper {
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -6,23 +6,23 @@
   padding: 0 16px;
 }
 
-.input-container {
+.form-container {
   width: 100%;
 }
 
-.input-label {
+.form-label {
   font-size: 16px;
   line-height: 160%;
   letter-spacing: 0%;
   margin-bottom: 12px;
 }
 
-.input {
+.form-input {
   margin: 0 auto;
   width: 100%;
 }
 
-.select-container {
+.form-select-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
