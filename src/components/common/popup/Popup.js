@@ -11,6 +11,7 @@ const Popup = ({
   description,
   outlinedButtonText,
   filledButtonText,
+  children, // children props 추가
 }) => {
   return (
     <AnimatePresence>
@@ -40,8 +41,12 @@ const Popup = ({
                 onClick={onClose}
               />
             </div>
-            <p className="popup-description">{description}</p>
-            <div className="button-container">
+            {description && <p className="popup-description">{description}</p>}
+
+            {/* children이 있으면 렌더링 */}
+            {children}
+
+            <div className="popup-button-container">
               <ButtonS
                 text={outlinedButtonText}
                 variant="outlined"

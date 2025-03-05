@@ -46,7 +46,7 @@
   margin: 18px 0;
 }
 
-.button-container {
+.popup-button-container {
   display: flex;
   gap: 15px;
 }
