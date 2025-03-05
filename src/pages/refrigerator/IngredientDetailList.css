@@ -19,3 +19,59 @@
   max-height: calc(100vh - 132px);
   overflow-y: auto;
 }
+
+.popup-description-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 18px 0;
+}
+
+.popup-description-category {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+}
+
+.main-category,
+.sub-category,
+.detail-category {
+  font-size: 12px;
+  line-height: 160%;
+  letter-spacing: 0%;
+}
+
+.detailArrow-icon {
+  width: 12px;
+  height: 12px;
+}
+
+.popup-description-image {
+  width: 100%;
+  height: 150px;
+  background-color: #d9d9d9;
+  border-radius: 12px;
+}
+
+.popup-description {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+}
+
+.popup-description-label {
+  font-size: 14px;
+  line-height: 160%;
+  letter-spacing: 0%;
+}
+
+.popup-description-expiration,
+.popup-description-gram,
+.popup-description-adddate {
+  color: #969696;
+  font-size: 12px;
+  line-height: 160%;
+  letter-spacing: 0%;
+}
