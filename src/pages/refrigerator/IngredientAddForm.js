@@ -3,7 +3,7 @@ import Header from "../../components/common/header/Header";
 import backArrow from "../../assets/backArrow.svg";
 import close from "../../assets/close.svg";
 import Input from "../../components/common/input/Input";
-import Select from "../../components/common/select/Select";
+import SelectL from "../../components/common/select/SelectL";
 import ButtonL from "../../components/common/button/ButtonL";
 import Menu from "../../components/common/menu/Menu";
 import imagePlus from "../../assets/imagePlus.svg";
@@ -59,14 +59,17 @@ const IngredientAddForm = () => {
         onRightClick={() => window.history.back()}
       />
 
-      <div className="input-wrapper">
-        <div className="input-container">
-          <h3 className="input-label bold">식재료명</h3>
-          <Input className="input" placeholder="식재료명을 입력해 주세요." />
+      <div className="form-wrapper">
+        <div className="form-container">
+          <h3 className="form-label bold">식재료명</h3>
+          <Input
+            className="form-input"
+            placeholder="식재료명을 입력해 주세요."
+          />
         </div>
 
-        <div className="input-container">
-          <h3 className="input-label bold">사진 첨부</h3>
+        <div className="form-container">
+          <h3 className="form-label bold">사진 첨부</h3>
           <div
             className="image-upload-container"
             onClick={handleImageClick}
@@ -94,23 +97,23 @@ const IngredientAddForm = () => {
           </div>
         </div>
 
-        <div className="input-container">
-          <h3 className="input-label bold">유통기한</h3>
-          <Input className="input" type="date" />
+        <div className="form-container">
+          <h3 className="form-label bold">유통기한</h3>
+          <Input className="form-input" type="date" />
         </div>
 
-        <div className="input-container">
-          <h3 className="input-label bold">분류기준</h3>
-          <div className="select-container">
-            <Select options={mainOptions} className="select-item" />
-            <Select options={subOptions} className="select-item" />
-            <Select options={detailOptions} className="select-item" />
+        <div className="form-container">
+          <h3 className="form-label bold">분류기준</h3>
+          <div className="form-select-container">
+            <SelectL options={mainOptions} className="select-item" />
+            <SelectL options={subOptions} className="select-item" />
+            <SelectL options={detailOptions} className="select-item" />
           </div>
         </div>
 
-        <div className="input-container">
-          <h3 className="input-label bold">중량</h3>
-          <Input className="input" placeholder="중량을 입력해 주세요." />
+        <div className="form-container">
+          <h3 className="form-label bold">중량</h3>
+          <Input className="form-input" placeholder="중량을 입력해 주세요." />
         </div>
       </div>
 
