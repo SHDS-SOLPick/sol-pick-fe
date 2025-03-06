@@ -9,8 +9,7 @@ import IngredientDetailList from "./pages/refrigerator/IngredientDetailList";
 import RefrigeratorMain from "./pages/refrigerator/RefrigeratorMain";
 import CardIssuePage from "./pages/card/CardIssuePage"; // 카드 발급 안내 페이지
 import CardDetailPage from "./pages/card/CardDetailPage"; // 카드 상세 페이지
-// import CardApplyPage from "./pages/card/CardApplyPage"; // 카드 신청 페이지
-// import TemplatePage from "./pages/template/TemplatePage"; // 템플릿 페이지
+import CardDesignSelectionPage from "./pages/card/CardDesignSelectionPage"; // 카드 상세 페이지
 
 function App() {
   return (
@@ -27,10 +26,9 @@ function App() {
         <Route path="/refrigeratormain" element={<RefrigeratorMain />} />
 
         {/* 카드 신청 관련 라우트 */}
-        {/* <Route path="/template" element={<TemplatePage />} /> */}
         <Route path="/card" element={<CardIssuePage />} />
         <Route path="/card/detail" element={<CardDetailPage />} />
-        {/* <Route path="/card/apply" element={<CardApplyPage />} /> */}
+        <Route path="/card/design" element={<CardDesignSelectionPage />} />
       </Route>
     </Routes>
   );
