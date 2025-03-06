@@ -39,28 +39,6 @@
   position: relative;
 }
 
-.card-chip {
-  width: 32px;
-  height: 24px;
-  background-color: #dbdbdb;
-  border-radius: 3px;
-  margin-bottom: 40px;
-}
-
-.card-number {
-  font-size: 16px;
-  color: #333;
-  margin-bottom: 16px;
-  letter-spacing: 1px;
-}
-
-.card-owner {
-  display: flex;
-  justify-content: space-between;
-  font-size: 12px;
-  color: #333;
-}
-
 /* 카드 제목 및 설명 섹션 */
 .card-title-section {
   width: 100%;
@@ -72,13 +50,6 @@
   font-weight: 700;
   margin: 0;
   color: #000;
-}
-
-.card-title-section h3 {
-  font-size: 16px;
-  font-weight: 400;
-  margin: 4px 0 12px 0;
-  color: #333;
 }
 
 .divider {
