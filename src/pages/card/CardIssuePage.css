@@ -23,6 +23,7 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 15px;
+  cursor: pointer;
 }
 
 /* 메시지 컨테이너 스타일 */

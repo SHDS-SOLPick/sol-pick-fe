@@ -16,8 +16,12 @@ const CardIssuePage = () => {
 
   const navigate = useNavigate();
 
+  const handleCardDetail = () => {
+    navigate("/card/detail");
+  };
+
   const handleCardIssue = () => {
-    navigate("/card/apply");
+    navigate("/card/design");
   };
 
   return (
@@ -30,7 +34,7 @@ const CardIssuePage = () => {
         onLeftClick={navigateToShop}
         onRightClick={navigateToNoti}
       />
-      <div className="card-wrapper"></div>
+      <div className="card-wrapper" onClick={handleCardDetail}></div>
 
       <div className="message-container">
         <h2 className="message-title">
