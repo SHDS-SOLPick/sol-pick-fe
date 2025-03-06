@@ -163,9 +163,11 @@ const CardDesignSelectionPage = () => {
       </div>
 
       {/* 다음 버튼 */}
-      <button className="next-button" onClick={handleNext}>
-        선택
-      </button>
+      {cardView === CARD_VIEWS.FRONT_BASIC ? (
+        <button className="next-button" onClick={handleNext}>
+          선택
+        </button>
+      ) : null}
 
       <Menu />
     </div>
