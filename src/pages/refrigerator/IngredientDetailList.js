@@ -1,12 +1,12 @@
 import Header from "../../components/common/header/Header";
 import backArrow from "../../assets/backArrow.svg";
-import detailArrow from "../../assets/detailArrow.svg";
 import "./IngredientDetailList.css";
 import SelectS from "../../components/common/select/SelectS";
 import SelectSimple from "../../components/common/select/SelectSimple";
 import { useState } from "react";
-import IngredientItem from "../../components/refrigerator/IngredientItem";
+import IngredientListItem from "../../components/refrigerator/IngredientListItem";
 import Popup from "../../components/common/popup/Popup";
+import IngredientDetailContent from "../../components/refrigerator/IngredientDetailContent";
 
 const IngredientDetailList = () => {
   // 샘플 식재료 데이터
@@ -115,11 +115,6 @@ const IngredientDetailList = () => {
   // 팝업 표시 여부를 관리하는 상태
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-  //   // 팝업 열기
-  //   const openPopup = () => {
-  //     setIsPopupOpen(true);
-  //   };
-
   // 팝업 닫기
   const closePopup = () => {
     setIsPopupOpen(false);
@@ -146,9 +141,7 @@ const IngredientDetailList = () => {
       <Header
         leftIcon={backArrow}
         title="나의 냉장고 목록"
-        // rightIcon={close}
         onLeftClick={() => window.history.back()}
-        // onRightClick={() => window.history.back()}
       />
 
       <div className="order-select-container">
@@ -163,7 +156,7 @@ const IngredientDetailList = () => {
 
       <div className="ingredient-list-container">
         {ingredients.map((ingredient) => (
-          <IngredientItem
+          <IngredientListItem
             key={ingredient.id}
             image={ingredient.image}
             category={ingredient.category}
@@ -178,53 +171,11 @@ const IngredientDetailList = () => {
         isOpen={isPopupOpen}
         onClose={closePopup}
         onConfirm={handleConfirm}
-        title={selectedIngredient && selectedIngredient.name}
+        title={selectedIngredient ? selectedIngredient.name : ""}
         outlinedButtonText="수정하기"
         filledButtonText="삭제하기"
       >
-        {selectedIngredient && (
-          <div className="popup-description-container">
-            <div className="popup-description-category">
-              <p className="main-category">대분류</p> {/* 수정 */}
-              <img
-                src={detailArrow}
-                alt={detailArrow}
-                className="detailArrow-icon"
-              />
-              <p className="sub-category">중분류</p> {/* 수정 */}
-              <img
-                src={detailArrow}
-                alt={detailArrow}
-                className="detailArrow-icon"
-              />
-              <p className="detail-category">소분류</p> {/* 수정 */}
-            </div>
-
-            <img
-              // src={}
-              alt={selectedIngredient.name}
-              className="popup-description-image"
-            />
-
-            <div className="popup-description">
-              <p className="popup-description-label">유통기한</p>
-              <p className="popup-description-expiration">2025. 12. 31.</p>{" "}
-              {/* 수정 */}
-            </div>
-
-            <div className="popup-description">
-              <p className="popup-description-label">보유량</p>
-              <p className="popup-description-gram">100g</p> {/* 수정 */}
-            </div>
-
-            <div className="popup-description">
-              <p className="popup-description-label">등록일</p>
-              <p className="popup-description-adddate">
-                {selectedIngredient.addDate}
-              </p>
-            </div>
-          </div>
-        )}
+        <IngredientDetailContent ingredient={selectedIngredient} />
       </Popup>
     </>
   );

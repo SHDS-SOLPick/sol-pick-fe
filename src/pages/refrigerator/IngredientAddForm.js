@@ -6,7 +6,7 @@ import Input from "../../components/common/input/Input";
 import SelectL from "../../components/common/select/SelectL";
 import ButtonL from "../../components/common/button/ButtonL";
 import Menu from "../../components/common/menu/Menu";
-import imagePlus from "../../assets/imagePlus.svg";
+import plus from "../../assets/plus.svg";
 import { useRef, useState } from "react";
 
 const IngredientAddForm = () => {
@@ -80,11 +80,7 @@ const IngredientAddForm = () => {
             }}
           >
             {!imagePreview && (
-              <img
-                src={imagePlus}
-                alt="이미지 추가"
-                className="image-plus-icon"
-              />
+              <img src={plus} alt="이미지 추가" className="image-plus-icon" />
             )}
             {/* 파일 입력 요소 */}
             <input

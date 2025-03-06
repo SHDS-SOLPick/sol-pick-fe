@@ -6,6 +6,7 @@ import Main from "./pages/main/Main";
 import Noti from "./pages/noti/Noti";
 import IngredientAddForm from "./pages/refrigerator/IngredientAddForm";
 import IngredientDetailList from "./pages/refrigerator/IngredientDetailList";
+import RefrigeratorMain from "./pages/refrigerator/RefrigeratorMain";
 import CardIssuePage from "./pages/card/CardIssuePage"; // 카드 발급 안내 페이지
 import CardDetailPage from "./pages/card/CardDetailPage"; // 카드 상세 페이지
 // import CardApplyPage from "./pages/card/CardApplyPage"; // 카드 신청 페이지
@@ -23,6 +24,8 @@ function App() {
           path="/ingredientdetaillist"
           element={<IngredientDetailList />}
         />
+        <Route path="/refrigeratormain" element={<RefrigeratorMain />} />
+
         {/* 카드 신청 관련 라우트 */}
         {/* <Route path="/template" element={<TemplatePage />} /> */}
         <Route path="/card" element={<CardIssuePage />} />
