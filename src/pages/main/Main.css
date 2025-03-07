@@ -4,6 +4,7 @@
   line-height: 160%;
   letter-spacing: 0%;
   font-size: 18px;
+  margin-bottom: 0;
 }
 
 .login-banner-container {
@@ -22,6 +23,7 @@
   line-height: 160%;
   letter-spacing: 0%;
   text-align: center;
+  margin: 0;
 }
 
 .login-banner-button-container {
