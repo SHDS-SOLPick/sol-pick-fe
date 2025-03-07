@@ -1,19 +1,25 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+
 // 카드 성세 컴포넌트
 import CardDetail from "../../components/card/CardDetail";
 import "./CardDetailPage.css";
+
 // 헤더 및 푸터 관련 컴포넌트
-import MainHeader from "../../components/common/header/MainHeader";
-import noti from "../../assets/noti.svg";
-import notiActive from "../../assets/notiActive.svg";
-import shop from "../../assets/shop.svg";
-import shopActive from "../../assets/shopActive.svg";
+import Header from "../../components/common/header/Header";
 import Menu from "../../components/common/menu/Menu";
 
-const CardDetailPage = () => {
-  const navigateToShop = () => {};
+// 필요한 아이콘 import
+import backArrow from "../../assets/backArrow.svg";
+import close from "../../assets/close.svg";
 
-  const navigateToNoti = () => {};
+const CardDetailPage = () => {
+  const navigate = useNavigate();
+
+  // 네비게이션 핸들러
+  const handleGoBack = () => navigate(-1);
+  const handleClose = () => navigate("/card");
+  const handleNext = () => navigate("/card/design");
 
   // 카드 상세 데이터 (실제 구현에서는 API로 가져올 수 있음)
   const cardData = {
@@ -32,18 +38,17 @@ const CardDetailPage = () => {
   };
 
   return (
-    <div className="card-container">
-      <MainHeader
-        leftIcon={shop}
-        leftIconActive={shopActive}
-        rightIcon={noti}
-        rightIconActive={notiActive}
-        onLeftClick={navigateToShop}
-        onRightClick={navigateToNoti}
+    <div className="card-detail-container">
+      <Header
+        leftIcon={backArrow}
+        title="신한카드 쏠픽(SOL Pick)"
+        rightIcon={close}
+        onLeftClick={handleGoBack}
+        onRightClick={handleClose}
       />
 
       <div className="card-detail-page">
-        <CardDetail cardData={cardData} />
+        <CardDetail cardData={cardData} onNext={handleNext} />
       </div>
 
       <Menu />
