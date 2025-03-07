@@ -26,16 +26,16 @@ const CardIdentityVerificationPage = () => {
   };
 
   return (
-    <div className="identity-verification-container">
+    <div className="identity-verification-page">
       <Header
         leftIcon={backArrow}
-        title="카드신청"
+        title="카드 신청"
         rightIcon={close}
         onLeftClick={handleGoBack}
         onRightClick={handleClose}
       />
 
-      <div className="identity-verification-page">
+      <div className="identity-verification-page-content">
         <CardIdentityVerification onComplete={handleVerificationComplete} />
       </div>
 

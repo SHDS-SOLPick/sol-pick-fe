@@ -1,20 +1,15 @@
-/* CardIdentityVerificationPage.css - 페이지 레이아웃 스타일 */
-.identity-verification-container {
+.identity-verification-page {
+  width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
   background-color: #ffffff;
   position: relative;
 }
 
-.identity-verification-page {
-  width: 100%;
-  height: 100%;
-  background-color: #ffffff;
+.identity-verification-page-content {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  flex: 1;
   overflow-y: auto;
-  padding-bottom: 100px; /* 메뉴 공간 확보 */
 }
