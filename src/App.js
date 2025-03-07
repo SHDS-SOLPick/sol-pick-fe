@@ -15,9 +15,16 @@ function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
+        {/* 공통 컴포넌트 */}
         <Route path="/components" element={<Components />} />
+
+        {/* 메인 */}
         <Route path="/main" element={<Main />} />
+
+        {/* 알림 */}
         <Route path="/noti" element={<Noti />} />
+
+        {/* 냉장고 */}
         <Route path="/ingredientaddform" element={<IngredientAddForm />} />
         <Route
           path="/ingredientdetaillist"

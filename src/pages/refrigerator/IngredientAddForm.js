@@ -7,13 +7,56 @@ import SelectL from "../../components/common/select/SelectL";
 import ButtonL from "../../components/common/button/ButtonL";
 import Menu from "../../components/common/menu/Menu";
 import plus from "../../assets/plus.svg";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 const IngredientAddForm = () => {
+  // location을 사용하여 현재 경로 및 상태 확인
+  const location = useLocation();
+  const isFromReceipt = location.state?.fromReceipt || false;
+  const receiptData = location.state?.receiptData || {};
+
   // 이미지 미리보기 상태 관리
   const [imagePreview, setImagePreview] = useState(null);
+  // 폼 데이터 상태 관리
+  const [formData, setFormData] = useState({
+    name: "",
+    expiryDate: "",
+    mainCategory: "",
+    subCategory: "",
+    detailCategory: "",
+    weight: "",
+  });
+
   // 파일 입력 요소 접근
   const fileInputRef = useRef(null);
+
+  // 영수증 데이터로 폼 초기화 (영수증 스캔 후 이동한 경우)
+  useEffect(() => {
+    if (isFromReceipt && receiptData) {
+      setFormData({
+        name: receiptData.name || "",
+        expiryDate: receiptData.expiryDate || "",
+        mainCategory: receiptData.mainCategory || "",
+        subCategory: receiptData.subCategory || "",
+        detailCategory: receiptData.detailCategory || "",
+        weight: receiptData.weight || "",
+      });
+
+      // 영수증에서 이미지가 있으면 설정
+      if (receiptData.image) {
+        setImagePreview(receiptData.image);
+      }
+    }
+  }, [isFromReceipt, receiptData]);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
 
   const handleImageClick = () => {
     fileInputRef.current.click();
@@ -53,7 +96,7 @@ const IngredientAddForm = () => {
     <>
       <Header
         leftIcon={backArrow}
-        title="직접 입력하기"
+        title={isFromReceipt ? "영수증 촬영하기" : "직접 입력하기"}
         rightIcon={close}
         onLeftClick={() => window.history.back()}
         onRightClick={() => window.history.back()}
@@ -65,6 +108,9 @@ const IngredientAddForm = () => {
           <Input
             className="form-input"
             placeholder="식재료명을 입력해 주세요."
+            name="name"
+            value={formData.name}
+            onChange={handleInputChange}
           />
         </div>
 
@@ -95,27 +141,64 @@ const IngredientAddForm = () => {
 
         <div className="form-container">
           <h3 className="form-label bold">유통기한</h3>
-          <Input className="form-input" type="date" />
+          <Input
+            className="form-input"
+            type="date"
+            name="expiryDate"
+            value={formData.expiryDate}
+            onChange={handleInputChange}
+          />
         </div>
 
         <div className="form-container">
           <h3 className="form-label bold">분류기준</h3>
           <div className="form-select-container">
-            <SelectL options={mainOptions} className="select-item" />
-            <SelectL options={subOptions} className="select-item" />
-            <SelectL options={detailOptions} className="select-item" />
+            <SelectL
+              options={mainOptions}
+              className="select-item"
+              value={formData.mainCategory}
+              onChange={(e) =>
+                setFormData({ ...formData, mainCategory: e.target.value })
+              }
+            />
+            <SelectL
+              options={subOptions}
+              className="select-item"
+              value={formData.subCategory}
+              onChange={(e) =>
+                setFormData({ ...formData, subCategory: e.target.value })
+              }
+            />
+            <SelectL
+              options={detailOptions}
+              className="select-item"
+              value={formData.detailCategory}
+              onChange={(e) =>
+                setFormData({ ...formData, detailCategory: e.target.value })
+              }
+            />
           </div>
         </div>
 
         <div className="form-container">
           <h3 className="form-label bold">중량</h3>
-          <Input className="form-input" placeholder="중량을 입력해 주세요." />
+          <Input
+            className="form-input"
+            placeholder="중량을 입력해 주세요."
+            name="weight"
+            value={formData.weight}
+            onChange={handleInputChange}
+          />
         </div>
       </div>
 
       <div className="form-button-container">
-        <ButtonL text="취소" variant="outlined" />
-        <ButtonL text="등록하기" />
+        <ButtonL
+          text="취소"
+          variant="outlined"
+          onClick={() => window.history.back()}
+        />
+        <ButtonL text={isFromReceipt ? "추가하기" : "등록하기"} />
       </div>
 
       <div style={{ height: "100px" }}></div>

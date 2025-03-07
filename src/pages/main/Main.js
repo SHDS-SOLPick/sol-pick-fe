@@ -98,9 +98,9 @@ const Main = () => {
             text="회원가입"
             variant="outlined"
             width="80px"
-            height="20px"
+            height="24px"
           />
-          <ButtonS text="로그인" width="80px" height="20px" />
+          <ButtonS text="로그인" width="80px" height="24px" />
         </div>
       </div>
 
