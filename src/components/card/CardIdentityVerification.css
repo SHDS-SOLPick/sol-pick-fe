@@ -1,0 +1,200 @@
+/* CardIdentityVerification.css - 컴포넌트 스타일 */
+.identity-verification-content {
+  flex: 1;
+  padding: 24px 16px;
+  overflow-y: auto;
+}
+
+.content-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 32px 0;
+}
+
+.input-section {
+  margin-bottom: 24px;
+}
+
+.input-section label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 0;
+  font-size: 16px;
+  box-sizing: border-box;
+  margin-bottom: 8px;
+}
+
+.input-field::placeholder {
+  color: #cccccc;
+}
+
+/* 주민등록번호 입력 스타일 */
+.resident-id-input {
+  display: flex;
+  align-items: center;
+}
+
+.birth-date {
+  flex: 0 0 auto;
+  width: 120px;
+}
+
+.separator {
+  margin: 0 8px;
+  font-size: 20px;
+  color: #666;
+}
+
+.masked-input {
+  flex: 1;
+}
+
+.masked {
+  letter-spacing: 2px;
+  font-size: 18px;
+  text-align: center;
+}
+
+/* 통신사 선택 스타일 */
+.telecom-selection {
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.telecom-select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 0;
+  font-size: 16px;
+  appearance: none;
+  background-color: white;
+}
+
+.dropdown-icon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* 휴대폰 인증 스타일 */
+.phone-verification {
+  display: flex;
+  gap: 8px;
+}
+
+.phone-number {
+  flex: 1;
+}
+
+.verification-request-button {
+  padding: 0 16px;
+  background-color: #6155ff;
+  color: white;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.verification-code {
+  margin-top: 8px;
+}
+
+/* 약관 동의 스타일 */
+.terms-agreement {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-top: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  padding-left: 30px;
+}
+
+.checkbox-input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.custom-checkbox {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 20px;
+  width: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 50%;
+}
+
+.checkbox-input:checked ~ .custom-checkbox {
+  background-color: #6155ff;
+  border-color: #6155ff;
+}
+
+.custom-checkbox:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.checkbox-input:checked ~ .custom-checkbox:after {
+  display: block;
+  left: 7px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.checkbox-label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* 하단 버튼 스타일 */
+.verification-footer {
+  padding: 16px 0;
+}
+
+.next-button {
+  width: 100%;
+  padding: 16px;
+  background-color: #6155ff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.next-button:disabled {
+  background-color: #e0e0e0;
+  cursor: not-allowed;
+}
