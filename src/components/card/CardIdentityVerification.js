@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./CardIdentityVerification.css";
 
 const CardIdentityVerificationPage = ({ onComplete }) => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     lastName: "",
@@ -25,182 +27,213 @@ const CardIdentityVerificationPage = ({ onComplete }) => {
 
   // 인증 요청 처리
   const handleRequestVerification = () => {
-    // 실제로는 여기서 인증 번호를 요청하는 API 호출
-    setShowVerificationField(true);
+    if (formData.phoneNumber) {
+      // 실제로는 여기서 인증 번호를 요청하는 API 호출
+      setShowVerificationField(true);
+      // 실제 구현에서는 여기서 SMS 인증 요청 API를 호출합니다
+      console.log("인증번호 요청:", formData.phoneNumber);
+    } else {
+      // 실제 구현에서는 Toast 메시지 등으로 사용자에게 알림
+      alert("휴대폰 번호를 입력해주세요.");
+    }
   };
 
   // 인증 완료 처리
   const handleCompleteVerification = () => {
-    // 실제로는 여기서 인증 번호를 검증하는 API 호출
-    // 부모 컴포넌트로 완료 이벤트 전달
-    if (onComplete && typeof onComplete === "function") {
-      onComplete();
+    // 모든 필수 필드가 입력되었는지 확인
+    const isFormComplete =
+      formData.name &&
+      formData.lastName &&
+      formData.firstName &&
+      formData.residentId &&
+      formData.residentIdBack &&
+      formData.residentIdBack.length === 7 &&
+      formData.phoneNumber &&
+      formData.verificationCode;
+
+    if (isFormComplete && agreeToTerms) {
+      // 실제로는 여기서 인증 번호를 검증하는 API 호출
+      console.log("인증 완료 처리:", formData);
+      navigate("/card/terms"); // 다음 단계(약관 동의)로 이동
+    } else {
+      // 실제 구현에서는 더 구체적인 피드백 제공
+      alert("모든 정보를 입력하고 약관에 동의해주세요.");
     }
   };
 
   return (
-    <div className="identity-verification-content">
-      <h2 className="content-title">본인 인증해 주세요</h2>
-
-      {/* 이름 입력 */}
-      <div className="input-section">
-        <label>이름</label>
-        <input
-          type="text"
-          name="name"
-          placeholder="이름 입력"
-          value={formData.name}
-          onChange={handleInputChange}
-          className="input-field"
-        />
-      </div>
-
-      {/* 영문 성 입력 */}
-      <div className="input-section">
-        <label>영문 성</label>
-        <input
-          type="text"
-          name="lastName"
-          placeholder="EX) HONG"
-          value={formData.lastName}
-          onChange={handleInputChange}
-          className="input-field"
-        />
-      </div>
-
-      {/* 영문 이름 입력 */}
-      <div className="input-section">
-        <label>영문 이름</label>
-        <input
-          type="text"
-          name="firstName"
-          placeholder="EX) GILDONG"
-          value={formData.firstName}
-          onChange={handleInputChange}
-          className="input-field"
-        />
-      </div>
-
-      {/* 주민등록번호(외국인등록번호) 입력 */}
-      <div className="input-section">
-        <label>주민등록번호(외국인등록번호)</label>
-        <div className="resident-id-input">
-          <input
-            type="text"
-            name="residentId"
-            placeholder="생년월일 6자리"
-            maxLength="6"
-            value={formData.residentId}
-            onChange={handleInputChange}
-            className="input-field birth-date"
-          />
-          <span className="separator">-</span>
-          <div className="masked-input">
+    <div className="identity-verification-container">
+      <div className="identity-verification-content">
+        {/* 안내 텍스트 */}
+        <div className="verification-title">
+          <h2>본인 인증해 주세요</h2>
+        </div>
+        <div className="verification-form">
+          {/* 이름 입력 */}
+          <div className="input-section">
+            <label>이름</label>
             <input
-              type="password"
-              maxLength="7"
-              className="input-field masked"
-              readOnly
-              value="•••••••"
+              type="text"
+              name="name"
+              placeholder="이름 입력"
+              value={formData.name}
+              onChange={handleInputChange}
+              className="input-field"
             />
           </div>
-        </div>
-      </div>
 
-      {/* 휴대폰 인증 */}
-      <div className="input-section">
-        <label>휴대폰 인증</label>
-        <div className="telecom-selection">
-          <select
-            name="telecom"
-            value={formData.telecom}
-            onChange={handleInputChange}
-            className="telecom-select"
-          >
-            <option value="KT">KT 알뜰폰</option>
-            <option value="SKT">SKT</option>
-            <option value="LGU+">LGU+</option>
-          </select>
-          <svg
-            className="dropdown-icon"
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
-            fill="none"
-          >
-            <path d="M5 8L10 13L15 8" stroke="black" strokeWidth="1.5" />
-          </svg>
+          {/* 영문 성 입력 */}
+          <div className="input-section">
+            <label>영문 성</label>
+            <input
+              type="text"
+              name="lastName"
+              placeholder="EX) HONG"
+              value={formData.lastName}
+              onChange={handleInputChange}
+              className="input-field"
+            />
+          </div>
+
+          {/* 영문 이름 입력 */}
+          <div className="input-section">
+            <label>영문 이름</label>
+            <input
+              type="text"
+              name="firstName"
+              placeholder="EX) GILDONG"
+              value={formData.firstName}
+              onChange={handleInputChange}
+              className="input-field"
+            />
+          </div>
+
+          {/* 주민등록번호(외국인등록번호) 입력 */}
+          <div className="input-section">
+            <label>주민등록번호(외국인등록번호)</label>
+            <div className="resident-id-input">
+              <input
+                type="text"
+                name="residentId"
+                placeholder="생년월일 6자리"
+                maxLength="6"
+                value={formData.residentId}
+                onChange={handleInputChange}
+                className="input-field birth-date"
+              />
+              <span className="separator">-</span>
+              <div className="masked-input">
+                <input
+                  type="password"
+                  name="redidentIdBack"
+                  maxLength="7"
+                  className="input-field masked"
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    setFormData({
+                      ...formData,
+                      residentIdBack: value,
+                    });
+                  }}
+                  value={
+                    formData.residentIdBack
+                      ? "•".repeat(formData.residentIdBack.length)
+                      : ""
+                  }
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* 휴대폰 인증 */}
+          <div className="phone input-section">
+            <label>휴대폰 인증</label>
+            <div className="telecom-selection">
+              <select
+                name="telecom"
+                value={formData.telecom}
+                onChange={handleInputChange}
+                className="telecom-select"
+              >
+                <option value="KT">KT</option>
+                <option value="SKT">SKT</option>
+                <option value="LGU+">LGU+</option>
+                <option value="KT알뜰폰">KT 알뜰폰</option>
+                <option value="SKT알뜰폰">SKT 알뜰폰</option>
+                <option value="LGU+알뜰폰">SKT 알뜰폰</option>
+              </select>
+              <svg
+                className="dropdown-icon"
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+              >
+                <path d="M5 8L10 13L15 8" stroke="black" strokeWidth="1.5" />
+              </svg>
+            </div>
+            <div className="phone-verification">
+              <input
+                type="text"
+                name="phoneNumber"
+                placeholder="휴대폰 11자리"
+                value={formData.phoneNumber}
+                onChange={handleInputChange}
+                className="input-field phone-number"
+              />
+              <button
+                className="verification-request-button"
+                onClick={handleRequestVerification}
+              >
+                인증 요청
+              </button>
+            </div>
+          </div>
+
+          {/* 인증 번호 입력 필드 (인증 요청 후 표시) */}
+          {showVerificationField && (
+            <div className="input-section">
+              <input
+                type="text"
+                name="verificationCode"
+                placeholder="인증 번호 입력"
+                value={formData.verificationCode}
+                onChange={handleInputChange}
+                className="input-field verification-code"
+              />
+            </div>
+          )}
+
+          {/* 본인 확인 약관 동의 */}
+          <div className="terms-agreement">
+            <label className="checkbox-container">
+              <input
+                type="checkbox"
+                checked={agreeToTerms}
+                onChange={() => setAgreeToTerms(!agreeToTerms)}
+                className="checkbox-input"
+              />
+              <span className="custom-checkbox"></span>
+              <span className="checkbox-label">
+                본인 확인을 위한 약관 모두 동의
+              </span>
+            </label>
+          </div>
         </div>
-        <div className="phone-verification">
-          <input
-            type="text"
-            name="phoneNumber"
-            placeholder="휴대폰 11자리"
-            value={formData.phoneNumber}
-            onChange={handleInputChange}
-            className="input-field phone-number"
-          />
+        {/* 하단 버튼 섹션 */}
+        <div className="verification-footer">
           <button
-            className="verification-request-button"
-            onClick={handleRequestVerification}
+            className="verification next-button"
+            onClick={handleCompleteVerification}
+            disabled={
+              !showVerificationField ||
+              !formData.verificationCode ||
+              !agreeToTerms
+            }
           >
-            인증 요청
+            다음
           </button>
         </div>
-      </div>
-
-      {/* 인증 번호 입력 필드 (인증 요청 후 표시) */}
-      {showVerificationField && (
-        <div className="input-section">
-          <input
-            type="text"
-            name="verificationCode"
-            placeholder="인증 번호 입력"
-            value={formData.verificationCode}
-            onChange={handleInputChange}
-            className="input-field verification-code"
-          />
-        </div>
-      )}
-
-      {/* 본인 확인 약관 동의 */}
-      <div className="terms-agreement">
-        <label className="checkbox-container">
-          <input
-            type="checkbox"
-            checked={agreeToTerms}
-            onChange={() => setAgreeToTerms(!agreeToTerms)}
-            className="checkbox-input"
-          />
-          <span className="custom-checkbox"></span>
-          <span className="checkbox-label">
-            본인 확인을 위한 약관 모두 동의
-          </span>
-        </label>
-        <svg
-          className="dropdown-icon"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-        >
-          <path d="M6 9L12 15L18 9" stroke="black" strokeWidth="2" />
-        </svg>
-      </div>
-
-      {/* 하단 버튼 섹션 */}
-      <div className="verification-footer">
-        <button
-          className="next-button"
-          onClick={handleCompleteVerification}
-          disabled={
-            !showVerificationField ||
-            !formData.verificationCode ||
-            !agreeToTerms
-          }
-        >
-          다음
-        </button>
       </div>
     </div>
   );
