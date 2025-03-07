@@ -65,6 +65,7 @@
 
 .separator {
   margin: 0 8px;
+  margin-bottom: 8px;
   font-size: 20px;
   color: #666;
 }
