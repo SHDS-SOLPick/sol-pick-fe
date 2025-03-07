@@ -134,7 +134,7 @@
 .design-button {
   background-color: #fff;
   border: 1px solid #ddd;
-  border-radius: 20px;
+  border-radius: 12px;
   padding: 10px 30px;
   font-size: 14px;
   cursor: pointer;
@@ -147,21 +147,21 @@
 }
 
 .custom-design-button {
-  background-color: #8470ff;
+  background-color: #7b68ee;
   color: #ffffff;
   border: none;
 }
 
 .custom-design-button:hover {
-  background-color: #7360ee;
+  background-color: #5b4bc4;
 }
 
 /* 다음 버튼 */
 .design.next-button {
-  background-color: #6c5ce7;
+  background-color: #7b68ee;
   color: white;
   border: none;
-  border-radius: 25px;
+  border-radius: 12px;
   padding: 12px 50px;
   font-size: 16px;
   font-weight: bold;
