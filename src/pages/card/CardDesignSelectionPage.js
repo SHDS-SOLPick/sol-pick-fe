@@ -19,8 +19,8 @@ const CardDesignSelectionPage = () => {
   // 네비게이션 핸들러
   const handleBack = () => navigate(-1);
   const handleClose = () => navigate("/card");
-  const handleNext = () => navigate("/card/identity-verification");
-  const handleGoToCustomize = () => navigate("/card/customize");
+  const handleNext = () => navigate("/card/apply/identity-verification");
+  const handleGoToCustomize = () => navigate("/card/apply/customize");
 
   return (
     <div className="card-design-selection-page">

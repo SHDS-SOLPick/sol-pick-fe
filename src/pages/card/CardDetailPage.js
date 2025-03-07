@@ -19,7 +19,7 @@ const CardDetailPage = () => {
   // 네비게이션 핸들러
   const handleGoBack = () => navigate(-1);
   const handleClose = () => navigate("/card");
-  const handleNext = () => navigate("/card/design");
+  const handleNext = () => navigate("/card/apply/design");
 
   // 카드 상세 데이터 (실제 구현에서는 API로 가져올 수 있음)
   const cardData = {

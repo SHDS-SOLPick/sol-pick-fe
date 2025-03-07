@@ -22,7 +22,7 @@ const CardIdentityVerificationPage = () => {
 
   // 인증 완료 핸들러
   const handleVerificationComplete = () => {
-    navigate("/card/terms"); // 다음 단계(약관 동의)로 이동
+    navigate("/card/apply/terms"); // 다음 단계(약관 동의)로 이동
   };
 
   return (

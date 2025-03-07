@@ -21,7 +21,7 @@ const CardIssuePage = () => {
   };
 
   const handleCardIssue = () => {
-    navigate("/card/design");
+    navigate("/card/apply/design");
   };
 
   return (
