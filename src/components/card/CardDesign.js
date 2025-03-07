@@ -140,7 +140,7 @@ const CardDesign = ({ onNext, onCustomize }) => {
 
       {/* 다음 버튼 */}
       {cardView === CARD_VIEWS.FRONT_BASIC ? (
-        <button className="next-button" onClick={onNext}>
+        <button className="design next-button" onClick={onNext}>
           선택
         </button>
       ) : null}
