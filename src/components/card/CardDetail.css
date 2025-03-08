@@ -17,7 +17,7 @@
   padding: 0 20px;
 }
 
-/* 카드 이미지 및 시각적 정보 스타일 */
+/* 카드 이미지 스타일 */
 .card-visual-section {
   margin-top: 12px;
   padding: 0px 16px;
@@ -141,8 +141,8 @@ p {
   line-height: 100%;
 }
 
-/* 카드 발급 유의사항 드롭다운 */
-.card-info-dropdown {
+/* 카드 발급 유의사항 드롭다운 섹션 */
+.card-info-dropdown-section {
   padding: 16px;
 }
 
@@ -183,6 +183,7 @@ p {
   margin-bottom: 10px;
 }
 
+/* 카드 신청 버튼 */
 .apply-button {
   background-color: #7b68ee;
   color: white;

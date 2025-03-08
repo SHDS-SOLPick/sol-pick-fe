@@ -17,7 +17,7 @@ const CardDetail = ({ cardData, onNext }) => {
   return (
     <div className="card-detail-container">
       <div className="card-detail-content">
-        {/* 카드 이미지 및 정보 */}
+        {/* 카드 이미지 */}
         <div className="card-visual-section">
           <div className="card-image-container">
             <div className="card-image">
@@ -144,7 +144,7 @@ const CardDetail = ({ cardData, onNext }) => {
         </div>
 
         {/* 카드발급 유의사항 드롭다운 */}
-        <div className="card-info-dropdown">
+        <div className="card-info-dropdown-section">
           <div className="dropdown-header" onClick={toggleDropdown}>
             <span>카드발급 유의사항</span>
             <img

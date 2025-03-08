@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import "./CardDesign.css";
+import "./CardDesignSelection.css";
 
 // 카드 디자인 타입 상수
 const CARD_VIEWS = {
