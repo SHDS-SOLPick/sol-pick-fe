@@ -54,7 +54,7 @@ const CardIdentityVerificationPage = ({ onComplete }) => {
     if (isFormComplete && agreeToTerms) {
       // 실제로는 여기서 인증 번호를 검증하는 API 호출
       console.log("인증 완료 처리:", formData);
-      navigate("/card/terms"); // 다음 단계(약관 동의)로 이동
+      navigate("/card/apply/terms"); // 다음 단계(약관 동의)로 이동
     } else {
       // 실제 구현에서는 더 구체적인 피드백 제공
       alert("모든 정보를 입력하고 약관에 동의해주세요.");

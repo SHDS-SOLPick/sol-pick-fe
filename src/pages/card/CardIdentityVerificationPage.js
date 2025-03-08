@@ -20,11 +20,6 @@ const CardIdentityVerificationPage = () => {
   const handleGoBack = () => navigate(-1);
   const handleClose = () => navigate("/card");
 
-  // 인증 완료 핸들러
-  const handleVerificationComplete = () => {
-    navigate("/card/apply/terms"); // 다음 단계(약관 동의)로 이동
-  };
-
   return (
     <div className="identity-verification-page">
       <Header
@@ -36,7 +31,7 @@ const CardIdentityVerificationPage = () => {
       />
 
       <div className="identity-verification-page-content">
-        <CardIdentityVerification onComplete={handleVerificationComplete} />
+        <CardIdentityVerification />
       </div>
 
       <Menu />
