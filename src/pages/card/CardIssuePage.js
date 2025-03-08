@@ -21,11 +21,11 @@ const CardIssuePage = () => {
   };
 
   const handleCardIssue = () => {
-    navigate("/card/design");
+    navigate("/card/apply/design");
   };
 
   return (
-    <div className="card-container">
+    <div className="card-issue-page-container">
       <MainHeader
         leftIcon={shop}
         leftIconActive={shopActive}
@@ -34,7 +34,11 @@ const CardIssuePage = () => {
         onLeftClick={navigateToShop}
         onRightClick={navigateToNoti}
       />
-      <div className="card-wrapper" onClick={handleCardDetail}></div>
+
+      <div
+        className="card-detail-handler-container"
+        onClick={handleCardDetail}
+      ></div>
 
       <div className="message-container">
         <h2 className="message-title">

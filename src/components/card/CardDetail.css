@@ -8,9 +8,16 @@
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   position: relative;
+  overflow: hidden;
 }
 
-/* 카드 이미지 및 시각적 정보 스타일 */
+.card-detail-content {
+  flex: 1; /* 남은 공간을 모두 차지 */
+  overflow-y: auto; /* 세로 스크롤 허용 */
+  padding: 0 20px;
+}
+
+/* 카드 이미지 스타일 */
 .card-visual-section {
   margin-top: 12px;
   padding: 0px 16px;
@@ -134,8 +141,8 @@ p {
   line-height: 100%;
 }
 
-/* 카드 발급 유의사항 드롭다운 */
-.card-info-dropdown {
+/* 카드 발급 유의사항 드롭다운 섹션 */
+.card-info-dropdown-section {
   padding: 16px;
 }
 
@@ -174,4 +181,24 @@ p {
 
 .dropdown-content p {
   margin-bottom: 10px;
+}
+
+/* 카드 신청 버튼 */
+.apply-button {
+  background-color: #7b68ee;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 50px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 85%;
+  margin: 0 auto;
+  margin-bottom: 150px;
+}
+
+.apply-button:hover {
+  background-color: #5b4bc4;
 }

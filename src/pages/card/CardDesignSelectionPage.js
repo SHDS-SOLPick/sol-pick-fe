@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./CardDesignSelectionPage.css";
 
 // 카드 디자인 컴포넌트
-import CardDesign from "../../components/card/CardDesign";
+import CardDesignSelection from "../../components/card/CardDesignSelection";
 
 // 필요한 아이콘 import
 import backArrow from "../../assets/backArrow.svg";
@@ -19,11 +19,11 @@ const CardDesignSelectionPage = () => {
   // 네비게이션 핸들러
   const handleBack = () => navigate(-1);
   const handleClose = () => navigate("/card");
-  const handleNext = () => navigate("/card/identity-verification");
-  const handleGoToCustomize = () => navigate("/card/customize");
+  const handleNext = () => navigate("/card/apply/identity-verification");
+  const handleGoToCustomize = () => navigate("/card/apply/customize");
 
   return (
-    <div className="card-design-selection-page">
+    <div className="card-design-selection-page-container">
       <Header
         leftIcon={backArrow}
         title="카드 신청"
@@ -32,8 +32,11 @@ const CardDesignSelectionPage = () => {
         onRightClick={handleClose}
       />
 
-      <div className="card-design-page-content">
-        <CardDesign onNext={handleNext} onCustomize={handleGoToCustomize} />
+      <div className="card-design-selection-component-container">
+        <CardDesignSelection
+          onNext={handleNext}
+          onCustomize={handleGoToCustomize}
+        />
       </div>
 
       <Menu />

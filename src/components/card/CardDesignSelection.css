@@ -112,7 +112,7 @@
   transform: translateY(-50%) scale(1.05);
 }
 
-/* 디자인 선택 영역 */
+/* 버튼(앞면, 뒷면, 꾸미러 가기) 영역 */
 .design-selection {
   width: 100%;
   display: flex;
