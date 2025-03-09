@@ -1,9 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./CardIdentityVerificationPage.css";
 
-// 카드 본인인증 컴포넌트
-import CardIdentityVerification from "../../components/card/CardIdentityVerification";
+// 카드 신청 정보 입력 컴포넌트
+import CardApplyForm from "../../components/card/CardApplyForm";
+import "./CardApplyInfoPage.css";
 
 // 헤더 및 푸터 관련 컴포넌트
 import Header from "../../components/common/header/Header";
@@ -13,25 +13,26 @@ import Menu from "../../components/common/menu/Menu";
 import backArrow from "../../assets/backArrow.svg";
 import close from "../../assets/close.svg";
 
-const CardIdentityVerificationPage = () => {
+const CardApplyInfoPage = () => {
   const navigate = useNavigate();
 
   // 네비게이션 핸들러
-  const handleGoBack = () => navigate(-1);
+  const handleGoBack = () => navigate(-2);
   const handleClose = () => navigate("/card");
+  const handleNext = () => navigate("/card/apply/");
 
   return (
-    <div className="identity-verification-page">
+    <div className="card-apply-info-page-container">
       <Header
         leftIcon={backArrow}
-        title="본인 인증"
+        title="카드 신청 정보 입력"
         rightIcon={close}
         onLeftClick={handleGoBack}
         onRightClick={handleClose}
       />
 
-      <div className="identity-verification-page-content">
-        <CardIdentityVerification />
+      <div className="card-apply-info-component-container">
+        <CardApplyForm onNext={handleNext} />
       </div>
 
       <Menu />
@@ -39,4 +40,4 @@ const CardIdentityVerificationPage = () => {
   );
 };
 
-export default CardIdentityVerificationPage;
+export default CardApplyInfoPage;

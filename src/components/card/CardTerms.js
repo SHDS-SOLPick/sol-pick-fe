@@ -74,6 +74,17 @@ const CardTerms = ({ onNext }) => {
   return (
     <div className="card-terms-container">
       <div className="card-terms-content">
+        {/* 진행 단계 표시 */}
+        <div className="step-indicator">
+          <div className="active"></div>
+          <div className="active"></div>
+          <div className="active"></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+
+        <p className="step-number">3 / 6</p>
         <div className="terms page-title">
           <h2>카드를 만들려면 약관 동의가 필요해요</h2>
         </div>

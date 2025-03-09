@@ -94,8 +94,20 @@ const CardDesign = ({ onNext, onCustomize }) => {
   };
 
   return (
-    <div className="card-design-container">
-      <div className="card-design-content">
+    <div className="card-design-selection-container">
+      <div className="card-design-selection-content">
+        {/* 진행 단계 표시 */}
+        <div className="step-indicator">
+          <div className="active"></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+
+        <p className="step-number">1 / 6</p>
+
         {/* 안내 텍스트 */}
         <div className="card-design-title">
           <h2>카드 디자인을 선택해 주세요</h2>
