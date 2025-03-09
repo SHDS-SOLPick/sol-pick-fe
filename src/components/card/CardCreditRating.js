@@ -29,6 +29,18 @@ const CardCreditRating = ({ onNext }) => {
   return (
     <div className="card-credit-rating-container">
       <div className="card-credit-rating-content">
+        {/* 진행 단계 표시 */}
+        <div className="step-indicator">
+          <div className="active"></div>
+          <div className="active"></div>
+          <div className="active"></div>
+          <div className="active"></div>
+          <div></div>
+          <div></div>
+        </div>
+
+        <p className="step-number">4 / 6</p>
+
         <div className="rating-header-section">
           <div className="rating page-title">
             <h2>카드를 안전하게 쓰기 위해 몇 가지 확인이 필요해요</h2>

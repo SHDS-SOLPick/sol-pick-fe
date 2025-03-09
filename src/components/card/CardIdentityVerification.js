@@ -64,6 +64,18 @@ const CardIdentityVerificationPage = () => {
   return (
     <div className="identity-verification-container">
       <div className="identity-verification-content">
+        {/* 진행 단계 표시 */}
+        <div className="step-indicator">
+          <div className="active"></div>
+          <div className="active"></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+
+        <p className="step-number">2 / 6</p>
+
         {/* 안내 텍스트 */}
         <div className="verification-title">
           <h2>본인 인증해 주세요</h2>

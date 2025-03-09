@@ -24,7 +24,7 @@ const CardIdentityVerificationPage = () => {
     <div className="identity-verification-page">
       <Header
         leftIcon={backArrow}
-        title="카드 신청"
+        title="본인 인증"
         rightIcon={close}
         onLeftClick={handleGoBack}
         onRightClick={handleClose}

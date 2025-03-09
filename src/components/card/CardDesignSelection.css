@@ -1,5 +1,5 @@
 /* 전체 컨테이너 */
-.card-design-container {
+.card-design-selection-container {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -9,15 +9,15 @@
 }
 
 /* 컨텐츠 영역 */
-.card-design-content {
+.card-design-selection-content {
   flex: 1;
   overflow-y: auto;
-  padding-bottom: 100px; /* 메뉴 공간 확보 */
+  padding: 24px 32px;
 }
 
 /* 타이틀 영역 */
 .card-design-title {
-  padding: 24px 32px;
+  padding-bottom: 28px;
   text-align: left;
 }
 
@@ -170,7 +170,7 @@
   width: 80%;
   margin: 0 auto;
   margin-top: auto;
-  margin-bottom: 150px;
+  margin-bottom: 100px;
 }
 
 .design.next-button:hover {
