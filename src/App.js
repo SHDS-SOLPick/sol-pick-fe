@@ -14,6 +14,7 @@ import CardIdentityVerificationPage from "./pages/card/CardIdentityVerificationP
 import CardTermsPage from "./pages/card/CardTermsPage"; // 약관 동의 페이지
 import CardCreditRatingPage from "./pages/card/CardCreditRatingPage"; // 신용 정보 확인 페이지
 import CardApplyInfoPage from "./pages/card/CardApplyInfoPage"; // 카드 신청 정보 입력 페이지
+import CardCompletionPage from "./pages/card/CardCompletionPage"; // 카드 발급 완료 페이지 추가
 
 function App() {
   return (
@@ -53,6 +54,7 @@ function App() {
           element={<CardCreditRatingPage />}
         />
         <Route path="/card/apply/apply-info" element={<CardApplyInfoPage />} />
+        <Route path="/card/apply/completion" element={<CardCompletionPage />} />
       </Route>
     </Routes>
   );

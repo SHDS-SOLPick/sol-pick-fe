@@ -172,7 +172,7 @@ input[type="checkbox"]:checked::after {
   line-height: 1.5;
 }
 
-.phone-number {
+.inquire-phone-number {
   display: flex;
   align-items: center;
   font-weight: 600;

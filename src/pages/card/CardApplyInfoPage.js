@@ -19,7 +19,7 @@ const CardApplyInfoPage = () => {
   // 네비게이션 핸들러
   const handleGoBack = () => navigate(-2);
   const handleClose = () => navigate("/card");
-  const handleNext = () => navigate("/card/apply/");
+  const handleNext = () => navigate("/card/apply/completion");
 
   return (
     <div className="card-apply-info-page-container">

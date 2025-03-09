@@ -148,7 +148,7 @@ const CardCreditRating = ({ onNext }) => {
         {/* 안내 텍스트 */}
         <div className="help-text">
           <p>상품에 대해 더 궁금하시면, 아래 전화상담을 이용해 주세요.</p>
-          <p className="phone-number">
+          <p className="inquire-phone-number">
             <span className="phone-icon">📞</span>
             전화상담: 1544-7000
           </p>
