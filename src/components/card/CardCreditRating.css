@@ -176,7 +176,7 @@ input[type="checkbox"]:checked::after {
   display: flex;
   align-items: center;
   font-weight: 600;
-  margin: 8px 0;
+  margin-top: 8px;
   color: #333;
 }
 
@@ -187,15 +187,18 @@ input[type="checkbox"]:checked::after {
 /* 다음 버튼 */
 .rating.next-button {
   width: 100%;
-  margin-top: 24px;
-  margin-bottom: 24px;
-  padding: 16px;
+  background-color: #7b68ee;
+  color: white;
   border: none;
   border-radius: 12px;
+  padding: 12px 50px;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s;
+  margin: 0 auto;
+  margin-top: 32px;
+  margin-bottom: 120px;
 }
 
 .rating.next-button.enabled {
