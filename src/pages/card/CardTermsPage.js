@@ -19,6 +19,7 @@ const CardTermsPage = () => {
   // 네비게이션 핸들러
   const handleGoBack = () => navigate(-1);
   const handleClose = () => navigate("/card");
+  const handleNext = () => navigate("/card/apply/credit-rating");
 
   return (
     <div className="card-terms-page-container">
@@ -31,7 +32,7 @@ const CardTermsPage = () => {
       />
 
       <div className="card-terms-component-container">
-        <CardTerms />
+        <CardTerms onNext={handleNext} />
       </div>
 
       <Menu />

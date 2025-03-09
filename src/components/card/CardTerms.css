@@ -15,12 +15,12 @@
   padding: 24px 32px;
 }
 
-.page-title {
+.terms.page-title {
   padding-bottom: 32px;
   text-align: left;
 }
 
-.page-title h2 {
+.terms.page-title h2 {
   font-size: 20px;
   font-weight: bold;
   color: #333;
@@ -111,17 +111,8 @@ input[type="checkbox"]:checked::after {
   cursor: pointer;
 }
 
-/* 서브 약관 스타일 */
-.sub-agreement {
-  display: flex;
-  align-items: center;
-  margin: 12px 0;
-}
-
-.info-note {
-  margin-bottom: 10px;
-  font-size: 12px;
-  color: #666;
+.terms.terms.next-button.active:hover {
+  background-color: #5b4bc4;
 }
 
 /* 태그 스타일 */
