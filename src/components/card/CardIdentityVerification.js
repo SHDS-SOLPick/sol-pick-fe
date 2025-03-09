@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./CardIdentityVerification.css";
 
-const CardIdentityVerificationPage = ({ onComplete }) => {
+const CardIdentityVerificationPage = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",

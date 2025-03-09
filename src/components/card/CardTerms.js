@@ -52,14 +52,15 @@ const CardTerms = ({ onNext }) => {
       "financialInfo",
       "membershipBenefits",
     ];
+
     const allRequiredChecked = requiredAgreements.every(
       (k) => newAgreements[k]
     );
 
     // 모든 약관이 동의되었는지 확인
     const allChecked = Object.keys(newAgreements)
-      .filter((k) => k !== "allTerms")
-      .every((k) => newAgreements[k]);
+      .filter((k) => k !== "allTerms") // "allTerms" 키를 제외한 나머지 키만 필터링
+      .every((k) => newAgreements[k]); // 모두가 true이어야 every 함수의 결과도 true될 것임
 
     setAgreements({
       ...newAgreements,
@@ -73,7 +74,7 @@ const CardTerms = ({ onNext }) => {
   return (
     <div className="card-terms-container">
       <div className="card-terms-content">
-        <div className="page-title">
+        <div className="terms page-title">
           <h2>카드를 만들려면 약관 동의가 필요해요</h2>
         </div>
 

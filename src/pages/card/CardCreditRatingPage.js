@@ -2,8 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 // 카드 성세 컴포넌트
-import CardTerms from "../../components/card/CardTerms";
-import "./CardTermsPage.css";
+import CardCreditRating from "../../components/card/CardCreditRating";
+import "./CardCreditRatingPage.css";
 
 // 헤더 및 푸터 관련 컴포넌트
 import Header from "../../components/common/header/Header";
@@ -13,26 +13,26 @@ import Menu from "../../components/common/menu/Menu";
 import backArrow from "../../assets/backArrow.svg";
 import close from "../../assets/close.svg";
 
-const CardTermsPage = () => {
+const CardCreditRatingPage = () => {
   const navigate = useNavigate();
 
   // 네비게이션 핸들러
   const handleGoBack = () => navigate(-1);
   const handleClose = () => navigate("/card");
-  const handleNext = () => navigate("/card/apply/credit-rating");
+  const handleNext = () => navigate("/card/apply/member-info");
 
   return (
-    <div className="card-terms-page-container">
+    <div className="card-credit-rating-page-container">
       <Header
         leftIcon={backArrow}
-        title="약관 동의"
+        title="신용 정보 확인"
         rightIcon={close}
         onLeftClick={handleGoBack}
         onRightClick={handleClose}
       />
 
-      <div className="card-terms-component-container">
-        <CardTerms onNext={handleNext} />
+      <div className="card-credit-rating-component-container">
+        <CardCreditRating onNext={handleNext} />
       </div>
 
       <Menu />
@@ -40,4 +40,4 @@ const CardTermsPage = () => {
   );
 };
 
-export default CardTermsPage;
+export default CardCreditRatingPage;
