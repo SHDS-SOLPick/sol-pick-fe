@@ -19,7 +19,7 @@ const CardCreditRatingPage = () => {
   // 네비게이션 핸들러
   const handleGoBack = () => navigate(-1);
   const handleClose = () => navigate("/card");
-  const handleNext = () => navigate("/card/apply/member-info");
+  const handleNext = () => navigate("/card/apply/apply-info");
 
   return (
     <div className="card-credit-rating-page-container">
