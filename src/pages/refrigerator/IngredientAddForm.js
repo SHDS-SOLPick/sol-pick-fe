@@ -9,6 +9,7 @@ import Menu from "../../components/common/menu/Menu";
 import plus from "../../assets/plus.svg";
 import { useRef, useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import SelectIcon from "../../components/refrigerator/SelectIcon";
 
 const IngredientAddForm = () => {
   // location을 사용하여 현재 경로 및 상태 확인
@@ -18,8 +19,10 @@ const IngredientAddForm = () => {
 
   // 이미지 미리보기 상태 관리
   const [imagePreview, setImagePreview] = useState(null);
+
   // 폼 데이터 상태 관리
   const [formData, setFormData] = useState({
+    emoji: "",
     name: "",
     expiryDate: "",
     mainCategory: "",
@@ -41,6 +44,7 @@ const IngredientAddForm = () => {
         subCategory: receiptData.subCategory || "",
         detailCategory: receiptData.detailCategory || "",
         weight: receiptData.weight || "",
+        emoji: receiptData.emoji || "",
       });
 
       // 영수증에서 이미지가 있으면 설정
@@ -67,7 +71,10 @@ const IngredientAddForm = () => {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImagePreview(reader.result);
+        setFormData((prev) => ({
+          ...prev,
+          attachedImage: reader.result,
+        }));
       };
       reader.readAsDataURL(file);
     }
@@ -102,20 +109,34 @@ const IngredientAddForm = () => {
         onRightClick={() => window.history.back()}
       />
 
-      <div className="form-wrapper">
-        <div className="form-container">
-          <h3 className="form-label bold">식재료명</h3>
-          <Input
-            className="form-input"
-            placeholder="식재료명을 입력해 주세요."
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-          />
+      <div className="add-form-wrapper">
+        <div className="add-form-container">
+          <h3 className="add-form-label bold">식재료명</h3>
+
+          <div className="name-container">
+            <SelectIcon
+              value={formData.emoji}
+              onChange={(emoji) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  emoji: emoji,
+                }))
+              }
+            />
+
+            <Input
+              className="add-form-input"
+              placeholder="식재료명을 입력해 주세요."
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              width="275px"
+            />
+          </div>
         </div>
 
-        <div className="form-container">
-          <h3 className="form-label bold">사진 첨부</h3>
+        <div className="add-form-container">
+          <h3 className="add-form-label bold">사진 첨부</h3>
           <div
             className="image-upload-container"
             onClick={handleImageClick}
@@ -139,10 +160,10 @@ const IngredientAddForm = () => {
           </div>
         </div>
 
-        <div className="form-container">
-          <h3 className="form-label bold">유통기한</h3>
+        <div className="add-form-container">
+          <h3 className="add-form-label bold">유통기한</h3>
           <Input
-            className="form-input"
+            className="add-form-input"
             type="date"
             name="expiryDate"
             value={formData.expiryDate}
@@ -150,9 +171,9 @@ const IngredientAddForm = () => {
           />
         </div>
 
-        <div className="form-container">
-          <h3 className="form-label bold">분류기준</h3>
-          <div className="form-select-container">
+        <div className="add-form-container">
+          <h3 className="add-form-label bold">분류기준</h3>
+          <div className="add-form-select-container">
             <SelectL
               options={mainOptions}
               className="select-item"
@@ -180,10 +201,10 @@ const IngredientAddForm = () => {
           </div>
         </div>
 
-        <div className="form-container">
-          <h3 className="form-label bold">중량</h3>
+        <div className="add-form-container">
+          <h3 className="add-form-label bold">중량</h3>
           <Input
-            className="form-input"
+            className="add-form-input"
             placeholder="중량을 입력해 주세요."
             name="weight"
             value={formData.weight}
@@ -192,7 +213,7 @@ const IngredientAddForm = () => {
         </div>
       </div>
 
-      <div className="form-button-container">
+      <div className="add-form-button-container">
         <ButtonL
           text="취소"
           variant="outlined"

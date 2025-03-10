@@ -23,25 +23,28 @@ const IngredientDetailContent = ({ ingredient }) => {
         <p className="ingdetail-category">소분류</p>
       </div>
 
+      {/* 첨부된 이미지 표시 (없으면 기본 이미지나 빈 공간) */}
       <img
-        src={ingredient.image}
+        src={ingredient.attachedImage || "/path/to/default-image.png"}
         alt={ingredient.name}
         className="ingpopup-description-image"
       />
 
       <div className="ingpopup-description">
         <p className="ingpopup-description-label">유통기한</p>
-        <p className="ingpopup-description-expiration">2025. 12. 31.</p>
+        <p className="ingpopup-description-expiration">
+          {ingredient.expiryDate}
+        </p>
       </div>
 
       <div className="ingpopup-description">
         <p className="ingpopup-description-label">보유량</p>
-        <p className="ingpopup-description-gram">100g</p>
+        <p className="ingpopup-description-gram">{ingredient.weight}</p>
       </div>
 
       <div className="ingpopup-description">
         <p className="ingpopup-description-label">등록일</p>
-        <p className="ingpopup-description-adddate">2025. 12. 31.</p>
+        <p className="ingpopup-description-adddate">{ingredient.addDate}</p>
       </div>
     </div>
   );
