@@ -10,6 +10,7 @@ import RefrigeratorMain from "./pages/refrigerator/RefrigeratorMain";
 import CardIssuePage from "./pages/card/CardIssuePage"; // 카드 발급 안내 페이지
 import CardDetailPage from "./pages/card/CardDetailPage"; // 카드 상세 페이지
 import CardDesignSelectionPage from "./pages/card/CardDesignSelectionPage"; // 카드 디자인 선택 페이지
+import CardDesignDirectionPage from "./pages/card/CardDesignDirectionPage"; // 카드 방향 선택 페이지
 import CardIdentityVerificationPage from "./pages/card/CardIdentityVerificationPage"; // 본인 인증 페이지
 import CardTermsPage from "./pages/card/CardTermsPage"; // 약관 동의 페이지
 import CardCreditRatingPage from "./pages/card/CardCreditRatingPage"; // 신용 정보 확인 페이지
@@ -43,6 +44,10 @@ function App() {
         <Route
           path="/card/apply/design"
           element={<CardDesignSelectionPage />}
+        />
+        <Route
+          path="/card/apply/custom/direction"
+          element={<CardDesignDirectionPage />}
         />
         <Route
           path="/card/apply/identity-verification"
