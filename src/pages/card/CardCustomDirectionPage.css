@@ -1,4 +1,4 @@
-.card-design-background-page-container {
+.card-custom-direction-page-container {
   width: 100%;
   height: 100vh;
   display: flex;
@@ -6,7 +6,7 @@
   position: relative;
 }
 
-.card-design-background-component-container {
+.card-custom-direction-component-container {
   flex: 1;
   display: flex;
   flex-direction: column;

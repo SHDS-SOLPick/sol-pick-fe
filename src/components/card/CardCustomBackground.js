@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./CardDesignBackground.css";
+import "./CardCustomBackground.css";
 
-const CardDesignBackground = ({ onNext }) => {
+const CardCustomBackground = ({ onNext }) => {
   // 카드 디자인 옵션 데이터
   const cardDesigns = [
     { id: 1, name: "디자인 1", color: "gradient-blue" },
@@ -14,8 +14,8 @@ const CardDesignBackground = ({ onNext }) => {
   const [selectedDesign, setSelectedDesign] = useState(1);
 
   return (
-    <div className="card-design-background-container">
-      <div className="card-design-background-content">
+    <div className="card-custom-background-container">
+      <div className="card-custom-background-content">
         <div className="card-background-title">
           <h2>카드 배경 선택해 주세요</h2>
         </div>
@@ -51,4 +51,4 @@ const CardDesignBackground = ({ onNext }) => {
   );
 };
 
-export default CardDesignBackground;
+export default CardCustomBackground;

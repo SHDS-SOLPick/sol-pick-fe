@@ -1,9 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./CardDesignBackgroundPage.css";
+import "./CardCustomDirectionPage.css";
 
 // 카드 디자인 컴포넌트
-import CardDesignBackground from "../../components/card/CardDesignBackground";
+import CardCustomDirection from "../../components/card/CardCustomDirection";
 
 // 필요한 아이콘 import
 import backArrow from "../../assets/backArrow.svg";
@@ -13,16 +13,16 @@ import close from "../../assets/close.svg";
 import Header from "../../components/common/header/Header";
 import Menu from "../../components/common/menu/Menu";
 
-const CardDesignBackgroundPage = () => {
+const CardCustomDirectionPage = () => {
   const navigate = useNavigate();
 
   // 네비게이션 핸들러
   const handleBack = () => navigate(-1);
   const handleClose = () => navigate("/card");
-  const handleNext = () => navigate("/card/apply/custom/sticker");
+  const handleNext = () => navigate("/card/apply/custom/background");
 
   return (
-    <div className="card-design-background-page-container">
+    <div className="card-custom-direction-page-container">
       <Header
         leftIcon={backArrow}
         title="카드 디자인"
@@ -31,8 +31,8 @@ const CardDesignBackgroundPage = () => {
         onRightClick={handleClose}
       />
 
-      <div className="card-design-background-component-container">
-        <CardDesignBackground onNext={handleNext} />
+      <div className="card-custom-direction-component-container">
+        <CardCustomDirection onNext={handleNext} />
       </div>
 
       <Menu />
@@ -40,4 +40,4 @@ const CardDesignBackgroundPage = () => {
   );
 };
 
-export default CardDesignBackgroundPage;
+export default CardCustomDirectionPage;

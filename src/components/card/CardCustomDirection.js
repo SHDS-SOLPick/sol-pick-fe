@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./CardDesignDirection.css";
+import "./CardCustomDirection.css";
 
-const CardDesignDirection = ({ onNext }) => {
+const CardCustomDirection = ({ onNext }) => {
   // 선택된 카드 상태 관리
   const [selectedCard, setSelectedCard] = useState(null);
 
@@ -11,8 +11,8 @@ const CardDesignDirection = ({ onNext }) => {
   };
 
   return (
-    <div className="card-design-direction-container">
-      <div className="card-design-direction-content">
+    <div className="card-custom-direction-container">
+      <div className="card-custom-direction-content">
         <div className="card-direction-title">
           <h2>카드 방향 선택해 주세요</h2>
         </div>
@@ -79,4 +79,4 @@ const CardDesignDirection = ({ onNext }) => {
   );
 };
 
-export default CardDesignDirection;
+export default CardCustomDirection;
