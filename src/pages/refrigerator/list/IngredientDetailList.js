@@ -1,12 +1,12 @@
-import Header from "../../components/common/header/Header";
-import backArrow from "../../assets/backArrow.svg";
+import Header from "../../../components/common/header/Header";
+import backArrow from "../../../assets/backArrow.svg";
 import "./IngredientDetailList.css";
-import SelectS from "../../components/common/select/SelectS";
-import SelectSimple from "../../components/common/select/SelectSimple";
+import SelectS from "../../../components/common/select/SelectS";
+import SelectSimple from "../../../components/common/select/SelectSimple";
 import { useState } from "react";
-import IngredientListItem from "../../components/refrigerator/IngredientListItem";
-import Popup from "../../components/common/popup/Popup";
-import IngredientDetailContent from "../../components/refrigerator/IngredientDetailContent";
+import IngredientListItem from "../../../components/refrigerator/list/IngredientListItem";
+import Popup from "../../../components/common/popup/Popup";
+import IngredientDetailContent from "../../../components/refrigerator/popup/IngredientDetailContent";
 
 const IngredientDetailList = () => {
   // 샘플 식재료 데이터

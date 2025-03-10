@@ -1,6 +1,6 @@
 import React from "react";
-import plus from "../../assets/plus.svg";
-import detailArrow from "../../assets/detailArrow.svg";
+import plus from "../../../assets/plus.svg";
+import detailArrow from "../../../assets/detailArrow.svg";
 import "./RefrigeratorHeader.css";
 
 const RefrigeratorHeader = ({

@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./RefrigeratorMainv2.css";
-import AddPopup from "../../components/refrigerator/AddPopup";
-import recipe from "../../assets/recipe.svg";
-import Menu from "../../components/common/menu/Menu";
+import AddPopup from "../../../components/refrigerator/popup/AddPopup";
+import recipe from "../../../assets/recipe.svg";
+import Menu from "../../../components/common/menu/Menu";
 import { useNavigate } from "react-router-dom";
-import Popup from "../../components/common/popup/Popup";
+import Popup from "../../../components/common/popup/Popup";
 
-// 기존 RefrigeratorHeader 사용 - 실제 프로젝트에서는 고유 컴포넌트 생성 고려
-import RefrigeratorHeader from "../../components/refrigerator/RefrigeratorHeader";
-import RefrigeratorCarousel from "../../components/refrigerator/RefrigeratorCarousel";
-import IngredientDetailContent from "../../components/refrigerator/IngredientDetailContent";
+// 기존 RefrigeratorHeader 사용
+import RefrigeratorHeader from "../../../components/refrigerator/main/RefrigeratorHeader";
+import RefrigeratorCarousel from "../../../components/refrigerator/main/RefrigeratorCarousel";
+import IngredientDetailContent from "../../../components/refrigerator/popup/IngredientDetailContent";
 
-import { getIngredientImageFromEmoji } from "../../utils/emojiToImageMap";
+import { getIngredientImageFromEmoji } from "../../../utils/emojiToImageMap";
 
 const RefrigeratorMain2WithCarousel = () => {
   // 추가하기 팝업 표시 여부를 관리하는 상태
@@ -138,16 +138,16 @@ const RefrigeratorMain2WithCarousel = () => {
       },
       {
         id: 16,
-        name: "레몬",
-        emoji: "🍋",
-        image: getIngredientImageFromEmoji("🍋"),
+        name: "버섯",
+        emoji: "🍄",
+        image: getIngredientImageFromEmoji("🍄"),
         size: 50,
       },
       {
         id: 17,
-        name: "토마토",
-        emoji: "🍅",
-        image: getIngredientImageFromEmoji("🍅"),
+        name: "아보카도",
+        emoji: "🥑",
+        image: getIngredientImageFromEmoji("🥑"),
         size: 50,
       },
       {
@@ -175,9 +175,9 @@ const RefrigeratorMain2WithCarousel = () => {
       },
       {
         id: 21,
-        name: "복숭아",
-        emoji: "🍑",
-        image: getIngredientImageFromEmoji("🍑"),
+        name: "사과",
+        emoji: "🍏",
+        image: getIngredientImageFromEmoji("🍏"),
         size: 50,
       },
       {
@@ -210,23 +210,23 @@ const RefrigeratorMain2WithCarousel = () => {
       },
       {
         id: 26,
-        name: "토마토",
-        emoji: "🍅",
-        image: getIngredientImageFromEmoji("🍅"),
+        name: "팬케이크",
+        emoji: "🥞",
+        image: getIngredientImageFromEmoji("🥞"),
         size: 50,
       },
       {
         id: 27,
-        name: "오렌지",
-        emoji: "🍊",
-        image: getIngredientImageFromEmoji("🍊"),
+        name: "푸딩",
+        emoji: "🍮",
+        image: getIngredientImageFromEmoji("🍮"),
         size: 50,
       },
       {
         id: 28,
-        name: "딸기",
-        emoji: "🍓",
-        image: getIngredientImageFromEmoji("🍓"),
+        name: "아이스크림",
+        emoji: "🍦",
+        image: getIngredientImageFromEmoji("🍦"),
         size: 50,
       },
       {
@@ -252,9 +252,9 @@ const RefrigeratorMain2WithCarousel = () => {
       },
       {
         id: 32,
-        name: "체리",
-        emoji: "🍒",
-        image: getIngredientImageFromEmoji("🍒"),
+        name: "프레첼",
+        emoji: "🥨",
+        image: getIngredientImageFromEmoji("🥨"),
         size: 50,
       },
       {
@@ -280,39 +280,39 @@ const RefrigeratorMain2WithCarousel = () => {
       },
       {
         id: 36,
-        name: "오렌지",
-        emoji: "🍊",
-        image: getIngredientImageFromEmoji("🍊"),
+        name: "고구마",
+        emoji: "🍠",
+        image: getIngredientImageFromEmoji("🍠"),
         size: 50,
       },
     ],
     [
       {
         id: 37,
-        name: "사과",
-        emoji: "🍎",
-        image: getIngredientImageFromEmoji("🍎"),
+        name: "밤",
+        emoji: "🌰",
+        image: getIngredientImageFromEmoji("🌰"),
         size: 50,
       },
       {
         id: 38,
-        name: "멜론",
-        emoji: "🍈",
-        image: getIngredientImageFromEmoji("🍈"),
+        name: "바게트",
+        emoji: "🥖",
+        image: getIngredientImageFromEmoji("🥖"),
         size: 50,
       },
       {
         id: 39,
-        name: "복숭아",
-        emoji: "🍑",
-        image: getIngredientImageFromEmoji("🍑"),
+        name: "파인애플",
+        emoji: "🍍",
+        image: getIngredientImageFromEmoji("🍍"),
         size: 50,
       },
       {
         id: 40,
-        name: "고기",
-        emoji: "🥩",
-        image: getIngredientImageFromEmoji("🥩"),
+        name: "롤리팝",
+        emoji: "🍭",
+        image: getIngredientImageFromEmoji("🍭"),
         size: 50,
       },
       {
@@ -331,16 +331,16 @@ const RefrigeratorMain2WithCarousel = () => {
       },
       {
         id: 43,
-        name: "레몬",
-        emoji: "🍋",
-        image: getIngredientImageFromEmoji("🍋"),
+        name: "도넛",
+        emoji: "🍩",
+        image: getIngredientImageFromEmoji("🍩"),
         size: 50,
       },
       {
         id: 44,
-        name: "토마토",
-        emoji: "🍅",
-        image: getIngredientImageFromEmoji("🍅"),
+        name: "컵케이크",
+        emoji: "🧁",
+        image: getIngredientImageFromEmoji("🧁"),
         size: 50,
       },
     ],
