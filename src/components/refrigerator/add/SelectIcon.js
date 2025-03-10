@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import selectArrow from "../../assets/selectArrow.svg";
-import selectArrowActive from "../../assets/selectArrowActive.svg";
+import selectArrow from "../../../assets/selectArrow.svg";
+import selectArrowActive from "../../../assets/selectArrowActive.svg";
 import "./SelectIcon.css";
 
 // 기본 이모지 세트 (필요에 따라 확장 가능)

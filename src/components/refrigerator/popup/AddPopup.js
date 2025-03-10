@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./AddPopup.css";
 import { motion, AnimatePresence } from "framer-motion";
-import closeIcon from "../../assets/close.svg";
-import ReceiptScanner from "./ReceiptScanner";
+import closeIcon from "../../../assets/close.svg";
+import ReceiptScanner from "../add/ReceiptScanner";
 import { useNavigate } from "react-router-dom";
 
 const AddPopup = ({ isOpen, onClose }) => {

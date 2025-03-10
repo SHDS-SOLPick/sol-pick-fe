@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import "./ReceiptScanner.css";
-import closeIcon from "../../assets/close.svg";
-import cameraIcon from "../../assets/camera.svg";
-import ButtonS from "../../components/common/button/ButtonS"; // ButtonS 컴포넌트 import
+import closeIcon from "../../../assets/close.svg";
+import cameraIcon from "../../../assets/camera.svg";
+import ButtonS from "../../common/button/ButtonS"; // ButtonS 컴포넌트 import
 
 const ReceiptScanner = ({ isOpen, onClose, onScanComplete }) => {
   const [stage, setStage] = useState("camera"); // camera, loading, results

@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./RefrigeratorMainv2.css";
-import AddPopup from "../../components/refrigerator/AddPopup";
-import recipe from "../../assets/recipe.svg";
-import Menu from "../../components/common/menu/Menu";
+import AddPopup from "../../../components/refrigerator/popup/AddPopup";
+import recipe from "../../../assets/recipe.svg";
+import Menu from "../../../components/common/menu/Menu";
 import { useNavigate } from "react-router-dom";
-import Popup from "../../components/common/popup/Popup";
+import Popup from "../../../components/common/popup/Popup";
 
-// 기존 RefrigeratorHeader 사용 - 실제 프로젝트에서는 고유 컴포넌트 생성 고려
-import RefrigeratorHeader from "../../components/refrigerator/RefrigeratorHeader";
-import RefrigeratorCarousel from "../../components/refrigerator/RefrigeratorCarousel";
-import IngredientDetailContent from "../../components/refrigerator/IngredientDetailContent";
+// 기존 RefrigeratorHeader 사용
+import RefrigeratorHeader from "../../../components/refrigerator/main/RefrigeratorHeader";
+import RefrigeratorCarousel from "../../../components/refrigerator/main/RefrigeratorCarousel";
+import IngredientDetailContent from "../../../components/refrigerator/popup/IngredientDetailContent";
 
-import { getIngredientImageFromEmoji } from "../../utils/emojiToImageMap";
+import { getIngredientImageFromEmoji } from "../../../utils/emojiToImageMap";
 
 const RefrigeratorMain2WithCarousel = () => {
   // 추가하기 팝업 표시 여부를 관리하는 상태

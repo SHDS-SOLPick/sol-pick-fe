@@ -1,32 +1,32 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./RefrigeratorMainv2.css";
-import AddPopup from "../../components/refrigerator/AddPopup";
-import recipe from "../../assets/recipe.svg";
-import Menu from "../../components/common/menu/Menu";
+import AddPopup from "../../../components/refrigerator/popup/AddPopup";
+import recipe from "../../../assets/recipe.svg";
+import Menu from "../../../components/common/menu/Menu";
 import { useNavigate } from "react-router-dom";
-import Popup from "../../components/common/popup/Popup";
+import Popup from "../../../components/common/popup/Popup";
 
 // 기존 RefrigeratorHeader 사용 - 실제 프로젝트에서는 고유 컴포넌트 생성 고려
-import RefrigeratorHeader from "../../components/refrigerator/RefrigeratorHeader";
-import RefrigeratorCarousel from "../../components/refrigerator/RefrigeratorCarousel";
-import IngredientDetailContent from "../../components/refrigerator/IngredientDetailContent";
+import RefrigeratorHeader from "../../../components/refrigerator/main/RefrigeratorHeader";
+import RefrigeratorCarousel from "../../../components/refrigerator/main/RefrigeratorCarousel";
+import IngredientDetailContent from "../../../components/refrigerator/popup/IngredientDetailContent";
 
 // 식재료 이미지 import
-import bread from "../../assets/ing/ing_bread.svg";
-import broccoli from "../../assets/ing/ing_broccoli.svg";
-import cherry from "../../assets/ing/ing_cherry.svg";
-import croissant from "../../assets/ing/ing_croissant.svg";
-import grape from "../../assets/ing/ing_grape.svg";
-import leaf from "../../assets/ing/ing_leaf.svg";
-import lemon from "../../assets/ing/ing_lemon.svg";
-import meat from "../../assets/ing/ing_meat.svg";
-import melon from "../../assets/ing/ing_melon.svg";
-import orange from "../../assets/ing/ing_orange.svg";
-import peach from "../../assets/ing/ing_peach.svg";
-import redapple from "../../assets/ing/ing_redapple.svg";
-import strawberry from "../../assets/ing/ing_strawberry.svg";
-import tomato from "../../assets/ing/ing_tomato.svg";
-import watermelon from "../../assets/ing/ing_watermelon.svg";
+import bread from "../../../assets/ing/ing_bread.svg";
+import broccoli from "../../../assets/ing/ing_broccoli.svg";
+import cherry from "../../../assets/ing/ing_cherry.svg";
+import croissant from "../../../assets/ing/ing_croissant.svg";
+import grape from "../../../assets/ing/ing_grape.svg";
+import leaf from "../../../assets/ing/ing_leaf.svg";
+import lemon from "../../../assets/ing/ing_lemon.svg";
+import meat from "../../../assets/ing/ing_meat.svg";
+import melon from "../../../assets/ing/ing_melon.svg";
+import orange from "../../../assets/ing/ing_orange.svg";
+import peach from "../../../assets/ing/ing_peach.svg";
+import redapple from "../../../assets/ing/ing_redapple.svg";
+import strawberry from "../../../assets/ing/ing_strawberry.svg";
+import tomato from "../../../assets/ing/ing_tomato.svg";
+import watermelon from "../../../assets/ing/ing_watermelon.svg";
 
 const RefrigeratorMain2WithCarousel = () => {
   // 추가하기 팝업 표시 여부를 관리하는 상태

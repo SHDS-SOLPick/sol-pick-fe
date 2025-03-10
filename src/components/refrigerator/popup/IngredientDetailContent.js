@@ -1,5 +1,5 @@
 import React from "react";
-import detailArrow from "../../assets/detailArrow.svg";
+import detailArrow from "../../../assets/detailArrow.svg";
 import "./IngredientDetailContent.css";
 
 const IngredientDetailContent = ({

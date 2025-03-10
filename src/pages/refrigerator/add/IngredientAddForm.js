@@ -1,15 +1,15 @@
 import "./IngredientAddForm.css";
-import Header from "../../components/common/header/Header";
-import backArrow from "../../assets/backArrow.svg";
-import close from "../../assets/close.svg";
-import Input from "../../components/common/input/Input";
-import SelectL from "../../components/common/select/SelectL";
-import ButtonL from "../../components/common/button/ButtonL";
-import Menu from "../../components/common/menu/Menu";
-import plus from "../../assets/plus.svg";
+import Header from "../../../components/common/header/Header";
+import backArrow from "../../../assets/backArrow.svg";
+import close from "../../../assets/close.svg";
+import Input from "../../../components/common/input/Input";
+import SelectL from "../../../components/common/select/SelectL";
+import ButtonL from "../../../components/common/button/ButtonL";
+import Menu from "../../../components/common/menu/Menu";
+import plus from "../../../assets/plus.svg";
 import { useRef, useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import SelectIcon from "../../components/refrigerator/SelectIcon";
+import SelectIcon from "../../../components/refrigerator/add/SelectIcon";
 
 const IngredientAddForm = () => {
   // location을 사용하여 현재 경로 및 상태 확인

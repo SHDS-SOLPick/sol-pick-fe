@@ -4,11 +4,11 @@ import Layout from "./layout/Layout";
 import Components from "./pages/Components";
 import Main from "./pages/main/Main";
 import Noti from "./pages/noti/Noti";
-import IngredientAddForm from "./pages/refrigerator/IngredientAddForm";
-import IngredientDetailList from "./pages/refrigerator/IngredientDetailList";
-import RefrigeratorMain from "./pages/refrigerator/RefrigeratorMain";
-import RefrigeratorMainv2 from "./pages/refrigerator/RefrigeratorMainv2";
-import RefrigeratorMainCarousel from "./pages/refrigerator/RefrigeratorMainCarousel";
+import IngredientAddForm from "./pages/refrigerator/add/IngredientAddForm";
+import IngredientDetailList from "./pages/refrigerator/list/IngredientDetailList";
+import RefrigeratorMain from "./pages/refrigerator/main/RefrigeratorMain";
+import RefrigeratorMainv2 from "./pages/refrigerator/main/RefrigeratorMainv2";
+import RefrigeratorMainCarousel from "./pages/refrigerator/main/RefrigeratorMainCarousel";
 
 import CardIssuePage from "./pages/card/CardIssuePage"; // 카드 발급 안내 페이지
 import CardDetailPage from "./pages/card/CardDetailPage"; // 카드 상세 페이지
