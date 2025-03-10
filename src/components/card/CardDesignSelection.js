@@ -148,14 +148,18 @@ const CardDesign = ({ onNext, onCustomize }) => {
             {renderDesignButton()}
           </div>
         </div>
-      </div>
 
-      {/* 다음 버튼 */}
-      {cardView === CARD_VIEWS.FRONT_BASIC ? (
-        <button className="design next-button" onClick={onNext}>
-          선택
-        </button>
-      ) : null}
+        {/* 다음 버튼 */}
+        <div className="design-button-container">
+          {cardView === CARD_VIEWS.FRONT_BASIC ? (
+            <button className="design next-button" onClick={onNext}>
+              선택
+            </button>
+          ) : (
+            <div className="blank-container"></div>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

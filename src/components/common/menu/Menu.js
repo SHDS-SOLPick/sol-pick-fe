@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Menu.css";
 import refrigerator from "../../../assets/refrigerator.svg";
 import refrigeratorActive from "../../../assets/refrigeratorActive.svg";
@@ -11,6 +12,7 @@ import mypageActive from "../../../assets/mypageActive.svg";
 
 const Menu = () => {
   const [activeMenu, setActiveMenu] = useState("home");
+  const navigate = useNavigate();
 
   const menuItems = [
     {
@@ -18,30 +20,39 @@ const Menu = () => {
       icon: home,
       activeIcon: homeActive,
       label: "홈",
+      path: "/main",
     },
     {
       id: "card",
       icon: card,
       activeIcon: cardActive,
       label: "카드",
+      path: "/card",
     },
     {
       id: "refrigerator",
       icon: refrigerator,
       activeIcon: refrigeratorActive,
       label: "냉장고",
+      path: "/refrigeratormain",
     },
     {
       id: "mypage",
       icon: mypage,
       activeIcon: mypageActive,
       label: "마이페이지",
+      path: "/mypage",
     },
   ];
 
   const handleMenuClick = (menuId) => {
     setActiveMenu(menuId);
     // 페이지 이동 작업
+    const menuItem = menuItems.find((item) => item.id === menuId);
+    // 해당 경로로 이동
+    if (menuItem && menuItem.path) {
+      navigate(menuItem.path);
+    }
   };
 
   return (

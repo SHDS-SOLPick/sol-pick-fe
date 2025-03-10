@@ -196,7 +196,7 @@ p {
   transition: background-color 0.3s;
   width: 85%;
   margin: 0 auto;
-  margin-bottom: 150px;
+  margin-bottom: 100px;
 }
 
 .apply-button:hover {
