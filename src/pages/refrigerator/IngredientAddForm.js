@@ -9,6 +9,7 @@ import Menu from "../../components/common/menu/Menu";
 import plus from "../../assets/plus.svg";
 import { useRef, useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import SelectIcon from "../../components/refrigerator/SelectIcon";
 
 const IngredientAddForm = () => {
   // location을 사용하여 현재 경로 및 상태 확인
@@ -18,8 +19,10 @@ const IngredientAddForm = () => {
 
   // 이미지 미리보기 상태 관리
   const [imagePreview, setImagePreview] = useState(null);
+
   // 폼 데이터 상태 관리
   const [formData, setFormData] = useState({
+    emoji: "",
     name: "",
     expiryDate: "",
     mainCategory: "",
@@ -41,6 +44,7 @@ const IngredientAddForm = () => {
         subCategory: receiptData.subCategory || "",
         detailCategory: receiptData.detailCategory || "",
         weight: receiptData.weight || "",
+        emoji: receiptData.emoji || "",
       });
 
       // 영수증에서 이미지가 있으면 설정
@@ -67,7 +71,10 @@ const IngredientAddForm = () => {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImagePreview(reader.result);
+        setFormData((prev) => ({
+          ...prev,
+          attachedImage: reader.result,
+        }));
       };
       reader.readAsDataURL(file);
     }
@@ -105,13 +112,27 @@ const IngredientAddForm = () => {
       <div className="form-wrapper">
         <div className="form-container">
           <h3 className="form-label bold">식재료명</h3>
-          <Input
-            className="form-input"
-            placeholder="식재료명을 입력해 주세요."
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-          />
+
+          <div className="name-container">
+            <SelectIcon
+              value={formData.emoji}
+              onChange={(emoji) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  emoji: emoji,
+                }))
+              }
+            />
+
+            <Input
+              className="form-input"
+              placeholder="식재료명을 입력해 주세요."
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              width="275px"
+            />
+          </div>
         </div>
 
         <div className="form-container">

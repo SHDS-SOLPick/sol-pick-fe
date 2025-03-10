@@ -52,3 +52,21 @@
 .image-upload-container:hover {
   background-color: #b0b0b0;
 }
+
+.name-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 345px;
+  gap: 8px;
+  margin: 0;
+}
+
+.name-container .select-icon-container {
+  width: 62px;
+  flex-shrink: 0;
+}
+
+.name-container .form-input {
+  flex-grow: 1;
+}
