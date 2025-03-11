@@ -180,7 +180,7 @@ const CardCustomPreview = forwardRef((props, ref) => {
     <div className="card-custom-preview-container">
       <div className="card-custom-preview">
         <div className="preview-instruction">
-          💡 스티커 한 번 더 클릭하면 스티커가 삭제됩니다
+          💡 스티커 한 번 더 클릭하면 스티커가 삭제돼요
         </div>
         <div
           className={`card-background ${
