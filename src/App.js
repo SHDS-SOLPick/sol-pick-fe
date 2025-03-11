@@ -21,6 +21,7 @@ import CardTermsPage from "./pages/card/CardTermsPage"; // 약관 동의 페이�
 import CardCreditRatingPage from "./pages/card/CardCreditRatingPage"; // 신용 정보 확인 페이지
 import CardApplyInfoPage from "./pages/card/CardApplyInfoPage"; // 카드 신청 정보 입력 페이지
 import CardCompletionPage from "./pages/card/CardCompletionPage"; // 카드 발급 완료 페이지 추가
+import LoginPage from './pages/auth/LoginPage';//로그인페이지
 
 function App() {
   return (
@@ -31,6 +32,9 @@ function App() {
 
         {/* 메인 */}
         <Route path="/main" element={<Main />} />
+
+        {/* 로그인 */}
+        <Route path="/login" element={<LoginPage />} />
 
         {/* 알림 */}
         <Route path="/noti" element={<Noti />} />

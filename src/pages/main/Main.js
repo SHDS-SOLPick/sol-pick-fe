@@ -8,15 +8,27 @@ import EventSection from "../../components/main/event-card/EventCard";
 import Menu from "../../components/common/menu/Menu";
 import { useNavigate } from "react-router-dom";
 import ButtonS from "./../../components/common/button/ButtonS";
+import { authApi } from "../../api/AuthApi"; // authApi 추가
 
 const Main = () => {
   const navigate = useNavigate();
 
-  const navigateToShop = () => {};
+  // 사용자 로그인 여부 확인
+  const currentUser = authApi.getCurrentUser();
+  const isLoggedIn = authApi.isAuthenticated();
+  //
+
+  const navigateToShop = () => { };
 
   const navigateToNoti = () => {
     navigate("/noti");
   };
+
+  // 로그인 버튼 핸들러 추가
+  const handleLoginClick = () => {
+    navigate("/login");
+  };
+
 
   const promo = [
     {
@@ -84,25 +96,33 @@ const Main = () => {
       />
 
       <p className="greeting-ment bold">
-        OO님, 설렘 가득한 발걸음으로 <br /> 하루를 시작해 볼까요?
+        {currentUser ? `${currentUser.name}님` : "OO님"}, 설렘 가득한 발걸음으로 <br /> 하루를 시작해 볼까요?
       </p>
 
-      <div className="login-banner-container">
-        <p className="login-banner-ment">
-          지금 바로 로그인하고
-          <br />
-          SOL Pick의 다양한 혜택을 경험해보세요!
-        </p>
-        <div className="login-banner-button-container">
-          <ButtonS
-            text="회원가입"
-            variant="outlined"
-            width="80px"
-            height="24px"
-          />
-          <ButtonS text="로그인" width="80px" height="24px" />
+      {!isLoggedIn && (
+        <div className="login-banner-container">
+          <p className="login-banner-ment">
+            지금 바로 로그인하고
+            <br />
+            SOL Pick의 다양한 혜택을 경험해보세요!
+          </p>
+          <div className="login-banner-button-container">
+            <ButtonS
+              text="회원가입"
+              variant="outlined"
+              width="80px"
+              height="24px"
+            // onClick={handleSignupClick}
+            />
+            <ButtonS
+              text="로그인"
+              width="80px"
+              height="24px"
+              onClick={handleLoginClick}
+            />
+          </div>
         </div>
-      </div>
+      )}
 
       <EventSection
         sectionTitle="레시픽 회원이라면 이 카드 어떠세요?"
