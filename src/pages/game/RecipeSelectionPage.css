@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  background-color: transparent;
 }
 
 .recipe-selection-component-container {

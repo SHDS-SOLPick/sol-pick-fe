@@ -23,6 +23,9 @@ import CardApplyInfoPage from "./pages/card/CardApplyInfoPage"; // 카드 신청
 import CardCompletionPage from "./pages/card/CardCompletionPage"; // 카드 발급 완료 페이지 추가
 
 import RecipeSelectionPage from "./pages/game/RecipeSelectionPage"; // 레시피 선택 페이지
+import CatGreetingPage from "./pages/game/CatGreetingPage"; // 고양이 인사 페이지
+import GameIntroPage from "./pages/game/GameIntroPage"; // 게임 안내 페이지
+// import GameMainPage from "./pages/game/GameMainPage"; // 게임 메인 페이지
 
 function App() {
   return (
@@ -84,6 +87,9 @@ function App() {
 
         {/* 미니 게임 관련 라우트 */}
         <Route path="/game/recipe" element={<RecipeSelectionPage />} />
+        <Route path="/game/greeting" element={<CatGreetingPage />} />
+        <Route path="/game/intro" element={<GameIntroPage />} />
+        {/* <Route path="/game/main" element={<GameMainPage />} /> */}
       </Route>
     </Routes>
   );

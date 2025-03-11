@@ -1,9 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./RecipeSelectionPage.css";
+import "./GameIntroPage.css";
 
 // 카드 디자인 컴포넌트
-import RecipeSelection from "../../components/game/RecipeSelection";
+import GameIntro from "../../components/game/GameIntro";
+import GameBackground from "../../components/game/GameBackground";
 
 // 필요한 아이콘 import
 import backArrow from "../../assets/backArrow.svg";
@@ -12,13 +13,13 @@ import close from "../../assets/close.svg";
 // 헤더 및 푸터 관련 컴포넌트
 import Header from "../../components/common/header/Header";
 
-const RecipeSelectionPage = () => {
+const GameIntroPage = () => {
   const navigate = useNavigate();
 
   // 네비게이션 핸들러
   const handleBack = () => navigate(-1);
   const handleClose = () => navigate("/card");
-  const handleNext = () => navigate("/game/greeting");
+  const handleNext = () => navigate("/game/main");
 
   // 커스텀 헤더 스타일 정의
   const customHeaderStyle = {
@@ -28,7 +29,9 @@ const RecipeSelectionPage = () => {
   };
 
   return (
-    <div className="recipe-selection-page-container">
+    <div className="game-intro-page-container">
+      <GameBackground />
+
       <Header
         leftIcon={backArrow}
         title="Foody Cat"
@@ -38,13 +41,11 @@ const RecipeSelectionPage = () => {
         titleStyle={customHeaderStyle} // 커스텀 스타일 전달
       />
 
-      <div className="recipe-selection-component-container">
-        <RecipeSelection onNext={handleNext} />
+      <div className="game-intro-component-container">
+        <GameIntro onNext={handleNext} />
       </div>
-
-      {/* <Menu /> */}
     </div>
   );
 };
 
-export default RecipeSelectionPage;
+export default GameIntroPage;

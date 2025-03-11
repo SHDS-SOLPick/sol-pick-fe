@@ -63,7 +63,11 @@ const RecipeSelection = ({ onNext }) => {
           </button>
         </div>
 
-        <button className="recipe-continue-button" onClick={onNext}>
+        <button
+          className="recipe-continue-button"
+          onClick={onNext}
+          disabled={selectedRecipeId === null}
+        >
           동의하고 시작하기
         </button>
       </div>
