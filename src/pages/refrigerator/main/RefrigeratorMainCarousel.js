@@ -398,6 +398,7 @@ const RefrigeratorMain2WithCarousel = () => {
   };
 
   const navigateToRecipe = () => {
+    navigate("/recipe-loading");
     // 레시피 페이지로 이동하는 로직
   };
 

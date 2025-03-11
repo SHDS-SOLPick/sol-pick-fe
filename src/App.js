@@ -9,7 +9,9 @@ import IngredientDetailList from "./pages/refrigerator/list/IngredientDetailList
 import RefrigeratorMain from "./pages/refrigerator/main/RefrigeratorMain";
 import RefrigeratorMainv2 from "./pages/refrigerator/main/RefrigeratorMainv2";
 import RefrigeratorMainCarousel from "./pages/refrigerator/main/RefrigeratorMainCarousel";
-
+import RecipeRecommendation from "./pages/refrigerator/recommendation/RecipeRecommendation";
+import RecipeLoading from "./pages/refrigerator/recommendation/RecipeLoading";
+import RecipeDetail from "./pages/refrigerator/recommendation/RecipeDetail";
 import CardIssuePage from "./pages/card/CardIssuePage"; // 카드 발급 안내 페이지
 import CardDetailPage from "./pages/card/CardDetailPage"; // 카드 상세 페이지
 import CardDesignSelectionPage from "./pages/card/CardDesignSelectionPage"; // 카드 디자인 선택 페이지
@@ -23,6 +25,7 @@ import CardApplyInfoPage from "./pages/card/CardApplyInfoPage"; // 카드 신청
 import CardCompletionPage from "./pages/card/CardCompletionPage"; // 카드 발급 완료 페이지 추가
 import LoginPage from './pages/auth/LoginPage';//로그인페이지
 import MyPage from "./pages/mypage/MyPage";//마이페이지
+
 
 function App() {
   return (
@@ -56,7 +59,9 @@ function App() {
           path="/refrigeratormaincarousel"
           element={<RefrigeratorMainCarousel />}
         />
-
+        <Route path="/recipe-loading" element={<RecipeLoading />} />
+        <Route path="/recipe-recommendation" element={<RecipeRecommendation />} />
+        <Route path="/recipe-detail/:id" element={<RecipeDetail />} />
         {/* 카드 신청 관련 라우트 */}
         <Route path="/card" element={<CardIssuePage />} />
         <Route path="/card/detail" element={<CardDetailPage />} />
