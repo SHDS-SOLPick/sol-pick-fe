@@ -24,7 +24,7 @@ const AddPopup = ({ isOpen, onClose }) => {
     };
 
     // 등록 페이지로 이동하면서 데이터 전달
-    navigate("/ingredientaddform", {
+    navigate("/refrigerator/add", {
       state: {
         fromReceipt: true,
         receiptData,
@@ -38,7 +38,7 @@ const AddPopup = ({ isOpen, onClose }) => {
 
   const handleManualInputClick = () => {
     // 직접 입력 페이지로 이동할 때 state 정보 같이 전달
-    navigate("/ingredientaddform", {
+    navigate("/refrigerator/add", {
       state: {
         fromReceipt: false, // 직접 입력 모드임을 명시
       },

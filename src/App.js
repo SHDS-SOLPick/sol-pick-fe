@@ -56,21 +56,17 @@ function App() {
         <Route path="/noti" element={<Noti />} />
 
         {/* 냉장고 */}
-        <Route path="/ingredientaddform" element={<IngredientAddForm />} />
-        <Route
-          path="/ingredientdetaillist"
-          element={<IngredientDetailList />}
-        />
-        {/* 냉장고 메인 */}
-        <Route path="/refrigeratormain" element={<RefrigeratorMain />} />
-        <Route path="/refrigeratormain2" element={<RefrigeratorMainv2 />} />
-        <Route
-          path="/refrigeratormaincarousel"
-          element={<RefrigeratorMainCarousel />}
-        />
+        <Route path="/refrigerator/add" element={<IngredientAddForm />} />
+        <Route path="/refrigerator/list" element={<IngredientDetailList />} />
+        <Route path="/refrigerator/main-1" element={<RefrigeratorMain />} /> {/* 냉장고 메인 v1 */}
+        <Route path="/refrigerator/main-2" element={<RefrigeratorMainv2 />} /> {/* 냉장고 메인 v2 */}
+        <Route path="/refrigerator/main" element={<RefrigeratorMainCarousel />} />
+
+        {/* 레시피 */}
         <Route path="/recipe-loading" element={<RecipeLoading />} />
         <Route path="/recipe-recommendation" element={<RecipeRecommendation />} />
         <Route path="/recipe-detail/:id" element={<RecipeDetail />} />
+        
         {/* 카드 신청 관련 라우트 */}
         <Route path="/card" element={<CardIssuePage />} />
         <Route path="/card/detail" element={<CardDetailPage />} />
