@@ -11,8 +11,9 @@ const GameBackground = () => {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="xMidYMid slice"
+        style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}
       >
-        <rect width="375" height="812" fill="#B26BFB" />
+        <rect width="375" height="812" fill="#9169BA" />
         <rect
           x="92.0542"
           y="369.956"
