@@ -149,7 +149,7 @@ const RefrigeratorMain = () => {
   };
 
   const navigateToIngredientList = () => {
-    navigate("/ingredientdetaillist");
+    navigate("/refrigerator/list");
   };
 
   // 선반 위치 계산

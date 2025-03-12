@@ -6,7 +6,7 @@ import Menu from "../../../components/common/menu/Menu";
 import { useNavigate } from "react-router-dom";
 import Popup from "../../../components/common/popup/Popup";
 
-// 기존 RefrigeratorHeader 사용 - 실제 프로젝트에서는 고유 컴포넌트 생성 고려
+// 기존 RefrigeratorHeader 사용
 import RefrigeratorHeader from "../../../components/refrigerator/main/RefrigeratorHeader";
 import RefrigeratorCarousel from "../../../components/refrigerator/main/RefrigeratorCarousel";
 import IngredientDetailContent from "../../../components/refrigerator/popup/IngredientDetailContent";
@@ -139,7 +139,7 @@ const RefrigeratorMain2WithCarousel = () => {
   };
 
   const navigateToIngredientList = () => {
-    navigate("/ingredientdetaillist");
+    navigate("/refrigerator/list");
   };
 
   // 총 식재료 수 계산
