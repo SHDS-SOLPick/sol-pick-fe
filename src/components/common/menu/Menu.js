@@ -35,7 +35,7 @@ const Menu = () => {
       icon: refrigerator,
       activeIcon: refrigeratorActive,
       label: "냉장고",
-      path: "/refrigerator/main",
+      path: "/refrigerator",
     },
     {
       id: "mypage",

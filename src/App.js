@@ -60,7 +60,7 @@ function App() {
         <Route path="/refrigerator/list" element={<IngredientDetailList />} />
         <Route path="/refrigerator/main-1" element={<RefrigeratorMain />} /> {/* 냉장고 메인 v1 */}
         <Route path="/refrigerator/main-2" element={<RefrigeratorMainv2 />} /> {/* 냉장고 메인 v2 */}
-        <Route path="/refrigerator/main" element={<RefrigeratorMainCarousel />} />
+        <Route path="/refrigerator" element={<RefrigeratorMainCarousel />} />
 
         {/* 레시피 */}
         <Route path="/recipe-loading" element={<RecipeLoading />} />
