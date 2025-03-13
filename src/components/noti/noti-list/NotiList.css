@@ -4,12 +4,16 @@
   width: 100%;
 }
 
-.noti-group .noti-date {
+.noti-group {
+  margin-bottom: 16px;
+}
+
+.noti-date {
   color: #969696;
   font-size: 12px;
   line-height: 100%;
   letter-spacing: -0.03em;
-  padding: 12px 16px 0 16px;
+  padding: 12px 16px 4px 16px;
 }
 
 .noti-empty {
@@ -19,4 +23,17 @@
   height: calc(100vh - 102px);
   color: #969696;
   font-size: 14px;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 102px);
+  color: #969696;
+  font-size: 14px;
+}
+
+.noti-item-wrapper {
+  cursor: pointer;
 }
