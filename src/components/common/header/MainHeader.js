@@ -30,9 +30,9 @@ const MainHeader = ({
         const isLoggedIn = authApi.isAuthenticated();
         const currentUser = authApi.getCurrentUser();
         
-        if (isLoggedIn && currentUser && currentUser.id) {
+        if (isLoggedIn && currentUser) {
           try {
-            const count = await notificationApi.getUnreadCount(currentUser.id);
+            const count = await notificationApi.getUnreadCount(currentUser.memberId);
             setUnreadNotifications(count);
           } catch (error) {
             console.error("읽지 않은 알림 개수 가져오기 실패:", error);

@@ -4,10 +4,10 @@ import { authApi } from './AuthApi';
 
 export const notificationApi = {
   // 읽지 않은 알림 개수 가져오기
-  getUnreadCount: async (userId) => {
+  getUnreadCount: async (memberId) => {
     try {
       const response = await axios.get(
-        `${BASE_URL}/solpick/noti/count/unread/${userId}`,
+        `${BASE_URL}/solpick/noti/count/unread/${memberId}`,
         {
           headers: authApi.getAuthHeader()
         }
@@ -15,15 +15,15 @@ export const notificationApi = {
       return response.data;
     } catch (error) {
       console.error("읽지 않은 알림 개수 가져오기 실패:", error);
-      return 0; // 에러 발생 시 0으로 표시
+      return "?"; // 에러 발생 시 ?으로 표시
     }
   },
 
   // 알림 목록 가져오기
-  getNotifications: async (userId) => {
+  getNotifications: async (memberId) => {
     try {
       const response = await axios.get(
-        `${BASE_URL}/solpick/noti/list/${userId}`,
+        `${BASE_URL}/solpick/noti/list/${memberId}`,
         {
           headers: authApi.getAuthHeader()
         }
