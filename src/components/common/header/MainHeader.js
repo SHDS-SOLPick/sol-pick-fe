@@ -8,6 +8,7 @@ const MainHeader = ({
   rightIconActive,
   onLeftClick,
   onRightClick,
+  unreadNotifications = 5,
 }) => {
   const [isLeftActive, setIsLeftActive] = useState(false);
   const [isRightActive, setIsRightActive] = useState(false);
@@ -41,14 +42,17 @@ const MainHeader = ({
             />
           )}
           {rightIcon && (
-            <img
-              className="mainHeader-icon"
-              src={
-                isRightActive && rightIconActive ? rightIconActive : rightIcon
-              }
-              alt="right icon"
-              onClick={handleRightClick}
-            />
+            <div className="notification-icon-container">
+              <img
+                className="mainHeader-icon"
+                src={
+                  isRightActive && rightIconActive ? rightIconActive : rightIcon
+                }
+                alt="right icon"
+                onClick={handleRightClick}
+              />
+              <span className="notification-badge bold">{unreadNotifications > 9 ? "9+" : unreadNotifications}</span>
+            </div>
           )}
         </div>
       </div>

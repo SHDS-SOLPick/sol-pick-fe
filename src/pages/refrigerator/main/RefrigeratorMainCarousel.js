@@ -403,7 +403,7 @@ const RefrigeratorMain2WithCarousel = () => {
   };
 
   const navigateToIngredientList = () => {
-    navigate("/ingredientdetaillist");
+    navigate("/refrigerator/list");
   };
 
   // 총 식재료 수 계산
