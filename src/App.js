@@ -34,6 +34,8 @@ import RecipeSelectionPage from "./pages/game/RecipeSelectionPage"; // 레시피
 import CatGreetingPage from "./pages/game/CatGreetingPage"; // 고양이 인사 페이지
 import GameIntroPage from "./pages/game/GameIntroPage"; // 게임 안내 페이지
 import GameMainPage from "./pages/game/GameMainPage"; // 게임 메인 페이지
+import GameInstructionsPage from "./pages/game/GameInstructionsPage"; // 게임 안내 페이지
+import DailyGameMainPage from "./pages/game/DailyGameMainPage"; // 카드 뒤집기 게임 페이지
 
 function App() {
   return (
@@ -102,6 +104,8 @@ function App() {
         <Route path="/game/greeting" element={<CatGreetingPage />} />
         <Route path="/game/intro" element={<GameIntroPage />} />
         <Route path="/game/main" element={<GameMainPage />} />
+        <Route path="/game/instructions" element={<GameInstructionsPage />} />
+        <Route path="/game/daily" element={<DailyGameMainPage />} />
       </Route>
     </Routes>
   );

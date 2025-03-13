@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 import "./GameMain.css";
 import GameBackground from "./GameBackground";
 import catPlayground from "../../assets/game/catPlayground.svg";
@@ -6,11 +7,7 @@ import dailyGame from "../../assets/game/dailyGame.svg";
 import storage from "../../assets/game/storage.svg";
 import LevelStatus from "./LevelStatus";
 import DiscoveredIngredients from "./DiscoveredIngredients";
-import {
-  IngredientIcons,
-  IngredientIconsArray,
-  ShopIcon,
-} from "./IngredientIcons";
+import { IngredientIcons } from "./IngredientIcons";
 
 /**
  * 게임 메인 화면 컴포넌트
@@ -18,7 +15,7 @@ import {
  * @param {Function} props.onNext - 다음 화면으로 이동하는 함수
  * @returns {JSX.Element} 게임 메인 화면
  */
-const GameMain = ({ onNext }) => {
+const GameMain = ({ onDailyGame, onStorage }) => {
   // 캐릭터 상태 관리를 위한 state
   const [level, setLevel] = useState(3); // 기본 레벨 3
   const [currentExp, setCurrentExp] = useState(270); // 현재 경험치
@@ -233,11 +230,21 @@ const GameMain = ({ onNext }) => {
       <div className="game-main-content">
         <div className="game-menu-group">
           <div className="daily-game">
-            <img src={dailyGame} alt="Daily Game" className="daily-game-icon" />
+            <img
+              src={dailyGame}
+              alt="Daily Game"
+              className="daily-game-icon"
+              onClick={onDailyGame}
+            />
             <p>사료 받기</p>
           </div>
           <div className="storage">
-            <img src={storage} alt="Storage" className="storage-icon" />
+            <img
+              src={storage}
+              alt="Storage"
+              className="storage-icon"
+              onClick={onStorage}
+            />
             <p>보관함</p>
           </div>
         </div>

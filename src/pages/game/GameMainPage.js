@@ -16,8 +16,17 @@ const GameMainPage = () => {
   const navigate = useNavigate();
 
   // 네비게이션 핸들러
-  const handleBack = () => navigate(-1);
+  const handleBack = () => navigate("/game/intro");
   const handleClose = () => navigate("/card");
+
+  // 게임 관련 페이지 이동 핸들러
+  const handleDailyGameClick = () => {
+    navigate("/game/instructions");
+  };
+
+  const handleStorageClick = () => {
+    navigate("/game/storage");
+  };
 
   // 커스텀 헤더 스타일 정의
   const customHeaderStyle = {
@@ -28,8 +37,6 @@ const GameMainPage = () => {
 
   return (
     <div className="game-main-page-container">
-      {/* <GameBackground /> */}
-
       <Header
         leftIcon={backArrow}
         title="Foody Cat"
@@ -40,7 +47,10 @@ const GameMainPage = () => {
       />
 
       <div className="game-main-component-container">
-        <GameMain />
+        <GameMain
+          onDailyGame={handleDailyGameClick}
+          onStorage={handleStorageClick}
+        />
       </div>
     </div>
   );

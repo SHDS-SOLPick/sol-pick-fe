@@ -17,7 +17,6 @@ html {
   position: relative;
   z-index: 1;
   overflow: hidden; /* 컨테이너 자체는 overflow hidden */
-  background-color: #9169ba;
 }
 
 .game-main-content {
