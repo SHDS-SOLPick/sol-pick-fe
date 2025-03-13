@@ -19,12 +19,12 @@ const GameInstructionsPage = () => {
   const navigate = useNavigate();
 
   // 네비게이션 핸들러
-  const handleGoBack = () => navigate("/game/greeting");
+  const handleGoBack = () => navigate("/game/home");
   const handleClose = () => navigate("/card");
 
   // 게임 시작 핸들러
   const handleStartGame = () => {
-    navigate("/game/daily");
+    navigate("/game/daily-game");
   };
 
   // 커스텀 헤더 스타일 정의

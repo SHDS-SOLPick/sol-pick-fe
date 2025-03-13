@@ -42,10 +42,10 @@ const DailyGameMainPage = () => {
         "게임을 종료하시겠습니까? 현재까지 획득한 사료는 저장됩니다."
       );
       if (confirmExit) {
-        navigate("/game/main");
+        navigate("/game/home");
       }
     } else {
-      navigate("/game/main");
+      navigate("/game/home");
     }
   };
 
@@ -57,7 +57,7 @@ const DailyGameMainPage = () => {
 
     // 확인 메시지 표시 후 카드 페이지로 이동
     alert(`게임 완료! ${totalReward}개의 사료를 획득했습니다.`);
-    navigate("/card");
+    navigate("/game/home");
   };
 
   // 사료 획득 핸들러

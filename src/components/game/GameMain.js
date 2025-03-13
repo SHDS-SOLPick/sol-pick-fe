@@ -236,7 +236,7 @@ const GameMain = ({ onDailyGame, onStorage }) => {
               className="daily-game-icon"
               onClick={onDailyGame}
             />
-            <p>사료 받기</p>
+            <p className="pixel-font-kr">사료 받기</p>
           </div>
           <div className="storage">
             <img
@@ -245,7 +245,7 @@ const GameMain = ({ onDailyGame, onStorage }) => {
               className="storage-icon"
               onClick={onStorage}
             />
-            <p>보관함</p>
+            <p className="pixel-font-kr">보관함</p>
           </div>
         </div>
 

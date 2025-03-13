@@ -5,9 +5,6 @@ import Components from "./pages/Components";
 import Main from "./pages/main/Main";
 import Noti from "./pages/noti/Noti";
 
-import LoginPage from "./pages/auth/LoginPage"; //로그인페이지
-import MyPage from "./pages/mypage/MyPage"; //마이페이지
-
 import IngredientAddForm from "./pages/refrigerator/add/IngredientAddForm";
 import IngredientDetailList from "./pages/refrigerator/list/IngredientDetailList";
 import RefrigeratorMain from "./pages/refrigerator/main/RefrigeratorMain";
@@ -108,12 +105,12 @@ function App() {
         <Route path="/card/apply/completion" element={<CardCompletionPage />} />
 
         {/* 미니 게임 관련 라우트 */}
-        <Route path="/game/recipe" element={<RecipeSelectionPage />} />
+        <Route path="/game/init" element={<RecipeSelectionPage />} />
         <Route path="/game/greeting" element={<CatGreetingPage />} />
         <Route path="/game/intro" element={<GameIntroPage />} />
-        <Route path="/game/main" element={<GameMainPage />} />
+        <Route path="/game/home" element={<GameMainPage />} />
         <Route path="/game/instructions" element={<GameInstructionsPage />} />
-        <Route path="/game/daily" element={<DailyGameMainPage />} />
+        <Route path="/game/daily-game" element={<DailyGameMainPage />} />
       </Route>
     </Routes>
   );

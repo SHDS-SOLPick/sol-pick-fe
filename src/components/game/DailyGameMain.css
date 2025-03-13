@@ -511,24 +511,27 @@
 
 /* 반응형 디자인 개선 */
 @media (max-width: 480px) {
+  /* 모든 레벨에서 그리드 컬럼을 4개로 유지 */
   .card-grid.level-3,
   .card-grid.level-4,
   .card-grid.level-5 {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 
+  /* 행 수 조정 - 카드 개수에 맞게 설정 */
   .card-grid.level-3 {
-    grid-template-rows: repeat(6, 90px);
+    grid-template-rows: repeat(4, 80px); /* 16장 = 4행 4열 */
   }
 
   .card-grid.level-4 {
-    grid-template-rows: repeat(7, 90px);
+    grid-template-rows: repeat(5, 80px); /* 20장 = 5행 4열 */
   }
 
   .card-grid.level-5 {
-    grid-template-rows: repeat(8, 90px);
+    grid-template-rows: repeat(6, 80px); /* 24장 = 6행 4열 */
   }
 
+  /* 작은 화면에서 카드 크기 조정 */
   .card {
     height: 80px;
   }
@@ -539,7 +542,7 @@
   }
 
   .card-name {
-    font-size: 6px;
+    font-size: 7px;
   }
 }
 

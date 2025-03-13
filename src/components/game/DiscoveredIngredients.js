@@ -43,7 +43,7 @@ const DiscoveredIngredients = ({ ingredients = [] }) => {
             alt="Discovered Ingredients"
             className="discovered-ing-icon"
           ></img>
-          <span className="title-text">발견한 식재료</span>
+          <span className="title-text pixel-font-kr">발견한 식재료</span>
         </div>
         <hr className="discovered-ing-divider"></hr>
       </div>

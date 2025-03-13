@@ -61,9 +61,10 @@ const LevelStatus = ({
         <div className="info-section">
           {/* 레벨 표시 및 정보 */}
           <div className="level-info-row">
-            <div className="level-badge">레벨{level}</div>
-            <div className="level-text">
-              식재료 확률 <span className="highlight">{level}배</span>{" "}
+            <div className="level-badge pixel-font-kr">레벨{level}</div>
+            <div className="level-text pixel-font-kr">
+              식재료 확률{" "}
+              <span className="highlight pixel-font-kr">{level}배</span>{" "}
               <span className="emoji-up">🆙</span>
             </div>
           </div>
@@ -74,7 +75,7 @@ const LevelStatus = ({
               className="exp-bar-fill"
               style={{ width: `${expPercentage}%` }}
             ></div>
-            <div className="exp-percentage">{expPercentage}%</div>
+            <div className="exp-percentage pixel-font-kr">{expPercentage}%</div>
           </div>
         </div>
       </div>
@@ -104,11 +105,11 @@ const LevelStatus = ({
       {/* 버튼 그룹 */}
       <div className="buttons-container">
         <PixelButton onClick={onFeed}>
-          <p>밥 주기</p>
+          <p className="pixel-font-kr">밥 주기</p>
           <p className="food-qty">🐟 X 1</p>
         </PixelButton>
         <PixelButton onClick={onExplore}>
-          <p>탐색하기</p>
+          <p className="pixel-font-kr">탐색하기</p>
           <p className="energy-consume">🍭 X 50</p>
         </PixelButton>
       </div>
