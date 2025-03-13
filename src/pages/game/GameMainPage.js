@@ -1,10 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./GameIntroPage.css";
+import "./GameMainPage.css";
 
 // 카드 디자인 컴포넌트
-import GameIntro from "../../components/game/GameIntro";
-import GameBackground from "../../components/game/GameBackground";
+import GameMain from "../../components/game/GameMain";
 
 // 필요한 아이콘 import
 import backArrow from "../../assets/backArrow.svg";
@@ -13,13 +12,21 @@ import close from "../../assets/close.svg";
 // 헤더 및 푸터 관련 컴포넌트
 import Header from "../../components/common/header/Header";
 
-const GameIntroPage = () => {
+const GameMainPage = () => {
   const navigate = useNavigate();
 
   // 네비게이션 핸들러
-  const handleBack = () => navigate("/game/greeting");
+  const handleBack = () => navigate("/game/intro");
   const handleClose = () => navigate("/card");
-  const handleNext = () => navigate("/game/home");
+
+  // 게임 관련 페이지 이동 핸들러
+  const handleDailyGameClick = () => {
+    navigate("/game/instructions");
+  };
+
+  const handleStorageClick = () => {
+    navigate("/game/storage");
+  };
 
   // 커스텀 헤더 스타일 정의
   const customHeaderStyle = {
@@ -29,9 +36,7 @@ const GameIntroPage = () => {
   };
 
   return (
-    <div className="game-intro-page-container">
-      <GameBackground />
-
+    <div className="game-main-page-container">
       <Header
         leftIcon={backArrow}
         title="Foody Cat"
@@ -41,11 +46,14 @@ const GameIntroPage = () => {
         titleStyle={customHeaderStyle} // 커스텀 스타일 전달
       />
 
-      <div className="game-intro-component-container">
-        <GameIntro onNext={handleNext} />
+      <div className="game-main-component-container">
+        <GameMain
+          onDailyGame={handleDailyGameClick}
+          onStorage={handleStorageClick}
+        />
       </div>
     </div>
   );
 };
 
-export default GameIntroPage;
+export default GameMainPage;
