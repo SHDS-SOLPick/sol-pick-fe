@@ -3,7 +3,7 @@ import selectArrow from "../../../assets/selectArrow.svg";
 import selectArrowActive from "../../../assets/selectArrowActive.svg";
 import "./SelectIcon.css";
 
-// 기본 이모지 세트 (필요에 따라 확장 가능)
+// 기본 이모지 세트
 const DEFAULT_EMOJIS = [
   // 과일류
   "🍎",
@@ -49,6 +49,7 @@ const DEFAULT_EMOJIS = [
   "🥓",
   "🐟",
   "🐠",
+  "🐡",
   "🦐",
   "🦀",
   "🦞",
