@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import "./DailyGameMain.css";
+import PixelModal from "./PixelModal";
 
 // 식재료 정보를 담은 배열 - 픽셀 아트 테마에 맞는 색상으로 수정
 const foodIngredients = [
@@ -50,6 +51,24 @@ const DailyGameMain = ({ onGameExit, onEarnFood }) => {
   const [isLoading, setIsLoading] = useState(true);
   // 뒤집기 작업 중 상태
   const isFlipping = useRef(false);
+
+  // 모달 상태 관리
+  const [modalConfig, setModalConfig] = useState({
+    isOpen: false,
+    title: "",
+    message: "",
+    buttons: [],
+  });
+
+  // 모달 닫기 함수
+  const closeModal = () => {
+    setModalConfig({
+      isOpen: false,
+      title: "",
+      message: "",
+      buttons: [],
+    });
+  };
 
   // 게임 초기화 함수
   const initializeGame = useCallback(
@@ -191,7 +210,7 @@ const DailyGameMain = ({ onGameExit, onEarnFood }) => {
         setTimeout(() => {
           setFlippedCards([]);
           isFlipping.current = false;
-        }, 1000);
+        }, 800);
       }
     } else {
       // 첫 번째 카드만 뒤집은 경우, 뒤집기 작업 완료
@@ -209,15 +228,29 @@ const DailyGameMain = ({ onGameExit, onEarnFood }) => {
       // 다음 레벨 시작 전에 모달 닫기
       setEndTime(null);
       setLevelCompleted(false);
-    } else {
-      // 모든 레벨 완료, 모달은 이미 표시 중
-      // 필요한 추가 처리 가능
     }
   };
 
   // 게임 완전 재시작 함수
   const restartFullGame = () => {
-    initializeGame(true);
+    // 게임 재시작 확인 모달 (옵션)
+    setModalConfig({
+      isOpen: true,
+      title: "게임 재시작",
+      message:
+        "정말 처음부터 다시 시작하시겠습니까?\n모든 진행 상황이 초기화됩니다.",
+      buttons: [
+        {
+          text: "재시작",
+          onClick: () => {
+            closeModal();
+            initializeGame(true);
+          },
+          type: "primary",
+        },
+        { text: "취소", onClick: () => closeModal(), type: "secondary" },
+      ],
+    });
   };
 
   // 게임 나가기 함수
@@ -373,6 +406,15 @@ const DailyGameMain = ({ onGameExit, onEarnFood }) => {
           </div>
         </div>
       )}
+
+      {/* 픽셀 스타일 모달 */}
+      <PixelModal
+        isOpen={modalConfig.isOpen}
+        title={modalConfig.title}
+        message={modalConfig.message}
+        buttons={modalConfig.buttons}
+        onClose={closeModal}
+      />
     </div>
   );
 };

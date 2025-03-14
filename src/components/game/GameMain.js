@@ -8,6 +8,7 @@ import storage from "../../assets/game/storage.svg";
 import LevelStatus from "./LevelStatus";
 import DiscoveredIngredients from "./DiscoveredIngredients";
 import { IngredientIcons } from "./IngredientIcons";
+import PixelModal from "./PixelModal";
 
 /**
  * 게임 메인 화면 컴포넌트
@@ -23,10 +24,28 @@ const GameMain = ({ onDailyGame, onStorage }) => {
   const [food, setFood] = useState(10); // 보유한 사료 개수
   const [ingredients, setIngredients] = useState(0); // 보유한 식재료 개수
 
+  // 모달 상태 관리
+  const [modalConfig, setModalConfig] = useState({
+    isOpen: false,
+    title: "",
+    message: "",
+    buttons: [],
+  });
+
+  // 모달 닫기 함수
+  const closeModal = () => {
+    setModalConfig({
+      isOpen: false,
+      title: "",
+      message: "",
+      buttons: [],
+    });
+  };
+
   // 발견한 식재료 데이터 관리
   const [discoveredIngredients, setDiscoveredIngredients] = useState({
     discovered: 10,
-    total: 70,
+    total: 25,
     items: [],
   });
 
@@ -63,7 +82,7 @@ const GameMain = ({ onDailyGame, onStorage }) => {
 
     setDiscoveredIngredients({
       discovered: 10,
-      total: 70,
+      total: 25,
       items: initialItems,
     });
   }, []);
@@ -74,7 +93,14 @@ const GameMain = ({ onDailyGame, onStorage }) => {
   const feedCat = () => {
     // 사료 확인
     if (food < 1) {
-      alert("사료가 부족합니다!");
+      setModalConfig({
+        isOpen: true,
+        title: "사료 부족",
+        message: "사료가 부족합니다!",
+        buttons: [
+          { text: "확인", onClick: () => closeModal(), type: "primary" },
+        ],
+      });
       return;
     }
 
@@ -91,35 +117,92 @@ const GameMain = ({ onDailyGame, onStorage }) => {
     // 에너지 증가
     setEnergy((prev) => prev + energyGain);
 
-    // 경험치 처리
+    // 경험치 처리 및 레벨업 체크
+    let isLevelUp = false;
+    let newLevel = level;
+
     if (currentExp + expGain >= maxExp) {
-      // 레벨 업
+      // 레벨 업 가능 여부 확인
       if (level < 5) {
-        setLevel((prev) => prev + 1);
+        isLevelUp = true;
+        newLevel = level + 1;
+
+        // 상태 업데이트: 레벨 증가, 경험치 초기화
+        setLevel(newLevel);
         setCurrentExp(0);
-        alert(`축하합니다! 레벨 ${level + 1}로 성장했습니다!`);
       } else {
         // 최대 레벨인 경우 최대 경험치로 고정
         setCurrentExp(maxExp);
-        alert("이미 최대 레벨에 도달했습니다!");
       }
     } else {
       // 경험치 추가
       setCurrentExp((prev) => prev + expGain);
     }
 
-    alert(
-      `사료를 주었습니다! 에너지 ${energyGain} 증가, 경험치 ${expGain} 증가`
-    );
-  };
+    // 먼저 밥 주기 성공 모달 표시
+    setModalConfig({
+      isOpen: true,
+      title: "밥 주기 성공",
+      message: `사료를 주었습니다!\n에너지 ${energyGain} 증가\n경험치 ${expGain} 증가`,
+      buttons: [
+        {
+          text: "확인",
+          onClick: () => {
+            closeModal();
 
+            // 밥 주기 모달 닫은 후 레벨업 모달 표시 (레벨업 발생한 경우)
+            if (isLevelUp) {
+              setTimeout(() => {
+                setModalConfig({
+                  isOpen: true,
+                  title: "Level Up",
+                  message: `축하합니다!\n레벨 ${newLevel}로 성장했습니다!`,
+                  buttons: [
+                    {
+                      text: "확인",
+                      onClick: () => closeModal(),
+                      type: "primary",
+                    },
+                  ],
+                });
+              }, 300); // 모달 전환 시 약간의 딜레이 추가
+            } else if (level >= 5 && currentExp + expGain >= maxExp) {
+              // 최대 레벨에 도달한 경우 알림
+              setTimeout(() => {
+                setModalConfig({
+                  isOpen: true,
+                  title: "최대 레벨",
+                  message: "이미 최대 레벨에 도달했습니다!",
+                  buttons: [
+                    {
+                      text: "확인",
+                      onClick: () => closeModal(),
+                      type: "primary",
+                    },
+                  ],
+                });
+              }, 300);
+            }
+          },
+          type: "primary",
+        },
+      ],
+    });
+  };
   /**
    * 탐색하기 기능: 에너지를 소모하여 식재료 또는 사료 획득
    */
   const exploreIngredients = () => {
     // 에너지 확인 (탐색에는 에너지 50 필요)
     if (energy < 50) {
-      alert("탐색을 위한 에너지가 부족합니다!");
+      setModalConfig({
+        isOpen: true,
+        title: "에너지 부족",
+        message: "탐색을 위한 에너지가 부족합니다!",
+        buttons: [
+          { text: "확인", onClick: () => closeModal(), type: "primary" },
+        ],
+      });
       return;
     }
 
@@ -147,9 +230,15 @@ const GameMain = ({ onDailyGame, onStorage }) => {
     if (randomValue < config.foodRatio) {
       // 사료 획득
       setFood((prev) => prev + 1);
-      alert(
-        `탐색 성공! 사료 1개를 획득했습니다. (식재료 획득 확률: ${config.ingredientRatio}%)`
-      );
+
+      setModalConfig({
+        isOpen: true,
+        title: "탐색 성공",
+        message: `사료 1개를 획득했습니다.\n(식재료 획득 확률: ${config.ingredientRatio}%)`,
+        buttons: [
+          { text: "확인", onClick: () => closeModal(), type: "primary" },
+        ],
+      });
     } else {
       // 식재료 획득
       setIngredients((prev) => prev + 1);
@@ -207,18 +296,33 @@ const GameMain = ({ onDailyGame, onStorage }) => {
             items: updatedItems,
           });
 
-          alert(
-            `축하합니다! 새로운 식재료 '${randomName}'을(를) 발견했습니다!`
-          );
+          setModalConfig({
+            isOpen: true,
+            title: "새로운 식재료 발견",
+            message: `축하합니다! 새로운 식재료 '${randomName}'을(를) 발견했습니다!`,
+            buttons: [
+              { text: "확인", onClick: () => closeModal(), type: "primary" },
+            ],
+          });
         } else {
-          alert(
-            `탐색 성공! 식재료 1개를 획득했습니다. (식재료 획득 확률: ${config.ingredientRatio}%)`
-          );
+          setModalConfig({
+            isOpen: true,
+            title: "탐색 성공",
+            message: `식재료 1개를 획득했습니다.\n(식재료 획득 확률: ${config.ingredientRatio}%)`,
+            buttons: [
+              { text: "확인", onClick: () => closeModal(), type: "primary" },
+            ],
+          });
         }
       } else {
-        alert(
-          `탐색 성공! 식재료 1개를 획득했습니다. (식재료 획득 확률: ${config.ingredientRatio}%)`
-        );
+        setModalConfig({
+          isOpen: true,
+          title: "탐색 성공",
+          message: `식재료 1개를 획득했습니다.\n(식재료 획득 확률: ${config.ingredientRatio}%)`,
+          buttons: [
+            { text: "확인", onClick: () => closeModal(), type: "primary" },
+          ],
+        });
       }
     }
   };
@@ -273,6 +377,15 @@ const GameMain = ({ onDailyGame, onStorage }) => {
           discoveredCount={discoveredIngredients.discovered}
           totalCount={discoveredIngredients.total}
           ingredients={discoveredIngredients.items}
+        />
+
+        {/* 픽셀 스타일 모달 */}
+        <PixelModal
+          isOpen={modalConfig.isOpen}
+          title={modalConfig.title}
+          message={modalConfig.message}
+          buttons={modalConfig.buttons}
+          onClose={closeModal}
         />
       </div>
     </div>
