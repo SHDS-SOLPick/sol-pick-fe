@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./LevelStatus.css";
+import { getSelectedRecipe } from "../../utils/game/storageUtils";
+import recipes from "./RecipeData";
 
 /**
  * 캐릭터의 레벨과 경험치 정보를 표시하는 카드 컴포넌트
  * @param {Object} props - 컴포넌트 속성
  * @param {number} props.level - 현재 레벨 (기본값: 3)
- * @param {number} props.currentExp - 현재 경험치 (기본값: 145)
+ * @param {number} props.currentExp - 현재 경험치 (기본값: 270)
  * @param {number} props.energy - 현재 에너지 (기본값: 100)
- * @param {number} props.food - 보유한 사료 개수 (기본값: 5)
+ * @param {number} props.food - 보유한 사료 개수 (기본값: 10)
  * @param {number} props.ingredients - 보유한 식재료 개수 (기본값: 0)
  * @param {Function} props.onFeed - 밥 주기 버튼 클릭 핸들러
  * @param {Function} props.onExplore - 탐색하기 버튼 클릭 핸들러
@@ -15,13 +17,35 @@ import "./LevelStatus.css";
  */
 const LevelStatus = ({
   level = 3,
-  currentExp = 145,
+  currentExp = 270,
   energy = 100,
-  food = 5,
+  food = 10,
   ingredients = 0,
   onFeed,
   onExplore,
 }) => {
+  // 선택한 레시피 상태 추가
+  const [selectedRecipe, setSelectedRecipe] = useState(null);
+
+  // 컴포넌트 마운트 시 사용자 레시피 불러오기
+  useEffect(() => {
+    // 로컬 스토리지에서 선택된 레시피 ID 불러오기
+    const recipeId = getSelectedRecipe();
+    console.log("Selected Recipe ID:", recipeId);
+    console.log("Available Recipes:", recipes);
+
+    if (recipeId) {
+      // 레시피 ID로 해당 레시피 객체 찾기
+      const recipe = recipes.find((r) => r.id === recipeId);
+      console.log("Found Recipe:", recipe);
+
+      if (recipe) {
+        setSelectedRecipe(recipe);
+        console.log("Recipe Image Path:", recipe.imagePath);
+      }
+    }
+  }, []);
+
   // 레벨에 따른 설정 구성
   const levelConfig = {
     1: { totalExp: 100, foodRatio: 90, ingredientRatio: 10 },
@@ -55,8 +79,16 @@ const LevelStatus = ({
   return (
     <div className="level-status-container">
       <div className="character-section">
-        {/* 선택한 레시피 */}
-        <div className="recipe-image"></div>
+        {/* 선택한 레시피 이미지 */}
+        <div className="recipe-image">
+          {selectedRecipe && (
+            <img
+              src={selectedRecipe.imagePath}
+              alt={selectedRecipe.name}
+              className="recipe-img"
+            />
+          )}
+        </div>
 
         <div className="info-section">
           {/* 레벨 표시 및 정보 */}
