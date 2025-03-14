@@ -27,6 +27,10 @@
   align-items: center;
 }
 
+.emoji-icon {
+  margin-top: 2px;
+}
+
 .select-icon:focus {
   border-color: #7b68ee;
 }

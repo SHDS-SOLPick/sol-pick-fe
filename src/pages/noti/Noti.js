@@ -1,7 +1,7 @@
 import "./Noti.css";
 import Header from "../../components/common/header/Header";
 import backArrow from "../../assets/backArrow.svg";
-import close from "../../assets/close.svg";
+import home from "../../assets/home.svg";
 import Chip from "../../components/common/chip/Chip";
 import { useEffect, useState } from "react";
 import NotiList from "../../components/noti/noti-list/NotiList";
@@ -97,12 +97,12 @@ const Noti = () => {
       <Header
         leftIcon={backArrow}
         title="알림"
-        rightIcon={close}
+        rightIcon={home}
         onLeftClick={() => {
           window.history.back();
         }}
         onRightClick={() => {
-          window.history.back();
+          navigate("/main");
         }}
       />
       <Chip
