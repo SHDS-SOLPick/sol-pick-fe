@@ -37,7 +37,7 @@
 ㅤㅤㅤㅤ└── index.js
 ```
 
-## 설치 및 실행 방법 
+## 설치 및 실행 방법
 
 ```
 npm install
@@ -261,4 +261,3 @@ npm run start
 </clipPath>
 </defs>
 </svg>
-

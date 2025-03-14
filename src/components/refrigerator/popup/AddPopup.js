@@ -17,17 +17,15 @@ const AddPopup = ({ isOpen, onClose }) => {
     setScannerOpen(false);
   };
 
-  const handleScanComplete = (receiptImage) => {
+  const handleScanComplete = (receiptImage, ingredientNames = []) => {
     // OCR 처리 완료 후 다음 단계로 이동
-    const receiptData = {
-      name: "인식된 식재료명",
-    };
-
-    // 등록 페이지로 이동하면서 데이터 전달
     navigate("/refrigerator/add", {
       state: {
         fromReceipt: true,
-        receiptData,
+        receiptData: {
+          ingredientNames,
+          receiptImage,
+        },
       },
     });
 

@@ -15,29 +15,18 @@ import { ingredientApi } from "../../../api/IngredientApi";
 import { authApi } from "../../../api/AuthApi";
 
 const IngredientAddForm = () => {
-  // 페이지 내비게이션
   const navigate = useNavigate();
-
-  // location을 사용하여 현재 경로 및 상태 확인
   const location = useLocation();
   const isFromReceipt = location.state?.fromReceipt || false;
   const receiptData = location.state?.receiptData || {};
 
-  // 이미지 미리보기 상태 관리
+  // 상태 관리
   const [imagePreview, setImagePreview] = useState(null);
-
-  // OCR 인식 결과 관리 (여러 식재료명 목록)
   const [ingredientNames, setIngredientNames] = useState([]);
   const [currentIngredientIndex, setCurrentIngredientIndex] = useState(0);
-
-  // 토스트 메시지 관리
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
-
-  // 로딩 상태 관리
   const [isLoading, setIsLoading] = useState(false);
-
-  // 폼 데이터 상태 관리
   const [formData, setFormData] = useState({
     emoji: "",
     name: "",
@@ -49,13 +38,11 @@ const IngredientAddForm = () => {
     image: "",
   });
 
-  // 파일 입력 요소 접근
   const fileInputRef = useRef(null);
 
-  // 영수증 데이터로 폼 초기화 (영수증 스캔 후 이동한 경우)
+  // 영수증 데이터로 폼 초기화
   useEffect(() => {
     if (isFromReceipt && receiptData) {
-      // 인식된 식재료명 목록 설정
       if (
         receiptData.ingredientNames &&
         receiptData.ingredientNames.length > 0
@@ -79,12 +66,12 @@ const IngredientAddForm = () => {
     }
   }, [isFromReceipt, receiptData]);
 
-  // ToastMessage가 표시되면 자동으로 숨기는 타이머 설정
+  // 토스트 메시지 타이머
   useEffect(() => {
     if (showToast) {
       const timer = setTimeout(() => {
         setShowToast(false);
-      }, 3000); // 3초 후 토스트 메시지 숨김
+      }, 3000);
 
       return () => clearTimeout(timer);
     }
@@ -99,12 +86,11 @@ const IngredientAddForm = () => {
     });
   };
 
-  // 이미지 클릭 핸들러
+  // 이미지 관련 핸들러
   const handleImageClick = () => {
     fileInputRef.current.click();
   };
 
-  // 이미지 변경 핸들러
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -121,14 +107,10 @@ const IngredientAddForm = () => {
     }
   };
 
-  // 인라인 유효성 검사 함수
+  // 유효성 검사 함수
   const validateFormInline = () => {
-    console.log("폼 유효성 검사 시작", formData);
-
     // 이모지 검증
     if (!formData.emoji) {
-      console.log("이모지 없음");
-
       setToastMessage("아이콘을 선택해주세요.");
       setShowToast(true);
       return false;
@@ -136,8 +118,6 @@ const IngredientAddForm = () => {
 
     // 식재료명 검증
     if (!formData.name.trim()) {
-      console.log("식재료명 없음");
-
       setToastMessage("식재료명을 입력해주세요.");
       setShowToast(true);
       return false;
@@ -145,8 +125,6 @@ const IngredientAddForm = () => {
 
     // 사진 첨부 검증
     if (!formData.image && !imagePreview) {
-      console.log("사진 없음");
-
       setToastMessage("사진을 첨부해주세요.");
       setShowToast(true);
       return false;
@@ -154,8 +132,6 @@ const IngredientAddForm = () => {
 
     // 유통기한 검증
     if (!formData.expiryDate) {
-      console.log("유통기한 없음");
-
       setToastMessage("유통기한을 입력해주세요.");
       setShowToast(true);
       return false;
@@ -166,8 +142,6 @@ const IngredientAddForm = () => {
     today.setHours(0, 0, 0, 0); // 시간 부분 제거하여 날짜만 비교
     const expiryDate = new Date(formData.expiryDate);
     if (expiryDate < today) {
-      console.log("유통기한 날짜 옳지 않음");
-
       setToastMessage("유통기한은 오늘 이후로 설정해주세요.");
       setShowToast(true);
       return false;
@@ -175,8 +149,6 @@ const IngredientAddForm = () => {
 
     // 대분류 검증
     if (!formData.mainCategory) {
-      console.log("대분류 없음");
-
       setToastMessage("대분류를 선택해주세요.");
       setShowToast(true);
       return false;
@@ -184,8 +156,6 @@ const IngredientAddForm = () => {
 
     // 중분류 검증
     if (!formData.subCategory) {
-      console.log("중분류 없음");
-
       setToastMessage("중분류를 선택해주세요.");
       setShowToast(true);
       return false;
@@ -193,8 +163,6 @@ const IngredientAddForm = () => {
 
     // 소분류 검증
     if (!formData.detailCategory) {
-      console.log("소분류 없음");
-
       setToastMessage("소분류를 선택해주세요.");
       setShowToast(true);
       return false;
@@ -202,8 +170,6 @@ const IngredientAddForm = () => {
 
     // 중량 검증
     if (!formData.weight) {
-      console.log("중량 없음");
-
       setToastMessage("중량을 입력해주세요.");
       setShowToast(true);
       return false;
@@ -211,17 +177,38 @@ const IngredientAddForm = () => {
 
     // 중량이 정수인지 확인
     if (formData.weight && isNaN(parseInt(formData.weight))) {
-      console.log("중량 형식 옳지 않음");
-
       setToastMessage("중량은 정수만 입력 가능합니다.");
       setShowToast(true);
       return false;
     }
 
     // 모든 검증 통과
-    console.log("유효성 검사 통과");
-
     return true;
+  };
+
+  // 현재 식재료 건너뛰기 (다음 식재료로 이동)
+  const skipCurrentIngredient = () => {
+    const nextIndex = currentIngredientIndex + 1;
+
+    // 부드럽게 스크롤을 맨 위로 이동
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+
+    // 다음 식재료가 있으면 이동
+    if (nextIndex < ingredientNames.length) {
+      moveToNextIngredient();
+      setToastMessage("식재료를 건너뛰었습니다.");
+      setShowToast(true);
+    } else {
+      // 마지막 식재료이거나 식재료가 없을 경우 냉장고 화면으로 이동
+      setToastMessage("식재료 입력을 건너뛰었습니다.");
+      setShowToast(true);
+      setTimeout(() => {
+        navigate("/refrigerator");
+      }, 1000);
+    }
   };
 
   // 다음 식재료로 이동하는 함수
@@ -261,8 +248,6 @@ const IngredientAddForm = () => {
 
   // 폼 제출 핸들러
   const handleSubmit = async () => {
-    console.log("handleSubmit 호출됨", formData);
-
     // 유효성 검사 실행
     if (!validateFormInline()) {
       return;
@@ -288,14 +273,8 @@ const IngredientAddForm = () => {
         userId: currentUser.memberId,
       };
 
-      console.log("보낼 데이터:", JSON.stringify(ingredientData, null, 2));
-
-      // API 호출 부분
-      console.log("API 요청 데이터:", ingredientData); // 디버깅용 로그
-
-      // 여기서 실제 API 호출이 성공하는지 확인
+      // API 호출
       const result = await ingredientApi.addIngredient(ingredientData);
-      console.log("API 응답 결과:", result); // 디버깅용 로그
 
       if (!result.success) {
         setToastMessage(result.error || "식재료 저장에 실패했습니다.");
@@ -305,7 +284,6 @@ const IngredientAddForm = () => {
       }
     } catch (error) {
       console.error("식재료 저장 중 오류 발생:", error);
-
       setToastMessage("다시 시도해주세요.");
       setShowToast(true);
       setIsLoading(false);
@@ -324,16 +302,16 @@ const IngredientAddForm = () => {
     }
 
     // 모든 식재료 입력 완료
-    setToastMessage("모든 식재료가 등록되었습니다.");
+    setToastMessage("식재료가 등록되었습니다.");
     setShowToast(true);
 
     // 잠시 후 냉장고 메인 페이지로 이동
     setTimeout(() => {
       navigate("/refrigerator");
-    }, 1500);
+    }, 1000);
   };
 
-  // 대분류
+  // 카테고리 데이터
   const mainOptions = [
     { value: "", label: "대분류" },
     { value: "신선식품류", label: "신선식품류" },
@@ -359,6 +337,7 @@ const IngredientAddForm = () => {
         ],
         "수산·해산·건어물": [
           { value: "생선류", label: "생선류" },
+          { value: "해산물", label: "해산물" },
           { value: "갑각류·조개류", label: "갑각류·조개류" },
           { value: "건어물·해조류", label: "건어물·해조류" },
         ],
@@ -375,6 +354,7 @@ const IngredientAddForm = () => {
       options: [
         { value: "즉석식품·간편식", label: "즉석식품·간편식" },
         { value: "면·빵·떡", label: "면·빵·떡" },
+        { value: "육가공·델리", label: "육가공·델리" },
         { value: "통조림·레토르트", label: "통조림·레토르트" },
       ],
       subCategories: {
@@ -388,15 +368,19 @@ const IngredientAddForm = () => {
           { value: "빵·베이커리", label: "빵·베이커리" },
           { value: "떡·한과", label: "떡·한과" },
         ],
+        "육가공·델리": [
+          { value: "햄·소시지·베이컨", label: "햄·소시지·베이컨" },
+          { value: "델리미트", label: "델리미트" },
+        ],
         "통조림·레토르트": [
           { value: "통조림", label: "통조림" },
-          { value: "절임•피클류", label: "절임•피클류" },
+          { value: "절임·피클류", label: "절임·피클류" },
           { value: "즉석밥·죽", label: "즉석밥·죽" },
         ],
       },
     },
 
-    조미료·양념류: {
+    "조미료·양념류": {
       options: [
         { value: "소스·드레싱·양념", label: "소스·드레싱·양념" },
         { value: "장류·식초·기름", label: "장류·식초·기름" },
@@ -420,7 +404,7 @@ const IngredientAddForm = () => {
       },
     },
 
-    음료·주류: {
+    "음료·주류": {
       options: [
         { value: "생수·탄산수", label: "생수·탄산수" },
         { value: "커피·차·음료", label: "커피·차·음료" },
@@ -444,11 +428,10 @@ const IngredientAddForm = () => {
       },
     },
 
-    유가공·냉장·냉동: {
+    "유가공·냉장·냉동": {
       options: [
         { value: "유제품·치즈·버터", label: "유제품·치즈·버터" },
         { value: "냉장·냉동식품", label: "냉장·냉동식품" },
-        { value: "아이스크림·디저트", label: "아이스크림·디저트" },
       ],
       subCategories: {
         "유제품·치즈·버터": [
@@ -514,14 +497,11 @@ const IngredientAddForm = () => {
   // 헤더 타이틀 계산
   const getHeaderTitle = () => {
     if (isFromReceipt) {
-      if (ingredientNames.length > 1) {
-        return `식재료 등록 (${currentIngredientIndex + 1}/${
-          ingredientNames.length
-        })`;
-      }
-      return "영수증 촬영하기";
+      return `식재료 등록 (${currentIngredientIndex + 1}/${
+        ingredientNames.length
+      })`;
     }
-    return "직접 입력하기";
+    return "식재료 등록";
   };
 
   // 버튼 텍스트 계산
@@ -539,6 +519,9 @@ const IngredientAddForm = () => {
     return "등록하기";
   };
 
+  // 식재료 등록이 영수증 촬영하기를 통한 경우에만 건너뛰기 버튼 활성화
+  const showSkipButton = isFromReceipt;
+
   return (
     <>
       <Header
@@ -546,7 +529,7 @@ const IngredientAddForm = () => {
         title={getHeaderTitle()}
         rightIcon={close}
         onLeftClick={() => window.history.back()}
-        onRightClick={() => window.history.back()}
+        onRightClick={() => navigate("/refrigerator")}
       />
 
       <div className="add-form-wrapper">
@@ -559,7 +542,7 @@ const IngredientAddForm = () => {
               onChange={(emoji) =>
                 setFormData((prev) => ({
                   ...prev,
-                  emoji: emoji,
+                  emoji,
                 }))
               }
             />
@@ -589,7 +572,6 @@ const IngredientAddForm = () => {
             {!imagePreview && (
               <img src={plus} alt="이미지 추가" className="image-plus-icon" />
             )}
-            {/* 파일 입력 요소 */}
             <input
               type="file"
               accept="image/*"
@@ -655,6 +637,15 @@ const IngredientAddForm = () => {
       </div>
 
       <div className="add-form-button-container">
+        {/* 건너뛰기 버튼 - 여러 식재료가 있을 때만 표시 */}
+        {showSkipButton && (
+          <ButtonL
+            text="건너뛰기"
+            variant="outlined"
+            onClick={skipCurrentIngredient}
+            disabled={isLoading}
+          />
+        )}
         <ButtonL
           text="취소"
           variant="outlined"
@@ -664,17 +655,10 @@ const IngredientAddForm = () => {
         <ButtonL
           text={getButtonText()}
           onClick={() => {
-            // 먼저 토스트 상태 초기화
             setShowToast(false);
-
-            // 유효성 검사 함수를 분리하여 호출
-            const isValid = validateFormInline();
-            if (!isValid) {
-              return;
+            if (validateFormInline()) {
+              handleSubmit();
             }
-
-            // 모든 유효성 검사 통과 시 데이터 저장 로직
-            handleSubmit();
           }}
           disabled={isLoading}
         />
