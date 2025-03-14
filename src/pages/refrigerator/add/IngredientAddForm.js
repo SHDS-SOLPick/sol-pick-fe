@@ -359,7 +359,6 @@ const IngredientAddForm = () => {
       ],
       subCategories: {
         "즉석식품·간편식": [
-          { value: "도시락·샐러드", label: "도시락·샐러드" },
           { value: "냉동간편식", label: "냉동간편식" },
           { value: "국·탕·찌개", label: "국·탕·찌개" },
         ],
