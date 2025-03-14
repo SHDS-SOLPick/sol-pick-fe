@@ -105,7 +105,7 @@ const ReceiptScanner = ({ isOpen, onClose, onScanComplete }) => {
               setLoadingProgress(100);
               // 목업 데이터 (테스트용)
               const mockOcrResult = {
-                ingredientNames: [],
+                ingredientNames: ["딸기", "양파"],
               };
 
               setTimeout(() => {
