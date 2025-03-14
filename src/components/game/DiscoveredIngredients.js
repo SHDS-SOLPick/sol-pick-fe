@@ -8,7 +8,6 @@ import discoveredIng from "../../assets/game/discoverdIng.svg";
  * @param {number} props.discoveredCount - 발견한 식재료 개수
  * @param {number} props.totalCount - 전체 식재료 개수
  * @param {Array} props.ingredients - 식재료 목록 (발견/미발견 상태 포함)
- * @param {Function} props.onShopClick - 상점 버튼 클릭 핸들러
  * @returns {JSX.Element} 발견한 식재료 컴포넌트
  */
 const DiscoveredIngredients = ({ ingredients = [] }) => {

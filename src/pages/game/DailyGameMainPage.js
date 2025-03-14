@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./DailyGameMainPage.css";
+import PixelModal from "../../components/game/PixelModal";
 
 // 컴포넌트 및 배경 임포트
 import GameBackground from "../../components/game/GameBackground";
@@ -20,16 +21,44 @@ const DailyGameMainPage = () => {
   // 게임에서 획득한 사료 개수 상태 관리
   const [earnedFood, setEarnedFood] = useState(0);
 
+  // 모달 상태 관리
+  const [modalConfig, setModalConfig] = useState({
+    isOpen: false,
+    title: "",
+    message: "",
+    buttons: [],
+  });
+
+  // 모달 닫기 함수
+  const closeModal = () => {
+    setModalConfig({
+      isOpen: false,
+      title: "",
+      message: "",
+      buttons: [],
+    });
+  };
+
   // 네비게이션 핸들러
   const handleGoBack = () => {
     // 게임 진행 중 나가기 확인
     if (earnedFood > 0) {
-      const confirmExit = window.confirm(
-        "게임을 종료하시겠습니까? 현재까지 획득한 사료는 저장됩니다."
-      );
-      if (confirmExit) {
-        navigate("/game/instructions");
-      }
+      setModalConfig({
+        isOpen: true,
+        title: "게임 종료",
+        message: "게임을 종료하시겠습니까? 현재까지 획득한 사료는 저장됩니다.",
+        buttons: [
+          {
+            text: "확인",
+            onClick: () => {
+              closeModal();
+              navigate("/game/instructions");
+            },
+            type: "primary",
+          },
+          { text: "취소", onClick: () => closeModal(), type: "secondary" },
+        ],
+      });
     } else {
       navigate("/game/instructions");
     }
@@ -38,12 +67,22 @@ const DailyGameMainPage = () => {
   const handleClose = () => {
     // 게임 진행 중 종료 확인
     if (earnedFood > 0) {
-      const confirmExit = window.confirm(
-        "게임을 종료하시겠습니까? 현재까지 획득한 사료는 저장됩니다."
-      );
-      if (confirmExit) {
-        navigate("/game/home");
-      }
+      setModalConfig({
+        isOpen: true,
+        title: "게임 종료",
+        message: "게임을 종료하시겠습니까?\n현재까지 획득한 사료는 저장됩니다.",
+        buttons: [
+          {
+            text: "확인",
+            onClick: () => {
+              closeModal();
+              navigate("/game/home");
+            },
+            type: "primary",
+          },
+          { text: "취소", onClick: () => closeModal(), type: "secondary" },
+        ],
+      });
     } else {
       navigate("/game/home");
     }
@@ -55,9 +94,22 @@ const DailyGameMainPage = () => {
     console.log(`게임 종료: 총 ${totalReward}개의 사료 획득`);
     setEarnedFood(totalReward);
 
-    // 확인 메시지 표시 후 카드 페이지로 이동
-    alert(`게임 완료! ${totalReward}개의 사료를 획득했습니다.`);
-    navigate("/game/home");
+    // 확인 메시지 표시 게임 홈 화면으로 이동
+    setModalConfig({
+      isOpen: true,
+      title: "게임 완료",
+      message: `게임 완료!\n${totalReward}개의 사료를 획득했습니다!`,
+      buttons: [
+        {
+          text: "확인",
+          onClick: () => {
+            closeModal();
+            navigate("/game/home");
+          },
+          type: "primary",
+        },
+      ],
+    });
   };
 
   // 사료 획득 핸들러
@@ -94,6 +146,15 @@ const DailyGameMainPage = () => {
           />
         </div>
       </div>
+
+      {/* 픽셀 스타일 모달 */}
+      <PixelModal
+        isOpen={modalConfig.isOpen}
+        title={modalConfig.title}
+        message={modalConfig.message}
+        buttons={modalConfig.buttons}
+        onClose={closeModal}
+      />
     </div>
   );
 };
