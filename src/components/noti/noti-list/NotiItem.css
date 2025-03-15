@@ -19,7 +19,7 @@
 }
 
 .noti-type {
-  color: #7b68ee;
+  color: #0a84ff;
   font-size: 12px;
   line-height: 100%;
   letter-spacing: -0.03em;
@@ -42,7 +42,7 @@
 }
 
 .noti-item-unread {
-  background-color: #7b68ee0d;
+  background-color: #0a84ff0d;
   /* border-left: 3px solid #ed3241; */
   box-sizing: border-box;
 }

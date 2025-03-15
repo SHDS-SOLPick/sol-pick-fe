@@ -26,7 +26,7 @@ const Input = ({
         // 입력 필드의 오른쪽 20% 영역(대략 아이콘 위치)을 클릭했는지 확인
         if (e.clientX > rect.right - rect.width * 0.2) {
           setIsCalendarOpen(true);
-          input.style.borderColor = "#7B68EE";
+          input.style.borderColor = "#0A84FF";
         }
       };
 
@@ -62,7 +62,7 @@ const Input = ({
   const dateStyles =
     type === "date"
       ? {
-          "--focus-color": "#7B68EE",
+          "--focus-color": "#0A84FF",
         }
       : {};
 

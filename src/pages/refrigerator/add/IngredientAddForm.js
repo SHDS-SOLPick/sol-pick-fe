@@ -203,7 +203,7 @@ const IngredientAddForm = () => {
       setShowToast(true);
     } else {
       // 마지막 식재료이거나 식재료가 없을 경우 냉장고 화면으로 이동
-      setToastMessage("식재료 입력을 건너뛰었습니다.");
+      setToastMessage("식재료 등록을 건너뛰었습니다.");
       setShowToast(true);
       setTimeout(() => {
         navigate("/refrigerator");

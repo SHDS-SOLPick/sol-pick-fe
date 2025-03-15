@@ -34,24 +34,24 @@ const OrderHistoryItem = ({
         <path
           d="M11 10C11 10 11 8 13 8H23C25 8 25 10 25 10V26C25 26 25 28 23 28H13C11 28 11 26 11 26V10Z"
           fill="white"
-          stroke="#7B68EE"
+          stroke="#0A84FF"
           strokeWidth="1.5"
         />
         <path
           d="M15 14H21"
-          stroke="#7B68EE"
+          stroke="#0A84FF"
           strokeWidth="1.5"
           strokeLinecap="round"
         />
         <path
           d="M15 18H21"
-          stroke="#7B68EE"
+          stroke="#0A84FF"
           strokeWidth="1.5"
           strokeLinecap="round"
         />
         <path
           d="M15 22H19"
-          stroke="#7B68EE"
+          stroke="#0A84FF"
           strokeWidth="1.5"
           strokeLinecap="round"
         />
