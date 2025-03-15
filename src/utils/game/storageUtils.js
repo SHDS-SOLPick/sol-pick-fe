@@ -1,5 +1,3 @@
-// src/utils/game/storageUtils.js
-
 /**
  * 로컬 스토리지에 선택한 레시피 ID 저장
  * @param {number} recipeId - 저장할 레시피 ID
