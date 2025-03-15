@@ -3,23 +3,7 @@ import { BASE_URL } from "../config";
 import { authApi } from "./AuthApi";
 
 export const notificationApi = {
-  // 읽지 않은 알림 개수 가져오기
-  getUnreadCount: async (memberId) => {
-    try {
-      const response = await axios.get(
-        `${BASE_URL}/solpick/noti/count/unread/${memberId}`,
-        {
-          headers: authApi.getAuthHeader(),
-        }
-      );
-      return response.data;
-    } catch (error) {
-      console.error("읽지 않은 알림 개수 가져오기 실패:", error);
-      return "?"; // 에러 발생 시 ?으로 표시
-    }
-  },
-
-  // 알림 목록 가져오기
+  // 푸시 알림 목록 조회
   getNotifications: async (memberId) => {
     try {
       const response = await axios.get(
@@ -35,7 +19,7 @@ export const notificationApi = {
     }
   },
 
-  // 알림 읽음 처리
+  // 개별 푸시 알림 읽음 처리
   markAsRead: async (notificationId) => {
     try {
       console.log(`API 호출: 알림 ID ${notificationId} 읽음 처리 시작`);
@@ -73,6 +57,22 @@ export const notificationApi = {
       //   }
 
       return false;
+    }
+  },
+
+  // 읽지 않은 알림 개수 조회
+  getUnreadCount: async (memberId) => {
+    try {
+      const response = await axios.get(
+        `${BASE_URL}/solpick/noti/count/unread/${memberId}`,
+        {
+          headers: authApi.getAuthHeader(),
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("읽지 않은 알림 개수 가져오기 실패:", error);
+      return "?"; // 에러 발생 시 ?으로 표시
     }
   },
 };
