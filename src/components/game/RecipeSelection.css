@@ -56,8 +56,8 @@
 }
 
 .recipe-card.selected {
-  border: 2px solid #7b68ee;
-  box-shadow: 0 0 0 1px #7b68ee;
+  border: 2px solid #0a84ff;
+  box-shadow: 0 0 0 1px #0a84ff;
 }
 
 .help-section {
@@ -85,7 +85,7 @@
 }
 
 .recipe-continue-button {
-  background-color: #7b68ee;
+  background-color: #0a84ff;
   color: white;
   border: none;
   border-radius: 12px;

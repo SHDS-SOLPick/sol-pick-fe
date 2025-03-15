@@ -114,7 +114,7 @@
 }
 
 .capture-button:active {
-  background-color: #7b68ee;
+  background-color: #0a84ff;
 }
 
 .capture-button:active img {
@@ -198,7 +198,7 @@
 
 .loading-progress-bar {
   height: 100%;
-  background-color: #7b68ee;
+  background-color: #0a84ff;
   transition: width 0.3s ease;
 }
 

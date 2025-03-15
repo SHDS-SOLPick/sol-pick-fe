@@ -52,7 +52,7 @@
 /* 추천 다시 받기 버튼 */
 .refresh-button {
   margin-top: 20px;
-  background-color: #7b68ee;
+  background-color: #0a84ff;
   color: white;
   border: none;
   padding: 12px 20px;
@@ -63,5 +63,5 @@
 }
 
 .refresh-button:hover {
-  background-color: #7b68ee;
+  background-color: #0a84ff;
 }
