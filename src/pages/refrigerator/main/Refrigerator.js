@@ -9,6 +9,7 @@ import refrigeratorIllust from "../../../assets/refrigeratorIllust.svg";
 import "./Refrigerator.css";
 import { getIngredientImageFromEmoji } from "../../../utils/emojiToImageMap";
 import MainHeader from "../../../components/common/header/MainHeader";
+import recipe from "../../../assets/recipe.svg";
 
 const Refrigerator = () => {
   const navigate = useNavigate();
@@ -380,32 +381,16 @@ const Refrigerator = () => {
                             cursor: "pointer",
                           }}
                         >
-                          {ingredient.image ? (
-                            <img
-                              src={ingredient.image}
-                              alt={ingredient.name}
-                              className="ingredient-image"
-                              style={{
-                                width: "100%",
-                                height: "100%",
-                                objectFit: "contain",
-                              }}
-                            />
-                          ) : (
-                            <span
-                              className="ingredient-emoji"
-                              style={{
-                                fontSize: `${ingredient.size * 0.8}px`,
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                width: "100%",
-                                height: "100%",
-                              }}
-                            >
-                              {ingredient.emoji}
-                            </span>
-                          )}
+                          <img
+                            src={ingredient.image}
+                            alt={ingredient.name}
+                            className="ingredient-image"
+                            style={{
+                              width: "100%",
+                              height: "100%",
+                              objectFit: "contain",
+                            }}
+                          />
                         </div>
                       ))}
                     </div>
@@ -428,6 +413,14 @@ const Refrigerator = () => {
             onClick={() => handlePageChange(index)}
           />
         ))}
+      </div>
+
+      {/* 레시피 추천 페이지 이동 버튼 */}
+      <div
+        className="recipe-button"
+        onClick={() => navigate("/recipe-loading")}
+      >
+        <img src={recipe} alt="recipe" className="recipe-icon" />
       </div>
 
       {/* 식재료 추가 팝업 */}
