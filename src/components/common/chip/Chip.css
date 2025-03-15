@@ -32,10 +32,10 @@
 }
 
 .chip-item.selected {
-  background-color: #7b68ee;
+  background-color: #0a84ff;
   color: #ffffff;
   font-weight: 700;
-  border: 1px solid #7b68ee;
+  border: 1px solid #0a84ff;
 }
 
 /* 버튼의 기본 스타일 제거 */
