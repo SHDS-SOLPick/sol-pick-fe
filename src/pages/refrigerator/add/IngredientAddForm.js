@@ -627,7 +627,7 @@ const IngredientAddForm = () => {
           <h3 className="add-form-label bold">중량</h3>
           <Input
             className="add-form-input"
-            placeholder="중량을 입력해 주세요."
+            placeholder="중량(g)을 입력해 주세요."
             name="weight"
             value={formData.weight}
             onChange={handleInputChange}

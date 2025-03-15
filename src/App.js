@@ -61,6 +61,7 @@ function App() {
 
         {/* 냉장고 */}
         <Route path="/refrigerator/add" element={<IngredientAddForm />} />
+        <Route path="/refrigerator/edit/:id" element={<IngredientAddForm />} />
         <Route path="/refrigerator/list" element={<IngredientDetailList />} />
         <Route path="/refrigerator" element={<Refrigerator />} />
 

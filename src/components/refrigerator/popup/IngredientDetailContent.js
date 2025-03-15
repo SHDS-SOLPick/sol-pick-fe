@@ -38,8 +38,8 @@ const IngredientDetailContent = ({ ingredient }) => {
     return `${dateFormatted} ${timeFormatted}`;
   };
 
-  // 이미지 소스 결정 (등록된 이미지가 없으면 기본 이미지 사용)
-  const imageSource = ingredient.image || "/path/to/default-image.png";
+  // // 이미지 소스 결정 (등록된 이미지가 없으면 기본 이미지 사용)
+  // const imageSource = ingredient.image || "/path/to/default-image.png";
 
   return (
     <div className="ingpopup-description-container">
@@ -64,7 +64,7 @@ const IngredientDetailContent = ({ ingredient }) => {
       </div>
 
       <img
-        src={imageSource}
+        src={ingredient.image}
         alt={ingredient.name}
         className="ingpopup-description-image"
       />
