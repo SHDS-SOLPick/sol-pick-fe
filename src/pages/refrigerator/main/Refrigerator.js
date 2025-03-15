@@ -417,7 +417,7 @@ const Refrigerator = () => {
 
       {/* 레시피 추천 페이지 이동 버튼 */}
       <div
-        className="recipe-button"
+        className="recipe-button recipe-button-pulse"
         onClick={() => navigate("/recipe-loading")}
       >
         <img src={recipe} alt="recipe" className="recipe-icon" />
