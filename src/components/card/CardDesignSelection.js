@@ -1,5 +1,7 @@
 import React, { useState, useRef } from "react";
 import "./CardDesignSelection.css";
+import BasicDesignFront from "../../assets/card/basicDesign.svg";
+import BasicDesignBack from "../../assets/card/basicDesignBack.svg";
 
 // 카드 디자인 타입 상수
 const CARD_VIEWS = {
@@ -93,6 +95,36 @@ const CardDesign = ({ onNext, onCustomize }) => {
     }
   };
 
+  // 카드 이미지 렌더링
+  const renderCardImage = () => {
+    switch (cardView) {
+      case CARD_VIEWS.FRONT_BASIC:
+        return (
+          <img
+            src={BasicDesignFront}
+            alt="카드 기본 디자인 앞면"
+            className="basic-card-image"
+          />
+        );
+      case CARD_VIEWS.BACK_BASIC:
+        return (
+          <img
+            src={BasicDesignBack}
+            alt="카드 기본 디자인 뒷면"
+            className="basic-card-image"
+          />
+        );
+      case CARD_VIEWS.FRONT_CUSTOM:
+        return (
+          <div className="custom-card-placeholder custom-card-image">
+            <span>나만의 카드 디자인</span>
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
+
   return (
     <div className="card-design-selection-container">
       <div className="card-design-selection-content">
@@ -116,7 +148,9 @@ const CardDesign = ({ onNext, onCustomize }) => {
         {/* 카드 디자인 표시 영역 */}
         <div className="card-preview">
           {/* 카드 이미지 */}
-          <div ref={cardRef} className={`card-image ${cardView}`}>
+          <div ref={cardRef} className={`select-card-image ${cardView}`}>
+            {renderCardImage()}
+
             {/* 화살표 버튼 렌더링 */}
             {cardView === CARD_VIEWS.FRONT_BASIC && (
               <div
@@ -134,11 +168,6 @@ const CardDesign = ({ onNext, onCustomize }) => {
               >
                 &#60;
               </div>
-            )}
-
-            {/* 카드 뒷면 내용 */}
-            {cardView === CARD_VIEWS.BACK_BASIC && (
-              <div className="card-back-content"></div>
             )}
           </div>
 
