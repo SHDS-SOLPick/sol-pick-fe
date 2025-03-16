@@ -8,22 +8,19 @@ import ButtonL from "../../../components/common/button/ButtonL";
 import Menu from "../../../components/common/menu/Menu";
 import plus from "../../../assets/plus.svg";
 import { useRef, useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import SelectIcon from "../../../components/refrigerator/add/SelectIcon";
 import ToastMessage from "../../../components/common/toastmessage/ToastMessage";
 import { ingredientApi } from "../../../api/IngredientApi";
-import { authApi } from "../../../api/AuthApi";
 
-const IngredientAddForm = () => {
+const IngredientEditForm = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const isFromReceipt = location.state?.fromReceipt || false;
-  const receiptData = location.state?.receiptData || {};
+  const { id: ingredientId } = useParams(); // URL에서 식재료 ID 추출
+  const ingredientFromLocation = location.state?.ingredient; // 이전 페이지에서 전달받은 식재료 정보
 
   // 상태 관리
   const [imagePreview, setImagePreview] = useState(null);
-  const [ingredientNames, setIngredientNames] = useState([]);
-  const [currentIngredientIndex, setCurrentIngredientIndex] = useState(0);
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -40,42 +37,100 @@ const IngredientAddForm = () => {
 
   const fileInputRef = useRef(null);
 
-  // 영수증 데이터로 폼 초기화
+  // 식재료 상세 정보 가져오기
   useEffect(() => {
-    if (isFromReceipt && receiptData) {
-      if (
-        receiptData.ingredientNames &&
-        receiptData.ingredientNames.length > 0
-      ) {
-        setIngredientNames(receiptData.ingredientNames);
+    const fetchIngredientDetail = async () => {
+      if (ingredientId) {
+        setIsLoading(true);
+        try {
+          // 이미 상세 정보가 전달되었으면 그대로 사용
+          if (ingredientFromLocation) {
+            console.log(
+              "Location에서 받은 식재료 데이터:",
+              ingredientFromLocation
+            );
+            initializeFormWithIngredient(ingredientFromLocation);
+          } else {
+            // 아니면 API 호출로 상세 정보 가져오기
+            const response = await ingredientApi.getIngredientDetail(
+              ingredientId
+            );
+            if (response.success) {
+              console.log("API에서 받은 식재료 데이터:", response.data);
+              initializeFormWithIngredient(response.data);
+            } else {
+              setToastMessage("식재료 정보를 불러오는데 실패했습니다.");
+              setShowToast(true);
 
-        // 첫 번째 식재료명 자동 설정
-        setFormData((prev) => ({
-          ...prev,
-          name: receiptData.ingredientNames[0] || "",
-        }));
-
-        // 여러 식재료가 인식되었음을 알리는 토스트 메시지
-        if (receiptData.ingredientNames.length > 1) {
-          setToastMessage(
-            `${receiptData.ingredientNames.length}개의 식재료가 인식되었습니다.`
-          );
+              // 실패 시 냉장고 페이지로 이동
+              navigate("/refrigerator");
+            }
+          }
+        } catch (error) {
+          console.error("식재료 상세 정보 조회 오류:", error);
+          setToastMessage("서버 연결에 실패했습니다.");
           setShowToast(true);
+
+          // 오류 시 냉장고 페이지로 이동
+          navigate("/refrigerator");
+        } finally {
+          setIsLoading(false);
         }
       }
-    }
-  }, [isFromReceipt, receiptData]);
+    };
 
-  // 토스트 메시지 타이머
+    fetchIngredientDetail();
+  }, [ingredientId, ingredientFromLocation, navigate]);
+
+  // 식재료 정보로 폼 초기화
+  const initializeFormWithIngredient = (ingredient) => {
+    // 날짜 형식 변환 (ISO 문자열 → YYYY-MM-DD)
+    let formattedDate = "";
+    if (ingredient.expiryDate) {
+      const date = new Date(ingredient.expiryDate);
+      formattedDate = date.toISOString().split("T")[0];
+    }
+
+    // 폼 데이터 설정
+    setFormData({
+      emoji: ingredient.emoji || "",
+      name: ingredient.name || "",
+      expiryDate: formattedDate,
+      mainCategory: ingredient.mainCategory || "",
+      subCategory: ingredient.subCategory || "",
+      detailCategory: ingredient.detailCategory || "",
+      weight: ingredient.quantity?.toString() || "",
+      image: ingredient.image || "",
+    });
+
+    // 이미지 미리보기 설정
+    if (ingredient.image) {
+      setImagePreview(ingredient.image);
+    }
+
+    // 디버깅 로그
+    console.log("폼 초기화 완료:", {
+      mainCategory: ingredient.mainCategory,
+      subCategory: ingredient.subCategory,
+      detailCategory: ingredient.detailCategory,
+    });
+  };
+
+  // 카테고리 데이터 로드
   useEffect(() => {
-    if (showToast) {
-      const timer = setTimeout(() => {
-        setShowToast(false);
-      }, 3000);
-
-      return () => clearTimeout(timer);
+    // 카테고리 데이터가 있을 때만 실행
+    if (
+      formData.mainCategory &&
+      formData.subCategory &&
+      formData.detailCategory
+    ) {
+      console.log("카테고리 데이터 확인:", {
+        mainCategory: formData.mainCategory,
+        subCategory: formData.subCategory,
+        detailCategory: formData.detailCategory,
+      });
     }
-  }, [showToast]);
+  }, [formData.mainCategory, formData.subCategory, formData.detailCategory]);
 
   // 입력값 변경 핸들러
   const handleInputChange = (e) => {
@@ -137,16 +192,6 @@ const IngredientAddForm = () => {
       return false;
     }
 
-    // 유통기한이 과거 날짜인지 확인
-    const today = new Date();
-    today.setHours(0, 0, 0, 0); // 시간 부분 제거하여 날짜만 비교
-    const expiryDate = new Date(formData.expiryDate);
-    if (expiryDate < today) {
-      setToastMessage("유통기한은 오늘 이후로 설정해주세요.");
-      setShowToast(true);
-      return false;
-    }
-
     // 대분류 검증
     if (!formData.mainCategory) {
       setToastMessage("대분류를 선택해주세요.");
@@ -186,66 +231,6 @@ const IngredientAddForm = () => {
     return true;
   };
 
-  // 현재 식재료 건너뛰기 (다음 식재료로 이동)
-  const skipCurrentIngredient = () => {
-    const nextIndex = currentIngredientIndex + 1;
-
-    // 다음 식재료가 있으면 이동
-    if (nextIndex < ingredientNames.length) {
-      moveToNextIngredient();
-      setToastMessage("식재료를 건너뛰었습니다.");
-      setShowToast(true);
-    } else {
-      // 마지막 식재료이거나 식재료가 없을 경우 냉장고 화면으로 이동
-      setToastMessage("마지막 식재료를 건너뛰었습니다.");
-      setShowToast(true);
-      setTimeout(() => {
-        navigate("/refrigerator");
-      }, 1000);
-    }
-  };
-
-  // 다음 식재료로 이동하는 함수
-  const moveToNextIngredient = () => {
-    // 부드럽게 스크롤을 맨 위로 이동
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-
-    const nextIndex = currentIngredientIndex + 1;
-
-    if (nextIndex < ingredientNames.length) {
-      // 다음 식재료 인덱스로 업데이트
-      setCurrentIngredientIndex(nextIndex);
-
-      // 폼 초기화하면서 다음 식재료명 설정
-      setFormData({
-        emoji: "",
-        name: ingredientNames[nextIndex],
-        image: "",
-        expiryDate: "",
-        mainCategory: "",
-        subCategory: "",
-        detailCategory: "",
-        weight: "",
-      });
-
-      // 이미지 미리보기 상태를 초기화
-      setImagePreview(null);
-
-      // 토스트 메시지 표시
-      setToastMessage(
-        `${nextIndex + 1}/${ingredientNames.length} 식재료 입력 중`
-      );
-      setShowToast(true);
-
-      return true;
-    }
-
-    return false;
-  };
-
   // 폼 제출 핸들러
   const handleSubmit = async () => {
     // 유효성 검사 실행
@@ -253,62 +238,44 @@ const IngredientAddForm = () => {
       return;
     }
 
-    // 식재료 저장 API 호출
+    // 식재료 수정 API 호출
     setIsLoading(true);
     try {
-      // 현재 로그인한 사용자 정보 가져오기
-      const currentUser = authApi.getCurrentUser();
-
-      if (!currentUser) {
-        setToastMessage("로그인이 필요합니다.");
-        setShowToast(true);
-        return false;
-      }
-
-      // formData에 userId 추가
+      // formData 준비 (userId 필요 없음)
       const ingredientData = {
         ...formData,
         weight: parseInt(formData.weight), // weight를 int로 변환
         image: formData.image || imagePreview, // image 데이터 저장
-        userId: currentUser.memberId,
       };
 
-      // API 호출
-      const result = await ingredientApi.addIngredient(ingredientData);
+      // API 호출 (ingredientId를 Number로 변환)
+      const result = await ingredientApi.updateIngredient(
+        Number(ingredientId),
+        ingredientData
+      );
 
       if (!result.success) {
-        setToastMessage(result.error || "식재료 저장에 실패했습니다.");
+        setToastMessage(result.error || "식재료 수정에 실패했습니다.");
         setShowToast(true);
         setIsLoading(false);
         return;
       }
+
+      // 성공 메시지 표시
+      setToastMessage("식재료가 수정되었습니다.");
+      setShowToast(true);
+
+      // 잠시 후 냉장고 메인 페이지로 이동
+      setTimeout(() => {
+        navigate("/refrigerator");
+      }, 1000);
     } catch (error) {
-      console.error("식재료 저장 중 오류 발생:", error);
+      console.error("식재료 수정 중 오류 발생:", error);
       setToastMessage("다시 시도해주세요.");
       setShowToast(true);
+    } finally {
       setIsLoading(false);
-      return;
     }
-    setIsLoading(false);
-
-    // 다음 식재료가 있는지 확인
-    if (isFromReceipt && ingredientNames.length > 0) {
-      const hasNext = moveToNextIngredient();
-
-      // 다음 식재료가 있으면 함수 종료
-      if (hasNext) {
-        return;
-      }
-    }
-
-    // 모든 식재료 입력 완료
-    setToastMessage("식재료가 등록되었습니다.");
-    setShowToast(true);
-
-    // 잠시 후 냉장고 메인 페이지로 이동
-    setTimeout(() => {
-      navigate("/refrigerator");
-    }, 1000);
   };
 
   // 카테고리 데이터
@@ -466,6 +433,7 @@ const IngredientAddForm = () => {
     ) {
       return [{ value: "", label: "소분류" }];
     }
+
     return [
       { value: "", label: "소분류" },
       ...categoryData[formData.mainCategory].subCategories[
@@ -493,39 +461,11 @@ const IngredientAddForm = () => {
     });
   };
 
-  // 헤더 타이틀 계산
-  const getHeaderTitle = () => {
-    if (isFromReceipt) {
-      return `식재료 등록 (${currentIngredientIndex + 1}/${
-        ingredientNames.length
-      })`;
-    }
-    return "식재료 등록";
-  };
-
-  // 버튼 텍스트 계산
-  const getButtonText = () => {
-    if (isLoading) {
-      return "처리 중...";
-    }
-
-    if (isFromReceipt && ingredientNames.length > 0) {
-      if (currentIngredientIndex < ingredientNames.length - 1) {
-        return "다음";
-      }
-    }
-
-    return "등록하기";
-  };
-
-  // 식재료 등록이 영수증 촬영하기를 통한 경우에만 건너뛰기 버튼 활성화
-  const showSkipButton = isFromReceipt;
-
   return (
     <>
       <Header
         leftIcon={backArrow}
-        title={getHeaderTitle()}
+        title="식재료 수정"
         rightIcon={close}
         onLeftClick={() => window.history.back()}
         onRightClick={() => navigate("/refrigerator")}
@@ -596,29 +536,27 @@ const IngredientAddForm = () => {
           <h3 className="add-form-label bold">분류기준</h3>
           <div className="add-form-select-container">
             <SelectL
-              key={`main-category-${currentIngredientIndex}`}
+              key={`main-category-${ingredientId}`}
               options={mainOptions}
               className="select-item"
               value={formData.mainCategory}
               onChange={handleMainCategoryChange}
             />
             <SelectL
-              key={`sub-category-${currentIngredientIndex}`}
+              key={`sub-category-${ingredientId}`}
               options={getSubOptions()}
               className="select-item"
               value={formData.subCategory}
               onChange={handleSubCategoryChange}
-              disabled={!formData.mainCategory}
             />
             <SelectL
-              key={`detail-category-${currentIngredientIndex}`}
+              key={`detail-category-${ingredientId}`}
               options={getDetailOptions()}
               className="select-item"
               value={formData.detailCategory}
               onChange={(e) =>
                 setFormData({ ...formData, detailCategory: e.target.value })
               }
-              disabled={!formData.subCategory}
             />
           </div>
         </div>
@@ -636,15 +574,6 @@ const IngredientAddForm = () => {
       </div>
 
       <div className="add-form-button-container">
-        {/* 건너뛰기 버튼 - 여러 식재료가 있을 때만 표시 */}
-        {showSkipButton && (
-          <ButtonL
-            text="건너뛰기"
-            variant="outlined"
-            onClick={skipCurrentIngredient}
-            disabled={isLoading}
-          />
-        )}
         <ButtonL
           text="취소"
           variant="outlined"
@@ -652,7 +581,7 @@ const IngredientAddForm = () => {
           disabled={isLoading}
         />
         <ButtonL
-          text={getButtonText()}
+          text={isLoading ? "처리 중..." : "수정하기"}
           onClick={() => {
             setShowToast(false);
             if (validateFormInline()) {
@@ -672,4 +601,4 @@ const IngredientAddForm = () => {
   );
 };
 
-export default IngredientAddForm;
+export default IngredientEditForm;

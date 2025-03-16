@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import RefrigeratorHeader from "../../../components/refrigerator/main/RefrigeratorHeader";
 import Menu from "../../../components/common/menu/Menu";
@@ -10,266 +10,215 @@ import "./Refrigerator.css";
 import { getIngredientImageFromEmoji } from "../../../utils/emojiToImageMap";
 import MainHeader from "../../../components/common/header/MainHeader";
 import recipe from "../../../assets/recipe.svg";
+import { ingredientApi } from "../../../api/IngredientApi";
+import ToastMessage from "../../../components/common/toastmessage/ToastMessage";
 
 const Refrigerator = () => {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(0);
-  const [isAddIngredientPopupOpen, setIsAddIngredientPopupOpen] =
-    useState(false);
-  const [isIngredientDetailPopupOpen, setIsIngredientDetailPopupOpen] =
-    useState(false);
+  const [isAddPopupOpen, setIsAddPopupOpen] = useState(false);
+  const [isDetailPopupOpen, setIsDetailPopupOpen] = useState(false);
   const [clickedIngredient, setClickedIngredient] = useState(null);
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
 
-  // 샘플 식재료 데이터 - 실제로는 API/상태에서 가져와야 함
-  const [allIngredients, setAllIngredients] = useState([
-    // 첫 번째 냉장고
-    [
-      // 1번 선반
-      {
-        id: 1,
-        name: "수박",
-        emoji: "🍉",
-        image: getIngredientImageFromEmoji("🍉"),
-        size: 50,
-        x: 69,
-      },
-      {
-        id: 2,
-        name: "체리",
-        emoji: "🍒",
-        image: getIngredientImageFromEmoji("🍒"),
-        size: 50,
-        x: 137,
-      },
-      {
-        id: 3,
-        name: "빵",
-        emoji: "🍞",
-        image: getIngredientImageFromEmoji("🍞"),
-        size: 50,
-        x: 205,
-      },
+  // 식재료 로딩 상태
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-      // 2번 선반
-      {
-        id: 4,
-        name: "레몬",
-        emoji: "🍋",
-        image: getIngredientImageFromEmoji("🍋"),
-        size: 50,
-        x: 69,
-      },
-      {
-        id: 5,
-        name: "토마토",
-        emoji: "🍅",
-        image: getIngredientImageFromEmoji("🍅"),
-        size: 50,
-        x: 137,
-      },
-      {
-        id: 6,
-        name: "오렌지",
-        emoji: "🍊",
-        image: getIngredientImageFromEmoji("🍊"),
-        size: 50,
-        x: 205,
-      },
+  // 실제 식재료 데이터
+  const [allIngredients, setAllIngredients] = useState([]);
 
-      // 3번 선반
-      {
-        id: 7,
-        name: "당근",
-        emoji: "🥕",
-        image: getIngredientImageFromEmoji("🥕"),
-        size: 50,
-        x: 69,
-      },
-      {
-        id: 8,
-        name: "브로콜리",
-        emoji: "🥦",
-        image: getIngredientImageFromEmoji("🥦"),
-        size: 50,
-        x: 137,
-      },
-      {
-        id: 9,
-        name: "크루아상",
-        emoji: "🥐",
-        image: getIngredientImageFromEmoji("🥐"),
-        size: 50,
-        x: 205,
-      },
+  // 한 냉장고에 표시할 최대 식재료 수
+  const MAX_INGREDIENTS_PER_REFRIGERATOR = 15;
 
-      // 4번 선반
-      {
-        id: 10,
-        name: "딸기",
-        emoji: "🍓",
-        image: getIngredientImageFromEmoji("🍓"),
-        size: 50,
-        x: 69,
-      },
-      {
-        id: 11,
-        name: "상추",
-        emoji: "🥬",
-        image: getIngredientImageFromEmoji("🥬"),
-        size: 50,
-        x: 137,
-      },
-      {
-        id: 12,
-        name: "포도",
-        emoji: "🍇",
-        image: getIngredientImageFromEmoji("🍇"),
-        size: 50,
-        x: 205,
-      },
+  // 식재료 데이터 가져오기
+  useEffect(() => {
+    fetchIngredients();
+  }, []);
 
-      // 5번 선반
-      {
-        id: 13,
-        name: "사과",
-        emoji: "🍎",
-        image: getIngredientImageFromEmoji("🍎"),
-        size: 50,
-        x: 69,
-      },
-      {
-        id: 14,
-        name: "배",
-        emoji: "🍐",
-        image: getIngredientImageFromEmoji("🍐"),
-        size: 50,
-        x: 137,
-      },
-      {
-        id: 15,
-        name: "복숭아",
-        emoji: "🍑",
-        image: getIngredientImageFromEmoji("🍑"),
-        size: 50,
-        x: 205,
-      },
-    ],
-    // 두 번째 냉장고
-    [
-      // 1번 선반
-      {
-        id: 16,
-        name: "코코넛",
-        emoji: "🥥",
-        image: getIngredientImageFromEmoji("🥥"),
-        size: 50,
-        x: 69,
-      },
-      {
-        id: 17,
-        name: "아보카도",
-        emoji: "🥑",
-        image: getIngredientImageFromEmoji("🥑"),
-        size: 50,
-        x: 137,
-      },
-      {
-        id: 18,
-        name: "키위",
-        emoji: "🥝",
-        image: getIngredientImageFromEmoji("🥝"),
-        size: 50,
-        x: 205,
-      },
+  // 식재료 목록 불러오기 (최신순)
+  const fetchIngredients = async () => {
+    setLoading(true);
+    try {
+      // 최신순으로 식재료 목록 가져오기
+      const response = await ingredientApi.getIngredientList("latest");
 
-      // 2번 선반
-      {
-        id: 19,
-        name: "닭고기",
-        emoji: "🍗",
-        image: getIngredientImageFromEmoji("🍗"),
-        size: 50,
-        x: 69,
-      },
-      {
-        id: 20,
-        name: "달걀",
-        emoji: "🥚",
-        image: getIngredientImageFromEmoji("🥚"),
-        size: 50,
-        x: 137,
-      },
-      {
-        id: 21,
-        name: "고기",
-        emoji: "🥩",
-        image: getIngredientImageFromEmoji("🥩"),
-        size: 50,
-        x: 205,
-      },
-
-      // 3번 선반
-      {
-        id: 22,
-        name: "치즈",
-        emoji: "🧀",
-        image: getIngredientImageFromEmoji("🧀"),
-        size: 50,
-        x: 69,
-      },
-      {
-        id: 23,
-        name: "버터",
-        emoji: "🧈",
-        image: getIngredientImageFromEmoji("🧈"),
-        size: 50,
-        x: 137,
-      },
-      {
-        id: 24,
-        name: "감자",
-        emoji: "🥔",
-        image: getIngredientImageFromEmoji("🥔"),
-        size: 50,
-        x: 205,
-      },
-
-      // 4번 선반
-      {
-        id: 25,
-        name: "옥수수",
-        emoji: "🌽",
-        image: getIngredientImageFromEmoji("🌽"),
-        size: 50,
-        x: 69,
-      },
-    ],
-  ]);
-
-  const openAddIngredientPopup = () => {
-    setIsAddIngredientPopupOpen(true);
+      if (response.success) {
+        // 받아온 데이터를 냉장고 형식으로 변환
+        const formattedIngredients = convertToRefrigeratorFormat(response.data);
+        setAllIngredients(formattedIngredients);
+      } else {
+        setError(response.error || "식재료 목록을 불러오는데 실패했습니다.");
+        setToastMessage("식재료 목록을 불러오는데 실패했습니다.");
+        setShowToast(true);
+      }
+    } catch (error) {
+      console.error("식재료 목록 조회 오류:", error);
+      setError("서버 연결에 실패했습니다.");
+      setToastMessage("서버 연결에 실패했습니다.");
+      setShowToast(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const closeAddIngredientPopup = () => {
-    setIsAddIngredientPopupOpen(false);
+  // API에서 받아온 데이터를 냉장고 디스플레이 형식으로 변환
+  const convertToRefrigeratorFormat = (data) => {
+    // 식재료가 없는 경우 빈 배열의 배열 반환 (비어있는 냉장고 1개)
+    if (!data || data.length === 0) {
+      return [[]];
+    }
+
+    // 식재료 데이터 가공
+    const formattedData = data.map((ingredient, index) => ({
+      id: ingredient.id,
+      name: ingredient.name,
+      emoji: ingredient.emoji || "🍎", // 기본 이모지
+      image: getIngredientImageFromEmoji(ingredient.emoji || "🍎"), // 이모지 기반 매핑된 이미지 (냉장고 메인용)
+      originalImage: ingredient.image, // DB에 저장된 이미지 (상세 팝업 및 상세 목록용)
+      size: 50, // 고정 크기
+      x: calculateXPosition(index % 3), // x 위치 계산
+      // 추가 속성들 (상세 팝업용)
+      expiryDate: ingredient.expiryDate,
+      quantity: ingredient.quantity,
+      mainCategory: ingredient.mainCategory,
+      subCategory: ingredient.subCategory,
+      detailCategory: ingredient.detailCategory,
+      createdAt: ingredient.createdAt,
+      updatedAt: ingredient.updatedAt,
+    }));
+
+    // 냉장고 페이지 개수 계산
+    const totalPages = Math.ceil(
+      formattedData.length / MAX_INGREDIENTS_PER_REFRIGERATOR
+    );
+
+    // 냉장고 페이지별로 식재료 분배
+    const refrigerators = [];
+    for (let i = 0; i < totalPages; i++) {
+      const startIndex = i * MAX_INGREDIENTS_PER_REFRIGERATOR;
+      const endIndex = startIndex + MAX_INGREDIENTS_PER_REFRIGERATOR;
+      refrigerators.push(formattedData.slice(startIndex, endIndex));
+    }
+
+    // 최소 하나의 냉장고 페이지가 있도록 보장
+    if (refrigerators.length === 0) {
+      refrigerators.push([]);
+    }
+
+    return refrigerators;
   };
 
-  const openIngredientDetailPopup = (ingredient) => {
-    setClickedIngredient(ingredient);
-    setIsIngredientDetailPopupOpen(true);
+  // x 좌표 계산 함수 (3개의 열에 맞춰 배치)
+  const calculateXPosition = (columnIndex) => {
+    const positions = [69, 137, 205]; // 왼쪽, 중간, 오른쪽 위치
+    return positions[columnIndex];
   };
 
-  const closeIngredientDetailPopup = () => {
-    setIsIngredientDetailPopupOpen(false);
+  // 식재료 등록 팝업
+  const openAddPopup = () => {
+    setIsAddPopupOpen(true);
   };
 
-  const navigateToIngredientList = () => {
-    navigate("/refrigerator/list");
+  const closeAddPopup = () => {
+    setIsAddPopupOpen(false);
+  };
+
+  // 식재료 상세 팝업
+  const openDetailPopup = async (ingredient) => {
+    try {
+      // 식재료 상세 API 호출
+      const response = await ingredientApi.getIngredientDetail(ingredient.id);
+
+      if (response.success) {
+        setClickedIngredient(response.data);
+      } else {
+        // API 호출 실패시 현재 가지고 있는 정보로 표시
+        setClickedIngredient(ingredient);
+        console.error("식재료 상세 조회 실패:", response.error);
+      }
+    } catch (error) {
+      console.error("식재료 상세 조회 중 오류:", error);
+      // 오류 발생시 현재 가지고 있는 정보로 표시
+      setClickedIngredient(ingredient);
+    }
+
+    setIsDetailPopupOpen(true);
+  };
+
+  const closeDetailPopup = () => {
+    setIsDetailPopupOpen(false);
+  };
+
+  // 식재료 수정하기 버튼 클릭
+  const handleUpdate = () => {
+    if (clickedIngredient) {
+      navigate(`/refrigerator/update/${clickedIngredient.id}`, {
+        state: { ingredient: clickedIngredient },
+      });
+    }
+    closeDetailPopup();
+  };
+
+  // 식재료 삭제하기 버튼 클릭
+  const handleDelete = () => {
+    // 상세 팝업 닫기
+    closeDetailPopup();
+    // 삭제 확인 팝업 열기
+    setIsDeletePopupOpen(true);
+  };
+
+  // 삭제 확인 팝업 표시 여부를 관리하는 상태
+  const [isDeletePopupOpen, setIsDeletePopupOpen] = useState(false);
+
+  // 삭제 확인 팝업 닫기
+  const closeDeletePopup = () => {
+    setIsDeletePopupOpen(false);
+  };
+
+  // 삭제 확인 팝업 삭제하기 버튼 클릭
+  const confirmDelete = async () => {
+    if (!clickedIngredient) return;
+
+    try {
+      const response = await ingredientApi.deleteIngredient(
+        clickedIngredient.id
+      );
+
+      if (response.success) {
+        // 목록 갱신
+        fetchIngredients();
+
+        // 삭제 확인 팝업 닫기
+        closeDeletePopup();
+
+        // 삭제된 식재료 참조 초기화
+        setClickedIngredient(null);
+
+        // 토스트 메시지 표시
+        setToastMessage("식재료가 삭제되었습니다.");
+        setShowToast(true);
+      } else {
+        // 삭제 실패 처리
+        console.error("식재료 삭제 실패:", response.error);
+
+        // 실패 메시지 표시
+        setToastMessage(response.error || "삭제에 실패했습니다.");
+        setShowToast(true);
+      }
+    } catch (error) {
+      console.error("식재료 삭제 중 오류:", error);
+
+      // 오류 메시지 표시
+      setToastMessage("서버 연결에 실패했습니다.");
+      setShowToast(true);
+    }
   };
 
   // 전체 식재료 수 계산
   const totalIngredients = allIngredients.reduce(
-    (total, fridge) => total + fridge.length,
+    (total, refrigerator) => total + refrigerator.length,
     0
   );
 
@@ -312,12 +261,13 @@ const Refrigerator = () => {
   const ingredientPositions = shelfPositions.map((pos) => pos - 58); // 높이 50px + 8px 간격
 
   // 선반별로 식재료 그룹화
-  const groupIngredientsByShelf = (fridgeIngredients) => {
+  const groupIngredientsByShelf = (refrigeratorIngredients) => {
     const shelves = [[], [], [], [], []];
 
-    fridgeIngredients.forEach((ingredient) => {
-      // ID 기반으로 선반 인덱스 결정
-      let shelfIndex = Math.floor((ingredient.id - 1) / 3) % 5;
+    refrigeratorIngredients.forEach((ingredient, index) => {
+      // 인덱스 기반으로 선반 결정 (5개 선반에 고르게 배치)
+      let shelfIndex = Math.floor(index / 3);
+
       // 선반 인덱스가 범위 내에 있는지 확인
       if (shelfIndex >= 0 && shelfIndex < 5) {
         shelves[shelfIndex].push(ingredient);
@@ -333,8 +283,8 @@ const Refrigerator = () => {
 
       <RefrigeratorHeader
         totalIngredients={totalIngredients}
-        onAddClick={openAddIngredientPopup}
-        onDetailClick={navigateToIngredientList}
+        onAddClick={openAddPopup}
+        onDetailClick={() => navigate("/refrigerator/list")}
       />
 
       <div
@@ -347,8 +297,11 @@ const Refrigerator = () => {
           className="refrigerator-carousel"
           style={{ transform: `translateX(-${currentPage * 100}%)` }}
         >
-          {allIngredients.map((fridgeIngredients, fridgeIndex) => (
-            <div key={`fridge-${fridgeIndex}`} className="refrigerator-slide">
+          {allIngredients.map((refrigeratorIngredients, refrigeratorIndex) => (
+            <div
+              key={`refrigerator-${refrigeratorIndex}`}
+              className="refrigerator-slide"
+            >
               <div className="refrigerator-with-ingredients">
                 {/* 냉장고 SVG */}
                 <img
@@ -357,43 +310,55 @@ const Refrigerator = () => {
                   className="refrigerator-svg"
                 />
 
-                {/* 선반 위 식재료들 */}
-                {groupIngredientsByShelf(fridgeIngredients).map(
-                  (shelfIngredients, shelfIndex) => (
-                    <div
-                      key={`shelf-${fridgeIndex}-${shelfIndex}`}
-                      className="ingredients-shelf"
-                      style={{
-                        position: "absolute",
-                        top: `${ingredientPositions[shelfIndex]}px`,
-                      }}
-                    >
-                      {shelfIngredients.map((ingredient) => (
-                        <div
-                          key={`ingredient-${ingredient.id}`}
-                          className="ingredient-item"
-                          onClick={() => openIngredientDetailPopup(ingredient)}
-                          style={{
-                            position: "absolute",
-                            left: `${ingredient.x}px`,
-                            width: `${ingredient.size}px`,
-                            height: `${ingredient.size}px`,
-                            cursor: "pointer",
-                          }}
-                        >
-                          <img
-                            src={ingredient.image}
-                            alt={ingredient.name}
-                            className="ingredient-image"
+                {loading ? (
+                  <div className="refrigerator-loading">
+                    식재료 목록을 불러오는 중...
+                  </div>
+                ) : error ? (
+                  <div className="refrigerator-error">{error}</div>
+                ) : refrigeratorIngredients.length === 0 ? (
+                  <div className="refrigerator-empty">
+                    등록된 식재료가 없습니다.
+                  </div>
+                ) : (
+                  /* 선반 위 식재료들 */
+                  groupIngredientsByShelf(refrigeratorIngredients).map(
+                    (shelfIngredients, shelfIndex) => (
+                      <div
+                        key={`shelf-${refrigeratorIndex}-${shelfIndex}`}
+                        className="ingredients-shelf"
+                        style={{
+                          position: "absolute",
+                          top: `${ingredientPositions[shelfIndex]}px`,
+                        }}
+                      >
+                        {shelfIngredients.map((ingredient) => (
+                          <div
+                            key={`ingredient-${ingredient.id}`}
+                            className="ingredient-item"
+                            onClick={() => openDetailPopup(ingredient)}
                             style={{
-                              width: "100%",
-                              height: "100%",
-                              objectFit: "contain",
+                              position: "absolute",
+                              left: `${ingredient.x}px`,
+                              width: `${ingredient.size}px`,
+                              height: `${ingredient.size}px`,
+                              cursor: "pointer",
                             }}
-                          />
-                        </div>
-                      ))}
-                    </div>
+                          >
+                            <img
+                              src={ingredient.image}
+                              alt={ingredient.name}
+                              className="ingredient-image"
+                              style={{
+                                width: "100%",
+                                height: "100%",
+                                objectFit: "contain",
+                              }}
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    )
                   )
                 )}
               </div>
@@ -424,21 +389,36 @@ const Refrigerator = () => {
       </div>
 
       {/* 식재료 추가 팝업 */}
-      <AddPopup
-        isOpen={isAddIngredientPopupOpen}
-        onClose={closeAddIngredientPopup}
-      />
+      <AddPopup isOpen={isAddPopupOpen} onClose={closeAddPopup} />
 
-      {/* 식재료 상세 정보 팝업 */}
+      {/* 식재료 상세 팝업 */}
       <Popup
-        isOpen={isIngredientDetailPopupOpen}
-        onClose={closeIngredientDetailPopup}
+        isOpen={isDetailPopupOpen}
+        onClose={closeDetailPopup}
+        onLeftClick={handleUpdate} // 수정하기
+        onRightClick={handleDelete} // 삭제하기
         title={clickedIngredient ? clickedIngredient.name : "식재료명"}
         outlinedButtonText="수정하기"
         filledButtonText="삭제하기"
       >
         <IngredientDetailContent ingredient={clickedIngredient} />
       </Popup>
+
+      {/* 삭제 확인 팝업 */}
+      <Popup
+        isOpen={isDeletePopupOpen}
+        onClose={closeDeletePopup}
+        onLeftClick={closeDeletePopup} // 취소
+        onRightClick={confirmDelete} // 삭제하기
+        title={
+          clickedIngredient ? `${clickedIngredient.name} 삭제` : "식재료 삭제"
+        }
+        description={`이 식재료를 정말 삭제하시겠습니까?\n해당 식재료의 모든 정보가 영구적으로 삭제되며,\n삭제된 식재료는 복구할 수 없습니다.`}
+        outlinedButtonText="취소"
+        filledButtonText="삭제하기"
+      />
+
+      {showToast && <ToastMessage message={toastMessage} duration={3000} />}
 
       <Menu />
     </div>

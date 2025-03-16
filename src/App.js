@@ -7,6 +7,7 @@ import Main from "./pages/main/Main"; // 메인(홈) 페이지
 import Noti from "./pages/noti/Noti"; // 알림 페이지
 import Refrigerator from "./pages/refrigerator/main/Refrigerator"; // 냉장고 메인 페이지
 import IngredientAddForm from "./pages/refrigerator/add/IngredientAddForm"; // 식재료 등록 페이지
+import IngredientEditForm from "./pages/refrigerator/add/IngredientEditForm"; // 식재료 수정 페이지
 import IngredientDetailList from "./pages/refrigerator/list/IngredientDetailList"; // 식재료 상세 목록 페이지
 
 import RecipeSelectionPage from "./pages/game/RecipeSelectionPage"; // 레시피 선택 페이지
@@ -61,6 +62,10 @@ function App() {
 
         {/* 냉장고 */}
         <Route path="/refrigerator/add" element={<IngredientAddForm />} />
+        <Route
+          path="/refrigerator/update/:id"
+          element={<IngredientEditForm />}
+        />
         <Route path="/refrigerator/list" element={<IngredientDetailList />} />
         <Route path="/refrigerator" element={<Refrigerator />} />
 

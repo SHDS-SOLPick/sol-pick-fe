@@ -81,6 +81,7 @@ const Noti = () => {
     if (notification.type === "expiration") {
       navigate("/refrigerator");
     }
+
     // 다른 타입의 알림에 대한 처리 추가
   };
 
@@ -105,6 +106,7 @@ const Noti = () => {
           navigate("/main");
         }}
       />
+
       <Chip
         items={chipItems}
         initialSelected={0}
@@ -112,7 +114,7 @@ const Noti = () => {
       />
 
       {loading ? (
-        <div className="loading">알림을 불러오는 중...</div>
+        <div className="noti-loading">알림을 불러오는 중...</div>
       ) : (
         <NotiList
           notifications={filteredNotifications}
