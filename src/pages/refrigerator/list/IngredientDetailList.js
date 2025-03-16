@@ -214,7 +214,7 @@ const IngredientDetailList = () => {
   // 식재료 상세 팝업 수정하기 버튼 클릭
   const handleUpdate = () => {
     if (clickedIngredient) {
-      navigate(`/refrigerator/edit/${clickedIngredient.id}`, {
+      navigate(`/refrigerator/update/${clickedIngredient.id}`, {
         state: { ingredient: clickedIngredient },
       });
     }
