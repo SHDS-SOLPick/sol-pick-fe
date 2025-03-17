@@ -3,6 +3,7 @@ import "./CardDesignSelection.css";
 import BasicDesignFront from "../../assets/card/basicDesign.svg";
 import BasicDesignBack from "../../assets/card/basicDesignBack.svg";
 import CustomBasicDesign from "../../assets/card/customBasicDesign.svg";
+import { saveCardBackground } from "../../api/CardApi";
 
 // 카드 디자인 타입 상수
 const CARD_VIEWS = {
@@ -130,6 +131,29 @@ const CardDesign = ({ onNext, onCustomize }) => {
     }
   };
 
+  // 기본 디자인 선택 시
+  const handleBasicDesignSelect = async () => {
+    try {
+      const userId = localStorage.getItem("userId");
+
+      // 기본 디자인(배경 ID 1)을 저장
+      const response = await saveCardBackground.post(
+        "/solpick/api/card-design/save-background",
+        {
+          userId: parseInt(userId),
+          backgroundId: 1, // 기본 디자인 ID
+        }
+      );
+
+      // 디자인 ID 저장
+      localStorage.setItem("cardDesignId", response.designId);
+      onNext();
+    } catch (error) {
+      console.error("기본 디자인 저장 실패:", error);
+      alert("디자인 저장에 실패했습니다.");
+    }
+  };
+
   return (
     <div className="card-design-selection-container">
       <div className="card-design-selection-content">
@@ -186,7 +210,10 @@ const CardDesign = ({ onNext, onCustomize }) => {
         {/* 다음 버튼 */}
         <div className="design-button-container">
           {cardView === CARD_VIEWS.FRONT_BASIC ? (
-            <button className="design next-button" onClick={onNext}>
+            <button
+              className="design next-button"
+              onClick={handleBasicDesignSelect}
+            >
               선택
             </button>
           ) : (
