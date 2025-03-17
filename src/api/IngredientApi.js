@@ -27,7 +27,7 @@ export const ingredientApi = {
 
       // API 요청
       const response = await axios.post(
-        `${BASE_URL}/solpick/refrigerator/ingredients`,
+        `${BASE_URL}/api/solpick/refrigerator/ingredients`,
         requestData,
         {
           headers: {
@@ -75,7 +75,7 @@ export const ingredientApi = {
 
       // API 요청
       const response = await axios.put(
-        `${BASE_URL}/solpick/refrigerator/ingredients/${ingredientId}`,
+        `${BASE_URL}/api/solpick/refrigerator/ingredients/${ingredientId}`,
         requestData,
         {
           headers: {
@@ -109,7 +109,7 @@ export const ingredientApi = {
     try {
       // API 요청
       await axios.delete(
-        `${BASE_URL}/solpick/refrigerator/ingredients/${ingredientId}`,
+        `${BASE_URL}/api/solpick/refrigerator/ingredients/${ingredientId}`,
         {
           headers: authApi.getAuthHeader(),
         }
@@ -136,7 +136,7 @@ export const ingredientApi = {
 
       // API 요청
       const response = await axios.get(
-        `${BASE_URL}/solpick/refrigerator/ingredients/list/${userId}?sortType=${sortType}`,
+        `${BASE_URL}/api/solpick/refrigerator/ingredients/list/${userId}?sortType=${sortType}`,
         {
           headers: authApi.getAuthHeader(),
         }
@@ -177,7 +177,7 @@ export const ingredientApi = {
 
       // API 요청
       const response = await axios.get(
-        `${BASE_URL}/solpick/refrigerator/ingredients/list/category/${userId}?${params.toString()}`,
+        `${BASE_URL}/api/solpick/refrigerator/ingredients/list/category/${userId}?${params.toString()}`,
         {
           headers: authApi.getAuthHeader(),
         }
@@ -202,7 +202,7 @@ export const ingredientApi = {
     try {
       // API 요청
       const response = await axios.get(
-        `${BASE_URL}/solpick/refrigerator/ingredients/detail/${ingredientId}`,
+        `${BASE_URL}/api/solpick/refrigerator/ingredients/detail/${ingredientId}`,
         {
           headers: authApi.getAuthHeader(),
         }
@@ -240,7 +240,7 @@ export const ingredientApi = {
 
       // API 요청
       const response = await axios.post(
-        `${BASE_URL}/solpick/refrigerator/receipts/ocr`,
+        `${BASE_URL}/api/solpick/refrigerator/receipts/ocr`,
         requestData,
         {
           headers: {
