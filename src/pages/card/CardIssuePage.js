@@ -8,7 +8,7 @@ import shopActive from "../../assets/shopActive.svg";
 import Menu from "../../components/common/menu/Menu";
 import "./CardIssuePage.css";
 import BasicDesignFront from "../../assets/card/basicDesign.svg";
-import { checkHasCard } from "../../api/cardApi";
+import { checkHasCard } from "../../api/CardApi";
 
 // 메인 컴포넌트
 const CardIssuePage = () => {

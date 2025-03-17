@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import "./CardCustomSticker.css";
 import CardCustomPreview from "./CardCustomPreview";
 import { stickers } from "./StickerData";
+import { saveCardStickers } from "../../api/CardApi";
 
 const CardCustomSticker = ({ onNext }) => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -9,6 +10,7 @@ const CardCustomSticker = ({ onNext }) => {
   const [placedStickers, setPlacedStickers] = useState([]);
   const [isDraggingFromPalette, setIsDraggingFromPalette] = useState(false);
   const [draggedStickerTypeId, setDraggedStickerTypeId] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const cardPreviewRef = useRef(null);
 
   // 페이지 변경 핸들러
@@ -84,6 +86,35 @@ const CardCustomSticker = ({ onNext }) => {
   const startIndex = currentPage * stickersPerPage;
   const pageStickers = stickers.slice(startIndex, startIndex + stickersPerPage);
 
+  // 스티커 정보 저장 함수
+  const handleStickerSave = async () => {
+    try {
+      setIsLoading(true);
+      const designId = localStorage.getItem("cardDesignId");
+
+      // 스티커 데이터 포맷팅
+      const stickersData = placedStickers.map((sticker) => ({
+        id: sticker.id,
+        typeId: sticker.typeId,
+        position: sticker.position,
+      }));
+
+      // API 호출 방식은 유지하고 데이터 처리 부분만 수정
+      await saveCardStickers.post("/solpick/api/card-design/save-stickers", {
+        designId: parseInt(designId),
+        stickersData: JSON.stringify(stickersData),
+      });
+
+      // 다음 페이지로 이동
+      onNext();
+    } catch (error) {
+      console.error("스티커 저장 실패:", error);
+      alert("스티커 저장에 실패했습니다. 다시 시도해주세요.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="card-custom-sticker-container">
       <div className="card-custom-sticker-content">
@@ -156,10 +187,10 @@ const CardCustomSticker = ({ onNext }) => {
         <div className="sticker-button-container">
           <button
             className="sticker-selection-button"
-            onClick={onNext}
-            disabled={placedStickers.length === 0}
+            onClick={handleStickerSave}
+            disabled={placedStickers.length === 0 || isLoading}
           >
-            다음
+            {isLoading ? "처리 중..." : "다음"}
           </button>
         </div>
       </div>
