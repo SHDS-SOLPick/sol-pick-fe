@@ -132,7 +132,7 @@
 }
 
 .custom-design-button:hover {
-  background-color: #5b4bc4;
+  background-color: #0a84ff;
 }
 
 /* 다음 버튼 */
@@ -151,11 +151,15 @@
 }
 
 .design.next-button:hover {
-  background-color: #5b4bc4;
+  background-color: #0a84ff;
 }
 
 .blank-container {
   border: none;
   padding: 0 50px;
   margin: auto auto 120px;
+}
+
+.custom-basic-card-image {
+  width: 100%;
 }
