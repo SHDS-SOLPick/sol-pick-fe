@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MainHeader from "../../components/common/header/MainHeader";
 import noti from "../../assets/noti.svg";
@@ -8,10 +8,48 @@ import shopActive from "../../assets/shopActive.svg";
 import Menu from "../../components/common/menu/Menu";
 import "./CardIssuePage.css";
 import BasicDesignFront from "../../assets/card/basicDesign.svg";
+import { checkHasCard } from "../../api/cardApi";
 
 // 메인 컴포넌트
 const CardIssuePage = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // 로그인 상태 확인
+    const token = localStorage.getItem("token");
+    console.log("토큰 존재 여부:", !!token);
+
+    if (!token) {
+      console.log("토큰이 없어 로그인 페이지로 이동합니다.");
+      navigate("/login");
+      return;
+    }
+
+    // 카드 소유 여부 확인
+    const checkCardStatus = async () => {
+      try {
+        console.log("카드 상태 확인 시작");
+        const hasCard = await checkHasCard();
+        console.log("카드 소유 여부:", hasCard);
+
+        if (hasCard) {
+          // 카드가 있으면 포인트 페이지로 이동
+          console.log("카드가 있어 포인트 페이지로 이동합니다.");
+          navigate("/point");
+        } else {
+          // 카드가 없으면 현재 페이지(카드 발급 페이지) 표시
+          console.log("카드가 없어 현재 페이지를 표시합니다.");
+          setLoading(false);
+        }
+      } catch (error) {
+        console.error("카드 상태 확인 중 오류 발생:", error);
+        setLoading(false);
+      }
+    };
+
+    checkCardStatus();
+  }, [navigate]);
 
   const navigateToShop = () => {};
   const navigateToNoti = () => {};
@@ -23,6 +61,10 @@ const CardIssuePage = () => {
   const handleCardIssue = () => {
     navigate("/card/detail");
   };
+
+  if (loading) {
+    return <div>로딩 중...</div>;
+  }
 
   return (
     <div className="card-issue-page-container">
