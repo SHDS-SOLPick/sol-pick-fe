@@ -38,12 +38,17 @@ import LoginPage from "./pages/auth/LoginPage"; //로그인페이지
 import MyPage from "./pages/mypage/MyPage"; //마이페이지
 import OrderHistoryPage from "./pages/mypage/OrderHistoryPage";
 
+import Onboarding from "./pages/onboarding/Onboarding";
+
 function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
         {/* 공통 컴포넌트 */}
         <Route path="/components" element={<Components />} />
+
+        {/* 온보딩 */}
+        <Route path="/" element={<Onboarding />} />
 
         {/* 메인 */}
         <Route path="/main" element={<Main />} />
