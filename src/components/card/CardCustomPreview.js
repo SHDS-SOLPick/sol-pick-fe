@@ -7,7 +7,6 @@ import React, {
 } from "react";
 import "./CardCustomPreview.css";
 import { stickers } from "./StickerData";
-import CustomBasicDesign from "../../assets/card/customBasicDesign.svg";
 
 const CardCustomPreview = forwardRef((props, ref) => {
   const {
@@ -18,6 +17,7 @@ const CardCustomPreview = forwardRef((props, ref) => {
     isDraggingFromPalette,
     draggedStickerTypeId,
     generateId,
+    backgroundImage, // 배경 이미지 prop 추가
   } = props;
 
   const [draggingStickerId, setDraggingStickerId] = useState(null);
@@ -195,8 +195,8 @@ const CardCustomPreview = forwardRef((props, ref) => {
         >
           {/* 기존 SVG 코드를 제거하고 import한 SVG 이미지로 교체 */}
           <img
-            src={CustomBasicDesign}
-            alt="Custom Basic Design"
+            src={backgroundImage}
+            alt="Card Background"
             width="100%"
             height="100%"
           />

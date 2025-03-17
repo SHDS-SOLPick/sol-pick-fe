@@ -36,6 +36,8 @@ const CardCustomBackground = ({ onNext }) => {
 
       // 디자인 ID 저장
       localStorage.setItem("cardDesignId", response.designId);
+      // 배경 ID 저장
+      localStorage.setItem("backgroundId", selectedDesign.toString());
 
       // 다음 페이지로 이동
       onNext();
