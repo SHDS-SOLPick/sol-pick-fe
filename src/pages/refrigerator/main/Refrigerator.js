@@ -281,6 +281,17 @@ const Refrigerator = () => {
     return shelves;
   };
 
+  // 토스트 메시지 타이머
+  useEffect(() => {
+    if (showToast) {
+      const timer = setTimeout(() => {
+        setShowToast(false);
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [showToast]);
+
   return (
     <div className="refrigerator-main-container">
       <MainHeader />
@@ -323,9 +334,7 @@ const Refrigerator = () => {
                   </div>
                 ) : error ? (
                   <div className="refrigerator-status-overlay">
-                    <div className="refrigerator-status-message">
-                      {error}
-                    </div>
+                    <div className="refrigerator-status-message">{error}</div>
                   </div>
                 ) : refrigeratorIngredients.length === 0 ? (
                   <div className="refrigerator-status-overlay">

@@ -373,6 +373,17 @@ const IngredientDetailList = () => {
     return `${year}. ${month}. ${day}. ${hours}:${minutes}`;
   };
 
+  // 토스트 메시지 타이머
+  useEffect(() => {
+    if (showToast) {
+      const timer = setTimeout(() => {
+        setShowToast(false);
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [showToast]);
+
   return (
     <>
       <Header
