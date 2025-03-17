@@ -27,7 +27,7 @@ const Refrigerator = () => {
   const [error, setError] = useState(null);
 
   // 실제 식재료 데이터
-  const [allIngredients, setAllIngredients] = useState([]);
+  const [allIngredients, setAllIngredients] = useState([[]]);
 
   // 한 냉장고에 표시할 최대 식재료 수
   const MAX_INGREDIENTS_PER_REFRIGERATOR = 15;
@@ -52,12 +52,16 @@ const Refrigerator = () => {
         setError(response.error || "식재료 목록을 불러오는데 실패했습니다.");
         setToastMessage("식재료 목록을 불러오는데 실패했습니다.");
         setShowToast(true);
+        // 빈 냉장고 배열 설정 (에러 상태에서도 냉장고는 표시)
+        setAllIngredients([[]]);
       }
     } catch (error) {
       console.error("식재료 목록 조회 오류:", error);
       setError("서버 연결에 실패했습니다.");
       setToastMessage("서버 연결에 실패했습니다.");
       setShowToast(true);
+      // 빈 냉장고 배열 설정 (에러 상태에서도 냉장고는 표시)
+      setAllIngredients([[]]);
     } finally {
       setLoading(false);
     }
@@ -303,22 +307,31 @@ const Refrigerator = () => {
               className="refrigerator-slide"
             >
               <div className="refrigerator-with-ingredients">
-                {/* 냉장고 SVG */}
+                {/* 냉장고 SVG (항상 표시) */}
                 <img
                   src={refrigeratorIllust}
                   alt="refrigeratorIllust"
                   className="refrigerator-svg"
                 />
 
+                {/* 냉장고 위에 오버레이 */}
                 {loading ? (
-                  <div className="refrigerator-loading">
-                    식재료 목록을 불러오는 중...
+                  <div className="refrigerator-status-overlay">
+                    <div className="refrigerator-status-message">
+                      식재료 목록을 불러오는 중...
+                    </div>
                   </div>
                 ) : error ? (
-                  <div className="refrigerator-error">{error}</div>
+                  <div className="refrigerator-status-overlay">
+                    <div className="refrigerator-status-message">
+                      {error}
+                    </div>
+                  </div>
                 ) : refrigeratorIngredients.length === 0 ? (
-                  <div className="refrigerator-empty">
-                    등록된 식재료가 없습니다.
+                  <div className="refrigerator-status-overlay">
+                    <div className="refrigerator-status-message">
+                      등록된 식재료가 없습니다.
+                    </div>
                   </div>
                 ) : (
                   /* 선반 위 식재료들 */
