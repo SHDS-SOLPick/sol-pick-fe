@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import "./CardDesignSelection.css";
 import BasicDesignFront from "../../assets/card/basicDesign.svg";
 import BasicDesignBack from "../../assets/card/basicDesignBack.svg";
+import CustomBasicDesign from "../../assets/card/customBasicDesign.svg";
 
 // 카드 디자인 타입 상수
 const CARD_VIEWS = {
@@ -117,7 +118,11 @@ const CardDesign = ({ onNext, onCustomize }) => {
       case CARD_VIEWS.FRONT_CUSTOM:
         return (
           <div className="custom-card-placeholder custom-card-image">
-            <span>나만의 카드 디자인</span>
+            <img
+              src={CustomBasicDesign}
+              alt="커스텀 카드 기본 디자인"
+              className="custom-basic-card-image"
+            />
           </div>
         );
       default:
