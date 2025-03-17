@@ -27,6 +27,12 @@ const IngredientAddForm = () => {
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  // 등록된 식재료 개수 추적
+  const [registeredCount, setRegisteredCount] = useState(0);
+  // 건너뛴 식재료 개수 추적
+  const [skippedCount, setSkippedCount] = useState(0);
+
   const [formData, setFormData] = useState({
     emoji: "",
     name: "",
@@ -188,6 +194,9 @@ const IngredientAddForm = () => {
 
   // 현재 식재료 건너뛰기 (다음 식재료로 이동)
   const skipCurrentIngredient = () => {
+    // 건너뛴 식재료 개수 증가
+    setSkippedCount((prevCount) => prevCount + 1);
+
     const nextIndex = currentIngredientIndex + 1;
 
     // 다음 식재료가 있으면 이동
@@ -196,9 +205,19 @@ const IngredientAddForm = () => {
       setToastMessage("식재료를 건너뛰었습니다.");
       setShowToast(true);
     } else {
-      // 마지막 식재료이거나 식재료가 없을 경우 냉장고 화면으로 이동
-      setToastMessage("마지막 식재료를 건너뛰었습니다.");
+      // 마지막 식재료이거나 식재료가 없을, 냉장고 화면으로 이동
+
+      // 등록된 식재료 수에 따라 메시지 결정
+      let message;
+      if (registeredCount === 0) {
+        message = "모든 식재료를 건너뛰었습니다.";
+      } else {
+        message = `${registeredCount}개의 식재료가 등록되었습니다.`;
+      }
+
+      setToastMessage(message);
       setShowToast(true);
+
       setTimeout(() => {
         navigate("/refrigerator");
       }, 1000);
@@ -262,6 +281,7 @@ const IngredientAddForm = () => {
       if (!currentUser) {
         setToastMessage("로그인이 필요합니다.");
         setShowToast(true);
+        setIsLoading(false);
         return false;
       }
 
@@ -282,6 +302,9 @@ const IngredientAddForm = () => {
         setIsLoading(false);
         return;
       }
+
+      // 등록 성공 시 등록된 식재료 개수 증가
+      setRegisteredCount((prevCount) => prevCount + 1);
     } catch (error) {
       console.error("식재료 저장 중 오류 발생:", error);
       setToastMessage("다시 시도해주세요.");
@@ -302,7 +325,17 @@ const IngredientAddForm = () => {
     }
 
     // 모든 식재료 입력 완료
-    setToastMessage("식재료가 등록되었습니다.");
+    // 1. 직접 입력일 때
+    if (!isFromReceipt) {
+      setToastMessage("1개의 식재료가 등록되었습니다.");
+    }
+    // 2. 영수증 입력일 때 (전체 또는 일부 식재료 등록)
+    else {
+      // 현재까지 등록된 식재료 수 표시 (방금 등록한 것 포함)
+      const totalRegistered = registeredCount + 1;
+      setToastMessage(`${totalRegistered}개의 식재료가 등록되었습니다.`);
+    }
+
     setShowToast(true);
 
     // 잠시 후 냉장고 메인 페이지로 이동
