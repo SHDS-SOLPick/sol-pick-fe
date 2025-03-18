@@ -11,7 +11,7 @@ import { getIngredientImageFromEmoji } from "../../../utils/emojiToImageMap";
 import MainHeader from "../../../components/common/header/MainHeader";
 import recipe from "../../../assets/recipe.svg";
 import { ingredientApi } from "../../../api/IngredientApi";
-import ToastMessage from "../../../components/common/toastmessage/ToastMessage";
+import { useToast } from "../../../context/ToastContext";
 
 const Refrigerator = () => {
   const navigate = useNavigate();
@@ -19,8 +19,7 @@ const Refrigerator = () => {
   const [isAddPopupOpen, setIsAddPopupOpen] = useState(false);
   const [isDetailPopupOpen, setIsDetailPopupOpen] = useState(false);
   const [clickedIngredient, setClickedIngredient] = useState(null);
-  const [showToast, setShowToast] = useState(false);
-  const [toastMessage, setToastMessage] = useState("");
+  const { showToast } = useToast();
 
   // 식재료 로딩 상태
   const [loading, setLoading] = useState(true);
@@ -50,16 +49,16 @@ const Refrigerator = () => {
         setAllIngredients(formattedIngredients);
       } else {
         setError(response.error || "식재료 목록을 불러오는데 실패했습니다.");
-        setToastMessage("식재료 목록을 불러오는데 실패했습니다.");
-        setShowToast(true);
+        showToast("식재료 목록을 불러오는데 실패했습니다.");
+
         // 빈 냉장고 배열 설정 (에러 상태에서도 냉장고는 표시)
         setAllIngredients([[]]);
       }
     } catch (error) {
       console.error("식재료 목록 조회 오류:", error);
       setError("서버 연결에 실패했습니다.");
-      setToastMessage("서버 연결에 실패했습니다.");
-      setShowToast(true);
+      showToast("서버 연결에 실패했습니다.");
+
       // 빈 냉장고 배열 설정 (에러 상태에서도 냉장고는 표시)
       setAllIngredients([[]]);
     } finally {
@@ -201,22 +200,19 @@ const Refrigerator = () => {
         setClickedIngredient(null);
 
         // 토스트 메시지 표시
-        setToastMessage("식재료가 삭제되었습니다.");
-        setShowToast(true);
+        showToast("식재료가 삭제되었습니다.");
       } else {
         // 삭제 실패 처리
         console.error("식재료 삭제 실패:", response.error);
 
         // 실패 메시지 표시
-        setToastMessage(response.error || "삭제에 실패했습니다.");
-        setShowToast(true);
+        showToast(response.error || "삭제에 실패했습니다.");
       }
     } catch (error) {
       console.error("식재료 삭제 중 오류:", error);
 
       // 오류 메시지 표시
-      setToastMessage("서버 연결에 실패했습니다.");
-      setShowToast(true);
+      showToast("서버 연결에 실패했습니다.");
     }
   };
 
@@ -280,17 +276,6 @@ const Refrigerator = () => {
 
     return shelves;
   };
-
-  // 토스트 메시지 타이머
-  useEffect(() => {
-    if (showToast) {
-      const timer = setTimeout(() => {
-        setShowToast(false);
-      }, 3000);
-
-      return () => clearTimeout(timer);
-    }
-  }, [showToast]);
 
   return (
     <div className="refrigerator-main-container">
@@ -439,9 +424,6 @@ const Refrigerator = () => {
         outlinedButtonText="취소"
         filledButtonText="삭제하기"
       />
-
-      {showToast && <ToastMessage message={toastMessage} duration={3000} />}
-
       <Menu />
     </div>
   );

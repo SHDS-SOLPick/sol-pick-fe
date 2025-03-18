@@ -1,6 +1,6 @@
 import "./IngredientAddForm.css";
 import Header from "../../../components/common/header/Header";
-import backArrow from "../../../assets/backArrow.svg";
+// import backArrow from "../../../assets/backArrow.svg";
 import close from "../../../assets/close.svg";
 import Input from "../../../components/common/input/Input";
 import SelectL from "../../../components/common/select/SelectL";
@@ -10,9 +10,9 @@ import plus from "../../../assets/plus.svg";
 import { useRef, useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import SelectIcon from "../../../components/refrigerator/add/SelectIcon";
-import ToastMessage from "../../../components/common/toastmessage/ToastMessage";
 import { ingredientApi } from "../../../api/IngredientApi";
 import { authApi } from "../../../api/AuthApi";
+import { useToast } from "../../../context/ToastContext";
 
 const IngredientAddForm = () => {
   const navigate = useNavigate();
@@ -24,9 +24,8 @@ const IngredientAddForm = () => {
   const [imagePreview, setImagePreview] = useState(null);
   const [ingredientNames, setIngredientNames] = useState([]);
   const [currentIngredientIndex, setCurrentIngredientIndex] = useState(0);
-  const [showToast, setShowToast] = useState(false);
-  const [toastMessage, setToastMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const { showToast } = useToast();
 
   // 등록된 식재료 개수 추적
   const [registeredCount, setRegisteredCount] = useState(0);
@@ -63,25 +62,13 @@ const IngredientAddForm = () => {
 
         // 여러 식재료가 인식되었음을 알리는 토스트 메시지
         if (receiptData.ingredientNames.length > 1) {
-          setToastMessage(
+          showToast(
             `${receiptData.ingredientNames.length}개의 식재료가 인식되었습니다.`
           );
-          setShowToast(true);
         }
       }
     }
   }, [isFromReceipt, receiptData]);
-
-  // 토스트 메시지 타이머
-  useEffect(() => {
-    if (showToast) {
-      const timer = setTimeout(() => {
-        setShowToast(false);
-      }, 3000);
-
-      return () => clearTimeout(timer);
-    }
-  }, [showToast]);
 
   // 입력값 변경 핸들러
   const handleInputChange = (e) => {
@@ -117,29 +104,29 @@ const IngredientAddForm = () => {
   const validateFormInline = () => {
     // 이모지 검증
     if (!formData.emoji) {
-      setToastMessage("아이콘을 선택해주세요.");
-      setShowToast(true);
+      showToast("아이콘을 선택해주세요.");
+
       return false;
     }
 
     // 식재료명 검증
     if (!formData.name.trim()) {
-      setToastMessage("식재료명을 입력해주세요.");
-      setShowToast(true);
+      showToast("식재료명을 입력해주세요.");
+
       return false;
     }
 
     // 사진 첨부 검증
     if (!formData.image && !imagePreview) {
-      setToastMessage("사진을 첨부해주세요.");
-      setShowToast(true);
+      showToast("사진을 첨부해주세요.");
+
       return false;
     }
 
     // 유통기한 검증
     if (!formData.expiryDate) {
-      setToastMessage("유통기한을 입력해주세요.");
-      setShowToast(true);
+      showToast("유통기한을 입력해주세요.");
+
       return false;
     }
 
@@ -148,43 +135,43 @@ const IngredientAddForm = () => {
     today.setHours(0, 0, 0, 0); // 시간 부분 제거하여 날짜만 비교
     const expiryDate = new Date(formData.expiryDate);
     if (expiryDate < today) {
-      setToastMessage("유통기한은 오늘 이후로 설정해주세요.");
-      setShowToast(true);
+      showToast("유통기한은 오늘 이후로 설정해주세요.");
+
       return false;
     }
 
     // 대분류 검증
     if (!formData.mainCategory) {
-      setToastMessage("대분류를 선택해주세요.");
-      setShowToast(true);
+      showToast("대분류를 선택해주세요.");
+
       return false;
     }
 
     // 중분류 검증
     if (!formData.subCategory) {
-      setToastMessage("중분류를 선택해주세요.");
-      setShowToast(true);
+      showToast("중분류를 선택해주세요.");
+
       return false;
     }
 
     // 소분류 검증
     if (!formData.detailCategory) {
-      setToastMessage("소분류를 선택해주세요.");
-      setShowToast(true);
+      showToast("소분류를 선택해주세요.");
+
       return false;
     }
 
     // 중량 검증
     if (!formData.weight) {
-      setToastMessage("중량을 입력해주세요.");
-      setShowToast(true);
+      showToast("중량을 입력해주세요.");
+
       return false;
     }
 
     // 중량이 정수인지 확인
     if (formData.weight && isNaN(parseInt(formData.weight))) {
-      setToastMessage("중량은 정수만 입력 가능합니다.");
-      setShowToast(true);
+      showToast("중량은 정수만 입력 가능합니다.");
+
       return false;
     }
 
@@ -202,8 +189,7 @@ const IngredientAddForm = () => {
     // 다음 식재료가 있으면 이동
     if (nextIndex < ingredientNames.length) {
       moveToNextIngredient();
-      setToastMessage("식재료를 건너뛰었습니다.");
-      setShowToast(true);
+      showToast("식재료를 건너뛰었습니다.");
     } else {
       // 마지막 식재료이거나 식재료가 없을, 냉장고 화면으로 이동
 
@@ -215,12 +201,9 @@ const IngredientAddForm = () => {
         message = `${registeredCount}개의 식재료가 등록되었습니다.`;
       }
 
-      setToastMessage(message);
-      setShowToast(true);
+      showToast(message);
 
-      setTimeout(() => {
-        navigate("/refrigerator");
-      }, 1000);
+      navigate("/refrigerator");
     }
   };
 
@@ -254,10 +237,7 @@ const IngredientAddForm = () => {
       setImagePreview(null);
 
       // 토스트 메시지 표시
-      setToastMessage(
-        `${nextIndex + 1}/${ingredientNames.length} 식재료 입력 중`
-      );
-      setShowToast(true);
+      showToast(`${nextIndex + 1}/${ingredientNames.length} 식재료 입력 중`);
 
       return true;
     }
@@ -279,8 +259,8 @@ const IngredientAddForm = () => {
       const currentUser = authApi.getCurrentUser();
 
       if (!currentUser) {
-        setToastMessage("로그인이 필요합니다.");
-        setShowToast(true);
+        showToast("로그인이 필요합니다.");
+
         setIsLoading(false);
         return false;
       }
@@ -297,8 +277,8 @@ const IngredientAddForm = () => {
       const result = await ingredientApi.addIngredient(ingredientData);
 
       if (!result.success) {
-        setToastMessage(result.error || "식재료 저장에 실패했습니다.");
-        setShowToast(true);
+        showToast(result.error || "식재료 저장에 실패했습니다.");
+
         setIsLoading(false);
         return;
       }
@@ -307,8 +287,8 @@ const IngredientAddForm = () => {
       setRegisteredCount((prevCount) => prevCount + 1);
     } catch (error) {
       console.error("식재료 저장 중 오류 발생:", error);
-      setToastMessage("다시 시도해주세요.");
-      setShowToast(true);
+      showToast("다시 시도해주세요.");
+
       setIsLoading(false);
       return;
     }
@@ -327,21 +307,17 @@ const IngredientAddForm = () => {
     // 모든 식재료 입력 완료
     // 1. 직접 입력일 때
     if (!isFromReceipt) {
-      setToastMessage("1개의 식재료가 등록되었습니다.");
+      showToast("1개의 식재료가 등록되었습니다.");
     }
     // 2. 영수증 입력일 때 (전체 또는 일부 식재료 등록)
     else {
       // 현재까지 등록된 식재료 수 표시 (방금 등록한 것 포함)
       const totalRegistered = registeredCount + 1;
-      setToastMessage(`${totalRegistered}개의 식재료가 등록되었습니다.`);
+      showToast(`${totalRegistered}개의 식재료가 등록되었습니다.`);
     }
 
-    setShowToast(true);
-
-    // 잠시 후 냉장고 메인 페이지로 이동
-    setTimeout(() => {
-      navigate("/refrigerator");
-    }, 1000);
+    // 냉장고 메인 페이지로 이동
+    navigate("/refrigerator");
   };
 
   // 카테고리 데이터
@@ -557,10 +533,10 @@ const IngredientAddForm = () => {
   return (
     <>
       <Header
-        leftIcon={backArrow}
+        // leftIcon={backArrow}
         title={getHeaderTitle()}
         rightIcon={close}
-        onLeftClick={() => window.history.back()}
+        // onLeftClick={() => window.history.back()}
         onRightClick={() => navigate("/refrigerator")}
       />
 
@@ -687,7 +663,6 @@ const IngredientAddForm = () => {
         <ButtonL
           text={getButtonText()}
           onClick={() => {
-            setShowToast(false);
             if (validateFormInline()) {
               handleSubmit();
             }
@@ -697,9 +672,6 @@ const IngredientAddForm = () => {
       </div>
 
       <div style={{ height: "100px" }}></div>
-
-      {showToast && <ToastMessage message={toastMessage} duration={3000} />}
-
       <Menu />
     </>
   );

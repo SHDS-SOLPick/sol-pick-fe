@@ -23,6 +23,8 @@ import class4 from "../../assets/main/class4.jpg";
 import class5 from "../../assets/main/class5.jpg";
 import class6 from "../../assets/main/class6.jpg";
 
+import mealplanner from "../../assets/main/mealplanner.png";
+
 const Main = () => {
   const navigate = useNavigate();
   const [greeting, setGreeting] = useState("");
@@ -36,37 +38,36 @@ const Main = () => {
   useEffect(() => {
     // 시간대별 인사말 배열들
     const morningGreetings = [
-      "상쾌한 아침이에요! 오늘도",
-      "싱그러운 아침이에요! 기분 좋게",
-      "기분 좋은 햇살과 함께 오늘도",
+      "상쾌한 아침이에요! 오늘 하루도",
+      "싱그러운 아침이에요! 오늘도",
+      "햇살 가득한 아침이에요! 오늘도",
     ];
 
     const afternoonGreetings = [
       "따스한 오후예요! 남은 하루도",
-      "살랑이는 바람과 함께 오늘도",
-      "여유로운 오후예요! 힘찬 하루를",
+      "햇살이 포근한 오후예요! 오늘도",
+      "여유로운 오후예요! 오늘도",
     ];
 
     const eveningGreetings = [
-      "노을지는 하늘과 함께 오늘도",
-      "포근한 저녁이에요! 남은 시간도",
-      "고요한 저녁이에요! 남은 하루도",
+      "노을지는 저녁이에요! 하루의 마무리를",
+      "포근한 저녁이에요! 남은 하루도",
+      "조용한 저녁이에요! 하루의 마무리를",
     ];
 
     const nightGreetings = [
-      "별이 빛나는 밤이에요! 내일도",
-      "고요한 밤하늘 아래 내일도",
-      "잔잔한 달빛 아래 내일도",
+      "별빛 가득한 밤이에요! 내일도",
+      "고요한 밤이에요! 내일 하루도",
+      "달빛이 잔잔한 밤이에요! 내일도",
     ];
 
     // 마무리 문구 배열
     const closingPhrases = [
       "설렘으로 가득 채워볼까요?",
-      "눈부신 미소를 지어볼까요?",
       "건강한 맛으로 기운 내볼까요?",
       "SOL Pick과 건강하게 보내볼까요?",
       "맛있는 한 끼로 든든하게 보내볼까요?",
-      "신선한 식재료로 힘차게 보내볼까요?",
+      "신선한 식재료로 힘내볼까요?",
       "SOL Pick과 활기차게 보내볼까요?",
     ];
 
@@ -256,6 +257,15 @@ const Main = () => {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.3 }}
+        onClick={() => navigate("/")} // 식단 추천 페이지로 이동
+      >
+        <img src={mealplanner} alt="mealplanner" className="meal-planner" />
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.4 }}
       >
         <EventSection
           sectionTitle="레시픽 회원만을 위한 특별 카드 혜택"
@@ -266,7 +276,7 @@ const Main = () => {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.4 }}
+        transition={{ duration: 0.7, delay: 0.5 }}
       >
         <EventSection
           sectionTitle="SOL Pick이 제안하는 맞춤 레시피"
@@ -277,7 +287,7 @@ const Main = () => {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.5 }}
+        transition={{ duration: 0.7, delay: 0.6 }}
       >
         <EventSection
           sectionTitle="지금이 딱! 제철 식재료 특가"
@@ -288,7 +298,7 @@ const Main = () => {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.6 }}
+        transition={{ duration: 0.7, delay: 0.7 }}
       >
         <RecommendSection
           title="SOL Pick을 오프라인에서 만나보세요"
@@ -299,7 +309,7 @@ const Main = () => {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.7 }}
+        transition={{ duration: 0.7, delay: 0.8 }}
       >
         <EventSection
           sectionTitle="매일매일 포인트로 더 큰 혜택"
@@ -310,7 +320,7 @@ const Main = () => {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.8 }}
+        transition={{ duration: 0.7, delay: 0.9 }}
       >
         <EventSection
           sectionTitle="건강한 라이프스타일을 위한 최신 트렌드"

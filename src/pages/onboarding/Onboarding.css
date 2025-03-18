@@ -6,7 +6,7 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  background-color: #0a84ff;
+  background-color: #ffffff;
 }
 
 .solpick-logo {
@@ -19,8 +19,8 @@
   width: 343px;
   height: 56px;
   font-size: 16px;
-  color: #0a84ff;
-  background-color: #ffffff;
+  color: #ffffff;
+  background-color: #0a84ff;
   border: none;
   border-radius: 12px;
   cursor: pointer;

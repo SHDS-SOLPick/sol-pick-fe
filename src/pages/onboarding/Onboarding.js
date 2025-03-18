@@ -22,7 +22,7 @@ const Onboarding = () => {
         // 애니메이션 완료 후 네비게이션
         setTimeout(() => {
           navigate("/main");
-        }, 800); // 애니메이션 지속 시간
+        }, 500); // 애니메이션 지속 시간
       }, 3000);
 
       return () => clearTimeout(timer);
@@ -35,20 +35,23 @@ const Onboarding = () => {
       animate={{ opacity }}
       transition={{ duration: 0.8 }}
     >
-      {/* <motion.img */}
-      <img
+      <motion.img
+        // <img
         src={igloo}
         alt="solpickLogo"
         className="solpick-logo"
-        // animate={{
-        //   scale: [0.7, 1.05, 0.95, 1],
-        //   opacity: [0, 1, 1, 1],
-        // }}
-        // transition={{
-        //   duration: 1.2,
-        //   times: [0, 0.4, 0.7, 1],
-        // }}
+        스프링
+        효과
+        animate={{
+          scale: [0.7, 1.05, 0.95, 1],
+          opacity: [0, 1, 1, 1],
+        }}
+        transition={{
+          duration: 1.2,
+          times: [0, 0.4, 0.7, 1],
+        }}
 
+        // 커지는 효과
         // initial={{ scale: 0.8 }} // 처음 크기를 0.8로 설정
         // animate={{ scale: 1 }} // 애니메이션 끝에 크기를 1로 설정
         // transition={{
@@ -68,7 +71,7 @@ const Onboarding = () => {
             onClick={() => navigate("/login")}
             className="get-started-button bold"
           >
-            새로운 경험 시작하기
+            시작하기
           </button>
         </motion.div>
       )}
