@@ -15,7 +15,7 @@ export const compressImage = async (base64Image, maxSizeMB = 0.5) => {
     // 압축 옵션
     const options = {
       maxSizeMB, // 최대 크기 (MB)
-      maxWidthOrHeight: 800, // 최대 너비 또는 높이
+      maxWidthOrHeight: 400, // 최대 너비 또는 높이
       useWebWorker: true, // 웹 워커 사용 (성능 향상)
     };
 
