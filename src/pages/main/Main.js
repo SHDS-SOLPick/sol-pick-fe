@@ -23,6 +23,8 @@ import class4 from "../../assets/main/class4.jpg";
 import class5 from "../../assets/main/class5.jpg";
 import class6 from "../../assets/main/class6.jpg";
 
+import mealplanner from "../../assets/main/mealplanner.png";
+
 const Main = () => {
   const navigate = useNavigate();
   const [greeting, setGreeting] = useState("");
@@ -255,6 +257,15 @@ const Main = () => {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.3 }}
+        onClick={() => navigate("/")} // 식단 추천 페이지로 이동
+      >
+        <img src={mealplanner} alt="mealplanner" className="meal-planner" />
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.4 }}
       >
         <EventSection
           sectionTitle="레시픽 회원만을 위한 특별 카드 혜택"
@@ -265,7 +276,7 @@ const Main = () => {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.4 }}
+        transition={{ duration: 0.7, delay: 0.5 }}
       >
         <EventSection
           sectionTitle="SOL Pick이 제안하는 맞춤 레시피"
@@ -276,7 +287,7 @@ const Main = () => {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.5 }}
+        transition={{ duration: 0.7, delay: 0.6 }}
       >
         <EventSection
           sectionTitle="지금이 딱! 제철 식재료 특가"
@@ -287,7 +298,7 @@ const Main = () => {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.6 }}
+        transition={{ duration: 0.7, delay: 0.7 }}
       >
         <RecommendSection
           title="SOL Pick을 오프라인에서 만나보세요"
@@ -298,7 +309,7 @@ const Main = () => {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.7 }}
+        transition={{ duration: 0.7, delay: 0.8 }}
       >
         <EventSection
           sectionTitle="매일매일 포인트로 더 큰 혜택"
@@ -309,7 +320,7 @@ const Main = () => {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.8 }}
+        transition={{ duration: 0.7, delay: 0.9 }}
       >
         <EventSection
           sectionTitle="건강한 라이프스타일을 위한 최신 트렌드"

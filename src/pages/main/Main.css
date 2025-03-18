@@ -30,3 +30,12 @@
   gap: 18px;
   margin-top: 12px;
 }
+
+.meal-planner {
+  width: 343px;
+  height: 340px;
+  margin: 24px 16px 0 16px;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.15);
+}
