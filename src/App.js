@@ -1,9 +1,13 @@
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
+import { ToastProvider } from "./context/ToastContext";
+import ToastMessage from "./components/common/toastmessage/ToastMessage";
+
 import Layout from "./layout/Layout"; // 전체 레이아웃
 import Components from "./pages/Components"; // 공통 컴포넌트
 
-import Main from "./pages/main/Main"; // 메인(홈) 페이지
+import Onboarding from "./pages/onboarding/Onboarding"; // 온보딩 페이지
+import Main from "./pages/main/Main"; // 메인 페이지
 import Noti from "./pages/noti/Noti"; // 알림 페이지
 import Refrigerator from "./pages/refrigerator/main/Refrigerator"; // 냉장고 메인 페이지
 import IngredientAddForm from "./pages/refrigerator/add/IngredientAddForm"; // 식재료 등록 페이지
@@ -38,87 +42,94 @@ import LoginPage from "./pages/auth/LoginPage"; //로그인페이지
 import MyPage from "./pages/mypage/MyPage"; //마이페이지
 import OrderHistoryPage from "./pages/mypage/OrderHistoryPage";
 
-import Onboarding from "./pages/onboarding/Onboarding";
-
 function App() {
   return (
-    <Routes>
-      <Route element={<Layout />}>
-        {/* 공통 컴포넌트 */}
-        <Route path="/components" element={<Components />} />
+    <ToastProvider>
+      <Routes>
+        <Route element={<Layout />}>
+          {/* 공통 컴포넌트 */}
+          <Route path="/components" element={<Components />} />
 
-        {/* 온보딩 */}
-        <Route path="/" element={<Onboarding />} />
+          {/* 온보딩 */}
+          <Route path="/" element={<Onboarding />} />
 
-        {/* 메인 */}
-        <Route path="/main" element={<Main />} />
+          {/* 메인 */}
+          <Route path="/main" element={<Main />} />
 
-        {/* 로그인 */}
-        <Route path="/login" element={<LoginPage />} />
+          {/* 로그인 */}
+          <Route path="/login" element={<LoginPage />} />
 
-        {/* 마이페이지 */}
-        <Route path="/mypage" element={<MyPage />} />
+          {/* 마이페이지 */}
+          <Route path="/mypage" element={<MyPage />} />
 
-        {/* 마이페이지/결제내역 */}
-        <Route path="/orders" element={<OrderHistoryPage />} />
+          {/* 마이페이지/결제내역 */}
+          <Route path="/orders" element={<OrderHistoryPage />} />
 
-        {/* 알림 */}
-        <Route path="/noti" element={<Noti />} />
+          {/* 알림 */}
+          <Route path="/noti" element={<Noti />} />
 
-        {/* 냉장고 */}
-        <Route path="/refrigerator/add" element={<IngredientAddForm />} />
-        <Route
-          path="/refrigerator/update/:id"
-          element={<IngredientEditForm />}
-        />
-        <Route path="/refrigerator/list" element={<IngredientDetailList />} />
-        <Route path="/refrigerator" element={<Refrigerator />} />
+          {/* 냉장고 */}
+          <Route path="/refrigerator/add" element={<IngredientAddForm />} />
+          <Route
+            path="/refrigerator/update/:id"
+            element={<IngredientEditForm />}
+          />
+          <Route path="/refrigerator/list" element={<IngredientDetailList />} />
+          <Route path="/refrigerator" element={<Refrigerator />} />
 
-        {/* 레시피 */}
-        <Route path="/recipe-loading" element={<RecipeLoading />} />
-        <Route
-          path="/recipe-recommendation"
-          element={<RecipeRecommendation />}
-        />
-        <Route path="/recipe-detail/:id" element={<RecipeDetail />} />
+          {/* 레시피 */}
+          <Route path="/recipe-loading" element={<RecipeLoading />} />
+          <Route
+            path="/recipe-recommendation"
+            element={<RecipeRecommendation />}
+          />
+          <Route path="/recipe-detail/:id" element={<RecipeDetail />} />
 
-        {/* 카드 신청 관련 라우트 */}
-        <Route path="/card" element={<CardIssuePage />} />
-        <Route path="/card/detail" element={<CardDetailPage />} />
-        <Route
-          path="/card/apply/design"
-          element={<CardDesignSelectionPage />}
-        />
-        <Route
-          path="/card/apply/custom/background"
-          element={<CardCustomBackgroundPage />}
-        />
-        <Route
-          path="/card/apply/custom/sticker"
-          element={<CardCustomStickerPage />}
-        />
-        <Route
-          path="/card/apply/identity-verification"
-          element={<CardIdentityVerificationPage />}
-        />
-        <Route path="/card/apply/terms" element={<CardTermsPage />} />
-        <Route
-          path="/card/apply/credit-rating"
-          element={<CardCreditRatingPage />}
-        />
-        <Route path="/card/apply/apply-info" element={<CardApplyInfoPage />} />
-        <Route path="/card/apply/completion" element={<CardCompletionPage />} />
+          {/* 카드 신청 관련 라우트 */}
+          <Route path="/card" element={<CardIssuePage />} />
+          <Route path="/card/detail" element={<CardDetailPage />} />
+          <Route
+            path="/card/apply/design"
+            element={<CardDesignSelectionPage />}
+          />
+          <Route
+            path="/card/apply/custom/background"
+            element={<CardCustomBackgroundPage />}
+          />
+          <Route
+            path="/card/apply/custom/sticker"
+            element={<CardCustomStickerPage />}
+          />
+          <Route
+            path="/card/apply/identity-verification"
+            element={<CardIdentityVerificationPage />}
+          />
+          <Route path="/card/apply/terms" element={<CardTermsPage />} />
+          <Route
+            path="/card/apply/credit-rating"
+            element={<CardCreditRatingPage />}
+          />
+          <Route
+            path="/card/apply/apply-info"
+            element={<CardApplyInfoPage />}
+          />
+          <Route
+            path="/card/apply/completion"
+            element={<CardCompletionPage />}
+          />
 
-        {/* 미니 게임 관련 라우트 */}
-        <Route path="/game" element={<GameEntryHandler />} />
-        <Route path="/game/init" element={<GameInitPage />} />
-        <Route path="/game/greeting" element={<CatGreetingPage />} />
-        <Route path="/game/intro" element={<GameIntroPage />} />
-        <Route path="/game/home" element={<GameMainPage />} />
-        <Route path="/game/instructions" element={<GameInstructionsPage />} />
-        <Route path="/game/daily-game" element={<DailyGameMainPage />} />
-      </Route>
-    </Routes>
+          {/* 미니 게임 관련 라우트 */}
+          <Route path="/game" element={<GameEntryHandler />} />
+          <Route path="/game/init" element={<GameInitPage />} />
+          <Route path="/game/greeting" element={<CatGreetingPage />} />
+          <Route path="/game/intro" element={<GameIntroPage />} />
+          <Route path="/game/home" element={<GameMainPage />} />
+          <Route path="/game/instructions" element={<GameInstructionsPage />} />
+          <Route path="/game/daily-game" element={<DailyGameMainPage />} />
+        </Route>
+      </Routes>
+      <ToastMessage />
+    </ToastProvider>
   );
 }
 
