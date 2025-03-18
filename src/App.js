@@ -37,6 +37,7 @@ import GameIntroPage from "./pages/game/GameIntroPage"; // 게임 안내 페이�
 import GameMainPage from "./pages/game/GameMainPage"; // 게임 메인 페이지
 import GameInstructionsPage from "./pages/game/GameInstructionsPage"; // 게임 안내 페이지
 import DailyGameMainPage from "./pages/game/DailyGameMainPage"; // 카드 뒤집기 게임 페이지
+import GameStoragePage from "./pages/game/GameStoragePage"; // 보관함 페이지
 
 import LoginPage from "./pages/auth/LoginPage"; //로그인페이지
 import MyPage from "./pages/mypage/MyPage"; //마이페이지
@@ -126,6 +127,7 @@ function App() {
           <Route path="/game/home" element={<GameMainPage />} />
           <Route path="/game/instructions" element={<GameInstructionsPage />} />
           <Route path="/game/daily-game" element={<DailyGameMainPage />} />
+          <Route path="/game/storage" element={<GameStoragePage />} />
         </Route>
       </Routes>
       <ToastMessage />
