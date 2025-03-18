@@ -36,7 +36,7 @@ const GameEntryHandler = () => {
         const response = await getSelectedRecipe();
 
         // 로컬 스토리지의 게임 데이터를 초기화 (이전 사용자 데이터 제거)
-        resetGameData();
+        // resetGameData();
 
         if (response && response.recipeId) {
           // 서버에 저장된 레시피가 있는 경우, 이를 사용
