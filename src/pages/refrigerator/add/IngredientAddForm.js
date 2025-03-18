@@ -557,10 +557,10 @@ const IngredientAddForm = () => {
   return (
     <>
       <Header
-        leftIcon={backArrow}
+        // leftIcon={backArrow}
         title={getHeaderTitle()}
         rightIcon={close}
-        onLeftClick={() => window.history.back()}
+        // onLeftClick={() => window.history.back()}
         onRightClick={() => navigate("/refrigerator")}
       />
 

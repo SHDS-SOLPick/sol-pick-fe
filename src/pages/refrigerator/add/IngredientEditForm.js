@@ -464,10 +464,10 @@ const IngredientEditForm = () => {
   return (
     <>
       <Header
-        leftIcon={backArrow}
+        // leftIcon={backArrow}
         title="식재료 수정"
         rightIcon={close}
-        onLeftClick={() => window.history.back()}
+        // onLeftClick={() => window.history.back()}
         onRightClick={() => navigate("/refrigerator")}
       />
 
