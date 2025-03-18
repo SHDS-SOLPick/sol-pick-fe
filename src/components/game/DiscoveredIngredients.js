@@ -23,7 +23,15 @@ const DiscoveredIngredients = ({ ingredients = [] }) => {
       >
         <div className="ingredient-image">
           {ingredient.discovered ? (
-            <img src={ingredient.icon} alt={ingredient.name} />
+            <>
+              <img src={ingredient.icon} alt={ingredient.name} />
+              {/* 수량이 1보다 크면 수량 표시 배지 추가 */}
+              {ingredient.count > 1 && (
+                <span className="ingredient-count-badge">
+                  {ingredient.count}
+                </span>
+              )}
+            </>
           ) : (
             <div className="locked-icon">?</div>
           )}

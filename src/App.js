@@ -26,6 +26,7 @@ import CardCreditRatingPage from "./pages/card/CardCreditRatingPage"; // 신용 
 import CardApplyInfoPage from "./pages/card/CardApplyInfoPage"; // 카드 신청 정보 입력 페이지
 import CardCompletionPage from "./pages/card/CardCompletionPage"; // 카드 발급 완료 페이지 추가
 
+import GameEntryHandler from "./pages/game/GameEntryHandler"; // 게임 진입 처리 컴포넌트
 import GameInitPage from "./pages/game/RecipeSelectionPage"; // 레시피 선택 페이지
 import CatGreetingPage from "./pages/game/CatGreetingPage"; // 고양이 인사 페이지
 import GameIntroPage from "./pages/game/GameIntroPage"; // 게임 안내 페이지
@@ -109,6 +110,7 @@ function App() {
         <Route path="/card/apply/completion" element={<CardCompletionPage />} />
 
         {/* 미니 게임 관련 라우트 */}
+        <Route path="/game" element={<GameEntryHandler />} />
         <Route path="/game/init" element={<GameInitPage />} />
         <Route path="/game/greeting" element={<CatGreetingPage />} />
         <Route path="/game/intro" element={<GameIntroPage />} />
