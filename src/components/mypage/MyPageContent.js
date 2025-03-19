@@ -63,7 +63,7 @@ const MyPageContent = () => {
       id: "account",
       title: "알러지 정보",
       icon: "user",
-      path: "/account/settings",
+      path: "/mypage/allergy-management",
     },
   ];
 

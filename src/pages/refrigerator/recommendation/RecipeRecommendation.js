@@ -148,9 +148,9 @@ const RecipeRecommendation = () => {
                   <img
                     src={recipe.image}
                     alt={recipe.name}
-                    className="recipe-image"
+                    className="recommend-recipe-image"
                   />
-                  <p className="recipe-name">{recipe.name}</p>
+                  <p className="recommend-recipe-name">{recipe.name}</p>
                 </div>
               ))}
             </div>

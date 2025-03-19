@@ -80,7 +80,10 @@ function App() {
           {/* 마이페이지/결제내역 */}
           <Route path="/mypage/orders" element={<OrderHistoryPage />} />
 
-          <Route path="/allergy-management" element={<AllergyManagement />} />
+          <Route
+            path="/mypage/allergy-management"
+            element={<AllergyManagement />}
+          />
           <Route path="/survey-page" element={<SurveyPage />} />
           <Route path="/survey-result" element={<SurveyResult />} />
           <Route path="/meal-detail" element={<MealDetail />} />

@@ -2,6 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./SurveyResult.css"; // ✅ 스타일 파일 추가
+// 필요한 아이콘 import
+import backArrow from "../../assets/backArrow.svg";
+
+// 헤더 및 푸터 관련 컴포넌트
+import Header from "../../components/common/header/Header";
 
 const SurveyResult = () => {
   const location = useLocation();
@@ -65,7 +70,11 @@ const SurveyResult = () => {
 
   return (
     <div className="survey-result-container">
-      <h2>맞춤 식단 추천</h2>
+      <Header
+        leftIcon={backArrow}
+        title="맞춤 식단 추천" // ✅ 레시피 제목
+        onLeftClick={() => navigate(-1)}
+      />
 
       {loading ? (
         <p className="loading">
