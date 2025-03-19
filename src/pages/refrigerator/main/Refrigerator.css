@@ -100,7 +100,7 @@
   left: 0;
 }
 
-.recipe-button {
+.recipe-recommend-button {
   position: fixed;
   right: calc(50% - (375px / 2) + 20px); /* 뷰포트 중앙에서 오른쪽으로 20px */
   bottom: calc((100vh - 812px) / 2 + 100px); /* 뷰포트 중앙에서 아래로 100px */
@@ -129,11 +129,11 @@
   }
 }
 
-.recipe-button-pulse {
+.recipe-recommend-button-pulse {
   animation: pulse 2s infinite ease-in-out;
 }
 
-.recipe-icon {
+.recipe-recommend-icon {
   width: 30px;
   height: 30px;
 }

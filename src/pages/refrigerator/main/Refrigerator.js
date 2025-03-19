@@ -389,10 +389,10 @@ const Refrigerator = () => {
 
       {/* 레시피 추천 페이지 이동 버튼 */}
       <div
-        className="recipe-button recipe-button-pulse"
+        className="recipe-recommend-button recipe-recommend-button-pulse"
         onClick={() => navigate("/recipe-loading")}
       >
-        <img src={recipe} alt="recipe" className="recipe-icon" />
+        <img src={recipe} alt="recipe" className="recipe-recommend-icon" />
       </div>
 
       {/* 식재료 추가 팝업 */}
