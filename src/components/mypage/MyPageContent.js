@@ -93,12 +93,12 @@ const MyPageContent = () => {
             <ButtonS
               text="회원가입"
               variant="outlined"
-              width="80px"
+              width="88px"
               height="24px"
             />
             <ButtonS
               text="로그인"
-              width="80px"
+              width="88px"
               height="24px"
               onClick={handleLoginClick}
             />
