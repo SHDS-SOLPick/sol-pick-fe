@@ -34,7 +34,7 @@ const PointPage = () => {
   }, [navigate]);
 
   const loadPointData = async () => {
-    setLoading(true);
+    // setLoading(true);
     try {
       // 병렬로 데이터 가져오기
       const [cardInfoData, pointSummaryData, pointHistoryData] = await Promise.all([
@@ -60,7 +60,7 @@ const PointPage = () => {
 
       <div className="point-page-container">
         {loading ? (
-          <div className="loading-text">로딩 중...</div>
+          <div className="loading-text"></div>
         ) : error ? (
           <div className="error-message">
             <p>{error}</p>

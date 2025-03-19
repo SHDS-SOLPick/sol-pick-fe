@@ -31,7 +31,7 @@ const PointSummary = ({ pointSummary }) => {
                     </svg>
                 </div> */}
                 <div className="points-message">
-                    저번주보다 3,700원 더 모았어요!
+                    포인트로 다양한 혜택을 누려보세요!
                 </div>
                 <div className="points-amount">
                     총 <span className="highlight">{formatPoints(pointSummary.currentPoints)}</span>포인트 있어요!
