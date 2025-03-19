@@ -7,6 +7,24 @@ import RecipeNotebook from '../../components/recipe/RecipeNotebook';
 import backArrow from '../../assets/backArrow.svg';
 import { recipeApi } from '../../api/RecipeApi';
 
+import plateLoadingGif from '../../assets/recipe/plate-loading.gif';
+
+const LoadingGif = () => {
+    return (
+        <div className="recipe-page-loading-container">
+            <div className="loading-content">
+                <img
+                    src={plateLoadingGif}
+                    alt="Loading"
+                    className="loading-gif"
+                />
+                {/* <h3 className="loading-text">레시피를 준비하고 있어요...</h3>
+                <p className="loading-subtext">맛있는 요리가 곧 시작됩니다!</p> */}
+                {/* <p>맛있는 요리가 곧 시작됩니다!</p> */}
+            </div>
+        </div>
+    );
+};
 const RecipePage = () => {
     const { id } = useParams();
     const navigate = useNavigate();
@@ -28,10 +46,19 @@ const RecipePage = () => {
         const fetchRecipeSteps = async () => {
             if (!id) return;
 
-            setLoading(true);
+            const startTime = Date.now();
+
             try {
                 // 레시피 스텝 정보 가져오기
                 const steps = await recipeApi.getRecipeSteps(id);
+
+                // 최소 로딩 시간 보장 (최소 1.5초)
+                const elapsedTime = Date.now() - startTime;
+                const minimumLoadingTime = 1500;
+
+                if (elapsedTime < minimumLoadingTime) {
+                    await new Promise(resolve => setTimeout(resolve, minimumLoadingTime - elapsedTime));
+                }
 
                 // 레시피 객체 업데이트
                 setRecipe(prevRecipe => {
@@ -75,9 +102,7 @@ const RecipePage = () => {
                     title="레시피"
                     onLeftClick={handleGoBack}
                 />
-                <div className="recipe-page-loading">
-                    <p>레시피를 불러오는 중...</p>
-                </div>
+                <LoadingGif />
                 <Menu />
             </div>
         );
