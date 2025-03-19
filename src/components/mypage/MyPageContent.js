@@ -45,13 +45,13 @@ const MyPageContent = () => {
       id: "favorites",
       title: "찜한 레시피",
       icon: "star",
-      path: "/favorites",
+      path: "/mypage/favorites",
     },
     {
       id: "order",
       title: "결제 내역",
       icon: "order",
-      path: "/orders",
+      path: "/mypage/orders",
     },
     {
       id: "user-info",
