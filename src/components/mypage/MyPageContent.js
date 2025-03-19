@@ -30,16 +30,13 @@ const MyPageContent = () => {
 
   // 로그아웃 핸들러
   const handleLogout = () => {
-    // 토스트 메시지 표시
+    // 먼저 로그아웃 처리
+    authApi.logout();
+
     showToast("로그아웃 되었습니다.");
 
-    // 메인 페이지로 이동
+    // 로그아웃 처리 후 메인 페이지로 이동
     navigate("/main");
-
-    // 페이지 이동이 시작된 후에 실제 로그아웃 처리
-    setTimeout(() => {
-      authApi.logout();
-    }, 100); // 짧은 지연으로 내비게이션이 먼저 처리되도록
   };
 
   // 각 메뉴 항목
