@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./SurveyResult.css"; // ✅ 스타일 파일 추가
-import Menu from "../../components/common/menu/Menu";
-import MainHeader from "../../components/common/header/MainHeader";
+
 const SurveyResult = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -59,7 +58,6 @@ const SurveyResult = () => {
 
   return (
     <div className="survey-result-container">
-      <MainHeader/>
       <h2>맞춤 식단 추천</h2>
 
       {loading ? (
@@ -109,7 +107,7 @@ const SurveyResult = () => {
         <p className="error">❌ 식단 데이터를 불러오는 데 실패했습니다.</p>
       )}
 
-<Menu />
+      
     </div>
   );
 };
