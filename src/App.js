@@ -46,6 +46,11 @@ import PointPage from "./pages/point/PointPage";
 import RecipePage from "./pages/recipe/RecipePage"; //레시피북
 import FavoritesPage from "./pages/mypage/FavoritesPage"; //레시피
 
+import AllergyManagement from "./pages/mypage/AllergyManagement";
+import SurveyPage from "./pages/main/SurveyPage";
+import SurveyResult from "./pages/main/SurveyResult";
+import MealDetail from "./pages/main/MealDetail";
+
 function App() {
   return (
     <ToastProvider>
@@ -67,13 +72,18 @@ function App() {
           <Route path="/mypage" element={<MyPage />} />
 
           {/* 마이페이지 / 찜한 레시피 / 레시피북 */}
-          <Route path="/recipe/:id" element={<RecipePage />} />
+          <Route path="/mypage/recipe/:id" element={<RecipePage />} />
 
           {/* 마이페이지/ 찜한 레시피 */}
-          <Route path="/favorites" element={<FavoritesPage />} />
+          <Route path="/mypage/favorites" element={<FavoritesPage />} />
 
           {/* 마이페이지/결제내역 */}
-          <Route path="/orders" element={<OrderHistoryPage />} />
+          <Route path="/mypage/orders" element={<OrderHistoryPage />} />
+
+          <Route path="/allergy-management" element={<AllergyManagement />} />
+          <Route path="/survey-page" element={<SurveyPage />} />
+          <Route path="/survey-result" element={<SurveyResult />} />
+          <Route path="/meal-detail" element={<MealDetail />} />
 
           {/* 카드/포인트 */}
           <Route path="/card/points" element={<PointPage />} />
