@@ -71,7 +71,7 @@ const Onboarding = () => {
         >
           <button
             onClick={() => navigate("/login")}
-            className="get-started-button bold"
+            className="get-started-button"
           >
             시작하기
           </button>
