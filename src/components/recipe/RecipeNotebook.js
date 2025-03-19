@@ -9,7 +9,7 @@ import plateImage from '../../assets/recipe/plate.png';
 import eyesImage from '../../assets/recipe/eyes.png';
 import TalkingMouth from '../../assets/recipe/talking-mouth.tsx';
 
-// 레시피 노트북 컴포넌트
+// 레시피.노트북 컴포넌트
 const RecipeNotebook = ({ recipe }) => {
     const [completedSteps, setCompletedSteps] = useState({});
     const [currentStep, setCurrentStep] = useState(0);
@@ -38,17 +38,6 @@ const RecipeNotebook = ({ recipe }) => {
         }));
     };
 
-    // TTS 시작 핸들러
-    const startTTS = () => {
-        if (!recipe || recipe.steps.length === 0) return;
-
-        // 모든 체크박스 초기화
-        setCompletedSteps({});
-        setIsPlaying(true);
-        setCurrentStep(0);
-        playStep(0);
-    };
-
     // TTS 일시 정지 핸들러
     const pauseTTS = () => {
         if (window.speechSynthesis && window.speechSynthesis.speaking) {
@@ -73,8 +62,8 @@ const RecipeNotebook = ({ recipe }) => {
         setTimeLeft(0);
     };
 
-    // 스텝을 TTS로 읽기
-    const playStep = (index) => {
+    // 스텝을 TTS로 읽기 함수 수정
+    const playStepVoice = (index) => {
         if (!recipe || index >= recipe.steps.length) {
             setIsPlaying(false);
             return;
@@ -83,27 +72,25 @@ const RecipeNotebook = ({ recipe }) => {
         const step = recipe.steps[index];
         setCurrentStep(index);
 
-        // 현재 단계만 체크하기
-        setCompletedSteps(prev => {
-            // 이전 단계들은 모두 체크 상태 유지, 현재 단계만 체크 추가
-            const newCompletedSteps = { ...prev };
-            newCompletedSteps[step.id] = true;
-            return newCompletedSteps;
-        });
-
         // 스텝 텍스트를 TTS로 읽기
         const utterance = new SpeechSynthesisUtterance(step.description);
         utterance.lang = 'ko-KR'; // 한국어 설정
 
-        // 읽기가 끝난 후 처리
+        // 읽기가 끝난 후에만 현재 스텝을 체크
         utterance.onend = () => {
+            // 현재 스텝만 체크 표시 추가 - 인덱스 기반 고유 키 사용
+            setCompletedSteps(prev => ({
+                ...prev,  // 이전 상태 유지
+                [`step-${index}`]: true  // 현재 스텝만 체크 (인덱스 기반 고유 키)
+            }));
+
             // 스텝에 지정된 시간이 있으면 타이머 시작
             if (step.time && step.time > 0) {
                 setTimeLeft(step.time);
-                startTimer(step.time);
+                startTimer(step.time, index);
             } else {
-                // 지정된 시간이 없으면 바로 다음 스텝으로
-                setTimeout(() => playStep(index + 1), 1000);
+                // 지정된 시간이 없으면 약간의 지연 후 다음 스텝으로
+                setTimeout(() => playStepVoice(index + 1), 1500);
             }
         };
 
@@ -111,22 +98,35 @@ const RecipeNotebook = ({ recipe }) => {
         window.speechSynthesis.speak(utterance);
     };
 
+    // 수정된 startTTS 함수
+    const startTTS = () => {
+        if (!recipe || recipe.steps.length === 0) return;
+
+        // 모든 체크박스 초기화
+        setCompletedSteps({});
+        setIsPlaying(true);
+        setCurrentStep(0);
+
+        // 첫 번째 스텝 실행
+        playStepVoice(0);
+    };
+
     // 타이머 시작 함수
-    const startTimer = (seconds) => {
+    const startTimer = (seconds, index) => {
         if (timerRef.current) {
             clearTimeout(timerRef.current);
         }
 
         if (seconds <= 0) {
             // 타이머 종료 시 다음 스텝으로
-            playStep(currentStep + 1);
+            playStepVoice(index + 1);
             return;
         }
 
         setTimeLeft(seconds);
 
         timerRef.current = setTimeout(() => {
-            startTimer(seconds - 1);
+            startTimer(seconds - 1, index);
         }, 1000);
     };
 
@@ -170,20 +170,6 @@ const RecipeNotebook = ({ recipe }) => {
                             <img src={forkImage} alt="Left Fork" className="fork-left" />
                             <div className="plate-wrapper">
                                 <img src={plateImage} alt="Plate" className="plate-image" />
-                                <img
-                                    src={plateImage}
-                                    alt="Plate"
-                                    className="plate-image"
-                                    onLoad={(e) => {
-                                        console.log('Image details:', {
-                                            naturalWidth: e.target.naturalWidth,
-                                            naturalHeight: e.target.naturalHeight,
-                                            clientWidth: e.target.clientWidth,
-                                            clientHeight: e.target.clientHeight,
-                                            computedStyle: window.getComputedStyle(e.target)
-                                        });
-                                    }}
-                                />
                                 <div className="plate-face">
                                     <img src={eyesImage} alt="Eyes" className="eyes-image" />
                                     <div className="mouth-container">
@@ -207,11 +193,6 @@ const RecipeNotebook = ({ recipe }) => {
 
                 {/* 노트북 콘텐츠 영역 */}
                 <div className="notebook-content">
-                    {/* TTS 컨트롤 */}
-
-
-
-
                     {/* 조리 단계 */}
                     <div className="recipe-section">
                         <h3 className="recipe-method-title">💡 요리 방법</h3>
@@ -219,35 +200,32 @@ const RecipeNotebook = ({ recipe }) => {
                         <div className="steps-list">
                             {recipe.steps.map((step, index) => (
                                 <div
-                                    key={step.id}
+                                    key={`step-${index}`}
                                     className={`step-item ${index === currentStep && isPlaying ? 'current-step' : ''}`}
                                 >
                                     <div
-                                        className={`step-checkbox ${completedSteps[step.id] ? 'checked' : ''}`}
-                                        onClick={() => toggleStep(step.id)}
+                                        className={`step-checkbox ${completedSteps[`step-${index}`] ? 'checked' : ''}`}
+                                        onClick={() => toggleStep(`step-${index}`)}
                                     >
-                                        {completedSteps[step.id] && <span className="checkmark">✓</span>}
+                                        {completedSteps[`step-${index}`] && <span className="checkmark">✓</span>}
                                     </div>
                                     <div className="step-content">
-                                        <p className={`step-description ${completedSteps[step.id] ? 'completed' : ''}`}>
+                                        <p className={`step-description ${completedSteps[`step-${index}`] ? 'completed' : ''}`}>
                                             {step.description}
                                         </p>
                                         {step.time > 0 && (
                                             <span className="step-time">{step.time}초</span>
                                         )}
                                         {step.image && (
-                                            <img src={step.image} alt={`Step ${step.id}`} className="step-image" />
+                                            <img src={step.image} alt={`Step ${index + 1}`} className="step-image" />
                                         )}
                                     </div>
                                 </div>
                             ))}
                         </div>
                     </div>
-
                 </div>
-
             </div>
-            <br></br>
             <div className="tts-controls">
                 {!isPlaying ? (
                     <button onClick={startTTS} className="tts-button play-button">
@@ -275,7 +253,7 @@ const RecipeNotebook = ({ recipe }) => {
                         </button>
                     </>
                 )}
-                {timeLeft > 0 && (
+                {timeLeft > 0 && recipe.steps[currentStep].time > 0 && (
                     <div className="tts-timer">
                         <span className="timer-label">남은 시간: </span>
                         <span className="timer-value">{formatTime(timeLeft)}</span>

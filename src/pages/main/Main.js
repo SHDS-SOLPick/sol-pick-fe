@@ -50,9 +50,9 @@ const Main = () => {
     ];
 
     const eveningGreetings = [
-      "노을지는 저녁이에요! 하루의 마무리를",
+      "노을지는 저녁이에요!",
       "포근한 저녁이에요! 남은 하루도",
-      "조용한 저녁이에요! 하루의 마무리를",
+      "조용한 저녁이에요!",
     ];
 
     const nightGreetings = [
