@@ -3,6 +3,11 @@ import { useNavigate } from "react-router-dom";
 import "./SurveyPage.css";
 import Menu from "../../components/common/menu/Menu";
 import MainHeader from "../../components/common/header/MainHeader";
+// 필요한 아이콘 import
+import backArrow from "../../assets/backArrow.svg";
+// 헤더 및 푸터 관련 컴포넌트
+import Header from "../../components/common/header/Header";
+
 const SurveyPage = () => {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
@@ -48,7 +53,7 @@ const SurveyPage = () => {
   };
   return (
     <div className="survey-container">
-      <MainHeader />
+      <Header leftIcon={backArrow} onLeftClick={() => navigate(-1)} />
       {/* ✅ (1) 사용자 정보 입력 */}
       {step === 1 && (
         <div className="survey-step">
