@@ -42,6 +42,10 @@ import GameStoragePage from "./pages/game/GameStoragePage"; // 보관함 페이�
 import LoginPage from "./pages/auth/LoginPage"; //로그인페이지
 import MyPage from "./pages/mypage/MyPage"; //마이페이지
 import OrderHistoryPage from "./pages/mypage/OrderHistoryPage";
+import AllergyManagement from "./pages/mypage/AllergyManagement";
+import SurveyPage from "./pages/main/SurveyPage";
+import SurveyResult from "./pages/main/SurveyResult";
+import MealDetail from "./pages/main/MealDetail";
 
 function App() {
   return (
@@ -56,13 +60,16 @@ function App() {
 
           {/* 메인 */}
           <Route path="/main" element={<Main />} />
-
+          <Route path="/survey-page" element={<SurveyPage/>}/>
+          <Route path="/survey-result" element={<SurveyResult/>}/>
+          <Route path="/meal-detail" element={<MealDetail/>}/>
+          
           {/* 로그인 */}
           <Route path="/login" element={<LoginPage />} />
 
           {/* 마이페이지 */}
           <Route path="/mypage" element={<MyPage />} />
-
+          <Route path="/allergy-management" element={<AllergyManagement/>}/>
           {/* 마이페이지/결제내역 */}
           <Route path="/orders" element={<OrderHistoryPage />} />
 

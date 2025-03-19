@@ -2,16 +2,15 @@ import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { gsap } from "gsap";
 import "./RecipeLoading.css";
-
+import Menu from "../../../components/common/menu/Menu";
+import MainHeader from "../../../components/common/header/MainHeader";
 const RecipeLoading = () => {
   const navigate = useNavigate();
   const pizzaRef = useRef(null);
 
   useEffect(() => {
     // 3~5초 후 자동으로 레시피 추천 페이지로 이동
-    const timer = setTimeout(() => {
-      navigate("/recipe-recommendation");
-    }, 4000);
+   
 
     // ✅ GSAP 애니메이션 적용
     gsap.set(pizzaRef.current, { visibility: "visible" });
@@ -37,12 +36,12 @@ const RecipeLoading = () => {
     gsap.globalTimeline.timeScale(4); // ✅ 전체 애니메이션 속도 4배로 조정
 
     return () => {
-      clearTimeout(timer);
       tl.kill(); // 애니메이션 정리
     };
-  }, [navigate]);
+  }, []);
 
   return (
+    <>
     <div className="recipe-loading-container">
       <h2>🍕 레시피를 추천 중입니다...</h2>
       <p>잠시만 기다려 주세요!</p>
@@ -75,7 +74,8 @@ const RecipeLoading = () => {
         </g>
         <use className="pizzaOutline" xlinkHref="#sliceOutline" x="0%" y="0%" fill="none" stroke="#FEA202" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"/> 
       </svg>
-    </div>
+      <Menu />
+    </div></>
   );
 };
 

@@ -257,7 +257,7 @@ const Main = () => {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.3 }}
-        onClick={() => navigate("/")} // 식단 추천 페이지로 이동
+        onClick={() => navigate("/survey-page")} // 식단 추천 페이지로 이동
       >
         <img src={mealplanner} alt="mealplanner" className="meal-planner" />
       </motion.div>
