@@ -42,6 +42,9 @@ import GameStoragePage from "./pages/game/GameStoragePage"; // 보관함 페이�
 import LoginPage from "./pages/auth/LoginPage"; //로그인페이지
 import MyPage from "./pages/mypage/MyPage"; //마이페이지
 import OrderHistoryPage from "./pages/mypage/OrderHistoryPage";
+import PointPage from "./pages/point/PointPage";
+import RecipePage from "./pages/recipe/RecipePage"; //레시피북
+import FavoritesPage from "./pages/mypage/FavoritesPage"; //레시피
 
 function App() {
   return (
@@ -63,8 +66,17 @@ function App() {
           {/* 마이페이지 */}
           <Route path="/mypage" element={<MyPage />} />
 
+          {/* 마이페이지 / 찜한 레시피 / 레시피북 */}
+          <Route path="/recipe/:id" element={<RecipePage />} />
+
+          {/* 마이페이지/ 찜한 레시피 */}
+          <Route path="/favorites" element={<FavoritesPage />} />
+
           {/* 마이페이지/결제내역 */}
           <Route path="/orders" element={<OrderHistoryPage />} />
+
+          {/* 카드/포인트 */}
+          <Route path="/card/points" element={<PointPage />} />
 
           {/* 알림 */}
           <Route path="/noti" element={<Noti />} />
