@@ -92,7 +92,7 @@ const CardIdentityVerificationPage = () => {
               placeholder="이름 입력"
               value={formData.name}
               onChange={handleInputChange}
-              className="input-field"
+              className="card-input-field"
             />
           </div>
 
@@ -105,7 +105,7 @@ const CardIdentityVerificationPage = () => {
               placeholder="EX) HONG"
               value={formData.lastName}
               onChange={handleInputChange}
-              className="input-field"
+              className="card-input-field"
             />
           </div>
 
@@ -118,7 +118,7 @@ const CardIdentityVerificationPage = () => {
               placeholder="EX) GILDONG"
               value={formData.firstName}
               onChange={handleInputChange}
-              className="input-field"
+              className="card-input-field"
             />
           </div>
 
@@ -133,7 +133,7 @@ const CardIdentityVerificationPage = () => {
                 maxLength="6"
                 value={formData.residentId}
                 onChange={handleInputChange}
-                className="input-field birth-date"
+                className="card-input-field birth-date"
               />
               <span className="separator">-</span>
               <div className="masked-input">
@@ -141,7 +141,7 @@ const CardIdentityVerificationPage = () => {
                   type="password"
                   name="redidentIdBack"
                   maxLength="7"
-                  className="input-field masked"
+                  className="card-input-field masked"
                   onChange={(e) => {
                     const value = e.target.value;
                     setFormData({
@@ -193,7 +193,7 @@ const CardIdentityVerificationPage = () => {
                 placeholder="휴대폰 11자리"
                 value={formData.phoneNumber}
                 onChange={handleInputChange}
-                className="input-field phone-number"
+                className="card-input-field phone-number"
               />
               <button
                 className="verification-request-button"
@@ -213,7 +213,7 @@ const CardIdentityVerificationPage = () => {
                 placeholder="인증 번호 입력"
                 value={formData.verificationCode}
                 onChange={handleInputChange}
-                className="input-field verification-code"
+                className="card-input-field verification-code"
               />
             </div>
           )}
