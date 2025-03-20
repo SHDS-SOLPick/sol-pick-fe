@@ -24,7 +24,7 @@
   text-align: center;
   margin-bottom: 60px; /* ✅ 질문 아래 여백 추가 */
 }
-button {
+.survey-button {
   width: 90%;
   padding: 15px;
   border: 2px solid #ddd;
@@ -36,13 +36,13 @@ button {
   transition: 0.3s;
 }
 
-button:hover {
+.survey-button:hover {
   background-color: #e0e0e0;
 }
 
-button.selected {
-  background-color: #a3d9a5;
-  border: 2px solid #7cbf7c;
+.survey-button.selected {
+  background-color: #0A84FF;
+  border: 2px solid #0a60ff;
 }
 
 .next-btn,
@@ -52,7 +52,7 @@ button.selected {
 }
 
 /* ✅ 입력 필드 디자인 (신장, 몸무게, 목표 체중) */
-input {
+.survey-input {
   width: 100%;
   padding: 12px;
   border: 2px solid #ddd;

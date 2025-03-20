@@ -40,13 +40,13 @@ const RecipeDetail = () => {
           </p>
         </div>
         ✅ 필요한 재료 목록
-        <h3>🥕 필요한 재료</h3>
+        <div className="recommendation-detail">🥕 필요한 재료</div>
         <ul className="ingredient-list">
           {recipe.ingredients.split(", ").map((ingredient, index) => (
             <li key={index}>{ingredient}</li>
           ))}
         </ul>
-        <h3>👨‍🍳 조리 방법</h3>
+        <div className="recommendation-detail">👨‍🍳 조리 방법</div>
         <ol className="cooking-steps">
           {Array.isArray(recipe.steps) ? (
             recipe.steps.map((step, index) => <li key={index}>{step}</li>)
