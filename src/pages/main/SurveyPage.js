@@ -59,13 +59,13 @@ const SurveyPage = () => {
         <div className="survey-step">
           <h2>사용자의 정보를 설정해주세요</h2>
           <label>신장 (cm)</label>
-          <input
+          <input className="survey-input"
             type="number"
             value={formData.height}
             onChange={(e) => handleChange("height", e.target.value)}
           />
           <label>몸무게 (kg)</label>
-          <input
+          <input className="survey-input"
             type="number"
             value={formData.weight}
             onChange={(e) => handleChange("weight", e.target.value)}

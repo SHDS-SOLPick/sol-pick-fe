@@ -52,7 +52,7 @@ button.selected {
 }
 
 /* ✅ 입력 필드 디자인 (신장, 몸무게, 목표 체중) */
-input {
+.survey-input {
   width: 100%;
   padding: 12px;
   border: 2px solid #ddd;
