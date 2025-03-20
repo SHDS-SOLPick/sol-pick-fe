@@ -16,7 +16,7 @@
   flex: 1;
   overflow-y: auto; /* 내부 콘텐츠가 넘칠 경우 스크롤 적용 */
   position: relative;
-  padding-bottom: 32px;
+  padding-bottom: 16px;
 }
 
 /* 픽셀 폰트 적용 */
