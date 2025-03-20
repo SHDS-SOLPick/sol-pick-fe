@@ -24,7 +24,7 @@
   text-align: center;
   margin-bottom: 60px; /* ✅ 질문 아래 여백 추가 */
 }
-button {
+.survey-button {
   width: 90%;
   padding: 15px;
   border: 2px solid #ddd;
@@ -41,8 +41,8 @@ button:hover {
 }
 
 button.selected {
-  background-color: #a3d9a5;
-  border: 2px solid #7cbf7c;
+  background-color: #0A84FF;
+  border: 2px solid #0a60ff;
 }
 
 .next-btn,

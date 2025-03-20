@@ -89,7 +89,7 @@ const SurveyPage = () => {
             />
             여성
           </div>
-          <button onClick={nextStep}>다음</button>
+          <button className="survey-button" onClick={nextStep}>다음</button>
         </div>
       )}
 
@@ -100,13 +100,13 @@ const SurveyPage = () => {
           <div className="button-group">
             {" "}
             {/* ✅ 버튼 그룹 추가 */}
-            <button onClick={() => selectAndNext("goal", "체중 감량")}>
+            <button className="survey-button" onClick={() => selectAndNext("goal", "체중 감량")}>
               체중 감량
             </button>
-            <button onClick={() => selectAndNext("goal", "체중 증량")}>
+            <button className="survey-button" onClick={() => selectAndNext("goal", "체중 증량")}>
               체중 증량
             </button>
-            <button onClick={() => selectAndNext("goal", "건강한 삶 유지")}>
+            <button className="survey-button" onClick={() => selectAndNext("goal", "건강한 삶 유지")}>
               건강한 삶 유지
             </button>
           </div>
@@ -122,7 +122,7 @@ const SurveyPage = () => {
             value={formData.targetWeight}
             onChange={(e) => handleChange("targetWeight", e.target.value)}
           />
-          <button onClick={nextStep}>다음</button>
+          <button className="survey-button" onClick={nextStep}>다음</button>
         </div>
       )}
 
@@ -133,14 +133,15 @@ const SurveyPage = () => {
           <div className="button-group">
             {["아침", "점심", "저녁"].map((meal) => (
               <button
-                key={meal}
-                onClick={() => handleMultiSelect(meal)}
-                className={formData.meals.includes(meal) ? "selected" : ""}
-              >
-                {meal}
-              </button>
+              className={`survey-button ${formData.meals.includes(meal) ? "selected" : ""}`}
+              key={meal}
+              onClick={() => handleMultiSelect(meal)}
+            >
+              {meal}
+            </button>
+            
             ))}
-            <button onClick={nextStep}>다음</button>
+            <button className="survey-button" onClick={nextStep}>다음</button>
           </div>
         </div>
       )}
@@ -152,7 +153,7 @@ const SurveyPage = () => {
           <div className="button-group">
             {["4시간 이하", "5~6시간", "7~8시간", "9시간 이상"].map(
               (option) => (
-                <button
+                <button className="survey-button"
                   key={option}
                   onClick={() => selectAndNext("sleepHours", option)}
                 >
@@ -174,7 +175,7 @@ const SurveyPage = () => {
               "주로 앉아서 일해요",
               "현재는 쉬고 있어요",
             ].map((option) => (
-              <button
+              <button className="survey-button"
                 key={option}
                 onClick={() => selectAndNext("activityLevel", option)}
               >
@@ -190,8 +191,8 @@ const SurveyPage = () => {
         <div className="survey-step">
           <h2>주 3회 이상 꾸준히 운동하나요?</h2>
           <div className="button-group">
-            <button onClick={() => selectAndNext("exercise", "예")}>예</button>
-            <button onClick={() => selectAndNext("exercise", "아니오")}>
+            <button className="survey-button" onClick={() => selectAndNext("exercise", "예")}>예</button>
+            <button className="survey-button" onClick={() => selectAndNext("exercise", "아니오")}>
               아니오
             </button>
           </div>
@@ -201,7 +202,7 @@ const SurveyPage = () => {
       {/* ✅ (8) 입력 정보 확인 및 식단 추천 요청 */}
       {step === 8 && (
         <div className="survey-step">
-          <button onClick={handleSubmit}>식단 추천받기</button>
+          <button className="survey-button" onClick={handleSubmit}>식단 추천받기</button>
         </div>
       )}
       <Menu />
