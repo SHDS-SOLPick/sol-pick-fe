@@ -37,13 +37,13 @@
 }
 
 .buttonL-outlined:hover {
-  background-color: rgba(10, 132, 255, 0.05);
+  /* background-color: rgba(10, 132, 255, 0.05); */
   transform: scale(1.02);
   box-shadow: 0 2px 4px rgba(10, 132, 255, 0.15);
 }
 
 .buttonL-outlined:active {
-  background-color: rgba(10, 132, 255, 0.08);
+  /* background-color: rgba(10, 132, 255, 0.08); */
   box-shadow: 0 1px 3px rgba(10, 132, 255, 0.1);
   transform: scale(1);
 }
