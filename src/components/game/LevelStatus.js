@@ -157,21 +157,21 @@ const LevelStatus = ({ gameState, onFeed, onExplore }) => {
       {/* 상태 통계 */}
       <div className="stats-container">
         <div className="stat-item">
-          <div className="stat-label pixel-font-kr">경험치🧪</div>
+          <div className="stat-label pixel-font-kr-1">경험치🧪</div>
           <div className="stat-value">
             {gameState.currentExp}/{config.totalExp}
           </div>
         </div>
         <div className="stat-item">
-          <div className="stat-label pixel-font-kr">에너지🍭</div>
+          <div className="stat-label pixel-font-kr-1">에너지🍭</div>
           <div className="stat-value">{gameState.energy}</div>
         </div>
         <div className="stat-item">
-          <div className="stat-label pixel-font-kr">사료🐟</div>
+          <div className="stat-label pixel-font-kr-1">사료🐟</div>
           <div className="stat-value">{gameState.food}</div>
         </div>
         <div className="stat-item">
-          <div className="stat-label pixel-font-kr">식재료🥕</div>
+          <div className="stat-label pixel-font-kr-1">식재료🥕</div>
           <div className="stat-value">{gameState.ingredientsCount}</div>
         </div>
       </div>
