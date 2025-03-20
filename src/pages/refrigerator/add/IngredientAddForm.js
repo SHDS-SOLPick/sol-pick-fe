@@ -719,7 +719,7 @@ const IngredientAddForm = () => {
         {/* 추가 등록 버튼 - 직접 입력 모드에서만 표시 */}
         {!isFromReceipt && (
           <ButtonL
-            text="추가하기"
+            text="추가 등록하기"
             variant="outlined"
             onClick={handleContinuousMode}
             // disabled={isLoading}
