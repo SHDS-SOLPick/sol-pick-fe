@@ -571,16 +571,17 @@ const IngredientEditForm = () => {
           text="취소"
           variant="outlined"
           onClick={() => window.history.back()}
-          disabled={isLoading}
+          // disabled={isLoading}
         />
         <ButtonL
-          text={isLoading ? "처리 중..." : "수정하기"}
+          // text={isLoading ? "처리 중..." : "수정하기"}
+          text={"수정하기"}
           onClick={() => {
             if (validateFormInline()) {
               handleSubmit();
             }
           }}
-          disabled={isLoading}
+          // disabled={isLoading}
         />
       </div>
 
