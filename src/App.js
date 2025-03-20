@@ -42,10 +42,16 @@ import GameStoragePage from "./pages/game/GameStoragePage"; // 보관함 페이�
 import LoginPage from "./pages/auth/LoginPage"; //로그인페이지
 import MyPage from "./pages/mypage/MyPage"; //마이페이지
 import OrderHistoryPage from "./pages/mypage/OrderHistoryPage";
+<<<<<<< HEAD
 import AllergyManagement from "./pages/mypage/AllergyManagement";
 import SurveyPage from "./pages/main/SurveyPage";
 import SurveyResult from "./pages/main/SurveyResult";
 import MealDetail from "./pages/main/MealDetail";
+=======
+import PointPage from "./pages/point/PointPage";
+import RecipePage from "./pages/recipe/RecipePage"; //레시피북
+import FavoritesPage from "./pages/mypage/FavoritesPage"; //레시피
+>>>>>>> 570aea1bef363b8bc39692637a63e61599986f32
 
 function App() {
   return (
@@ -69,9 +75,22 @@ function App() {
 
           {/* 마이페이지 */}
           <Route path="/mypage" element={<MyPage />} />
+<<<<<<< HEAD
           <Route path="/allergy-management" element={<AllergyManagement/>}/>
+=======
+
+          {/* 마이페이지 / 찜한 레시피 / 레시피북 */}
+          <Route path="/recipe/:id" element={<RecipePage />} />
+
+          {/* 마이페이지/ 찜한 레시피 */}
+          <Route path="/favorites" element={<FavoritesPage />} />
+
+>>>>>>> 570aea1bef363b8bc39692637a63e61599986f32
           {/* 마이페이지/결제내역 */}
           <Route path="/orders" element={<OrderHistoryPage />} />
+
+          {/* 카드/포인트 */}
+          <Route path="/card/points" element={<PointPage />} />
 
           {/* 알림 */}
           <Route path="/noti" element={<Noti />} />
