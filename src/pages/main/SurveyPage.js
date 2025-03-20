@@ -53,7 +53,7 @@ const SurveyPage = () => {
   };
   return (
     <div className="survey-container">
-      <Header leftIcon={backArrow} onLeftClick={() => navigate(-1)} />
+      <Header leftIcon={backArrow} onLeftClick={() => navigate("/main")} />
       {/* ✅ (1) 사용자 정보 입력 */}
       {step === 1 && (
         <div className="survey-step">
