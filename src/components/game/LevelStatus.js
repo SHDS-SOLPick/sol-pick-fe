@@ -138,9 +138,7 @@ const LevelStatus = ({ gameState, onFeed, onExplore }) => {
             </div>
             <div className="level-text pixel-font-kr">
               식재료 확률{" "}
-              <span className="highlight pixel-font-kr">
-                {gameState.level}배
-              </span>{" "}
+              <span className="pixel-font-kr">{gameState.level}배</span>{" "}
               <span className="emoji-up">🆙</span>
             </div>
           </div>
