@@ -76,46 +76,50 @@ const AllergyManagement = () => {
   };
 
   return (
-    <div className="allergy-container">
+    <>
       <MainHeader />
-      <h2>🥜 알러지 관리</h2>
 
-      {/* 🔹 알러지 입력 필드 */}
-      <div className="input-group">
-        <input
-          type="text"
-          value={newAllergy}
-          onChange={(e) => setNewAllergy(e.target.value)}
-          placeholder="알러지 식재료 입력"
-        />
-        <button className="add-btn" onClick={addAllergy}>
-          추가
-        </button>
+      <div className="allergy-container">
+        <h2>🥜 알러지 관리</h2>
+
+        {/* 🔹 알러지 입력 필드 */}
+        <div className="input-group">
+          <input
+            type="text"
+            value={newAllergy}
+            onChange={(e) => setNewAllergy(e.target.value)}
+            placeholder="알러지 식재료 입력"
+          />
+          <button className="add-btn" onClick={addAllergy}>
+            추가
+          </button>
+        </div>
+
+        {/* 🔹 오류 메시지 표시 */}
+        {error && <p className="error-message">{error}</p>}
+
+        {/* 🔹 등록된 알러지 목록 */}
+        <ul className="allergy-list">
+          {allergies.length === 0 ? (
+            <p className="no-allergy">등록된 알러지 정보가 없습니다.</p>
+          ) : (
+            allergies.map((allergy, index) => (
+              <li key={index} className="allergy-item">
+                {allergy}
+                <button
+                  className="delete-btn"
+                  onClick={() => removeAllergy(allergy)}
+                >
+                  ❌
+                </button>
+              </li>
+            ))
+          )}
+        </ul>
       </div>
 
-      {/* 🔹 오류 메시지 표시 */}
-      {error && <p className="error-message">{error}</p>}
-
-      {/* 🔹 등록된 알러지 목록 */}
-      <ul className="allergy-list">
-        {allergies.length === 0 ? (
-          <p className="no-allergy">등록된 알러지 정보가 없습니다.</p>
-        ) : (
-          allergies.map((allergy, index) => (
-            <li key={index} className="allergy-item">
-              {allergy}
-              <button
-                className="delete-btn"
-                onClick={() => removeAllergy(allergy)}
-              >
-                ❌
-              </button>
-            </li>
-          ))
-        )}
-      </ul>
       <Menu />
-    </div>
+    </>
   );
 };
 
