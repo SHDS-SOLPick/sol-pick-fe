@@ -215,7 +215,7 @@
   margin-bottom: 20px;
 }
 
-.notebook-content.section-title {
+.notebook-content.recipe-method-title {
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 10px;
@@ -224,7 +224,7 @@
   padding-left: 14px;
 }
 
-.section-title::before {
+.recipe-method-title::before {
   content: "";
   position: absolute;
   left: 0;
