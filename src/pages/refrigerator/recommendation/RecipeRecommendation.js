@@ -7,7 +7,7 @@ import Menu from "../../../components/common/menu/Menu";
 import backArrow from "../../../assets/backArrow.svg";
 import "../list/IngredientDetailList.css";
 import Header from "../../../components/common/header/Header";
-import { authApi } from "../../api/AuthApi";
+import { authApi } from "../../../api/AuthApi";
 import MainHeader from "../../../components/common/header/MainHeader";
 const RecipeRecommendation = () => {
   const [recipes, setRecipes] = useState([]);

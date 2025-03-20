@@ -36,11 +36,11 @@
   transition: 0.3s;
 }
 
-button:hover {
+.survey-button:hover {
   background-color: #e0e0e0;
 }
 
-button.selected {
+.survey-button.selected {
   background-color: #0A84FF;
   border: 2px solid #0a60ff;
 }
