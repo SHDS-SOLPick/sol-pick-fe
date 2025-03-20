@@ -3,12 +3,13 @@ import axios from "axios";
 import "./AllergyManagement.css";
 import Menu from "../../components/common/menu/Menu";
 import MainHeader from "../../components/common/header/MainHeader";
+import { authApi } from "../../api/AuthApi";
 const AllergyManagement = () => {
   const [allergies, setAllergies] = useState([]); // 🔹 저장된 알러지 식재료 목록
   const [newAllergy, setNewAllergy] = useState(""); // 🔹 새로 입력할 식재료
   const [error, setError] = useState(null); // 🔹 오류 메시지 상태
-  const userId = 1; // 🔹 실제 로그인된 사용자 ID로 대체 필요
-
+  const currentUser = authApi.getCurrentUser();
+  const userId = currentUser.memberId; // 🔹 실제 로그인된 사용자 ID로 대체 필요
   // ✅ 알러지 데이터 불러오기 (DB에서 조회)
   useEffect(() => {
     fetchAllergies();

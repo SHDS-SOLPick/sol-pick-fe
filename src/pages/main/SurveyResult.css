@@ -100,9 +100,7 @@
   color: #666; /* 살짝 연한 회색 */
   margin-left: 5px; /* 좌우 간격 조정 */
 }
-h2 {
-  color: black; /* 검정색으로 변경 */
-}
+
 
 @keyframes loadingAnimation {
   from {

@@ -7,14 +7,15 @@ import Menu from "../../../components/common/menu/Menu";
 import backArrow from "../../../assets/backArrow.svg";
 import "../list/IngredientDetailList.css";
 import Header from "../../../components/common/header/Header";
-
+import { authApi } from "../../api/AuthApi";
 import MainHeader from "../../../components/common/header/MainHeader";
 const RecipeRecommendation = () => {
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const userId = 1;
+    const currentUser = authApi.getCurrentUser();
+    const userId = currentUser.memberId; // 🔹 실제 로그인된 사용자 ID로 대체 필요
 
   useEffect(() => {
     // ✅ sessionStorage에서 기존 레시피 가져오기
