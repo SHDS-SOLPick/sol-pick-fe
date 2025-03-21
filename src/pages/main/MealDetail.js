@@ -13,20 +13,18 @@ const MealDetail = () => {
 
   return (
     <>
-      <MainHeader />
       <Header
         leftIcon={backArrow}
         title="식단 정보" // ✅ 레시피 제목
         onLeftClick={() => navigate(-1)}
       />
       <div className="meal-detail-container">
-        <h2 className="meal-title">{meal.menu}</h2>
+        <h2 className="meal-title">{meal.menu} </h2>
 
         {/* ✅ 칼로리 정보 */}
         <p className="meal-calories">칼로리: {meal.calories} kcal</p>
 
-        {/* ✅ 재료 목록 */}
-        <h3>📌 필요한 재료</h3>
+        <h2 className="section-title">🥕 필요한 재료</h2>
         <ul className="ingredient-list">
           {meal.ingredients && meal.ingredients.length > 0 ? (
             meal.ingredients.map((ingredient, index) => (
@@ -37,8 +35,7 @@ const MealDetail = () => {
           )}
         </ul>
 
-        {/* ✅ 조리 과정 */}
-        <h3>👨‍🍳 조리 방법</h3>
+        <h2 className="section-title">👨‍🍳 조리 방법</h2>
         <ol className="cooking-steps">
           {meal.steps && meal.steps.length > 0 ? (
             meal.steps.map((step, index) => <li key={index}>{step}</li>)
