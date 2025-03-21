@@ -53,7 +53,18 @@ const SurveyPage = () => {
   };
   return (
     <>
-    <Header leftIcon={backArrow} title="AI 기반 식단 추천" onLeftClick={() => navigate("/main")} />
+        <Header
+      leftIcon={backArrow}
+      title="AI 기반 식단 추천"
+      onLeftClick={() => {
+        if (step > 1) {
+          setStep(step - 1);
+        } else {
+          navigate("/main");
+        }
+      }}
+    />
+
     <div className="survey-container">
       
       {/* ✅ (1) 사용자 정보 입력 */}
