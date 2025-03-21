@@ -18,7 +18,7 @@ const RecipeDetail = () => {
 
   return (
     <>
-      <MainHeader />
+      {/* <MainHeader /> */}
       <Header
         leftIcon={backArrow}
         title={recipe.name} // ✅ 레시피 제목
@@ -32,21 +32,22 @@ const RecipeDetail = () => {
         />
         {/* ✅ 조리 정보 */}
         <div className="recipe-info">
-          <p>
-            <strong>⏳ 조리 시간:</strong> {recipe.cooking_time || "알 수 없음"}
-          </p>
-          <p>
-            <strong>🔥 난이도:</strong> {recipe.difficulty || "알 수 없음"}
-          </p>
-        </div>
-        ✅ 필요한 재료 목록
+  <p>
+    <strong>⏳ 조리 시간:</strong> {recipe.cooking_time || "알 수 없음"}
+  </p>
+  <p className="recipe-level-info">
+    <strong>🔥 난이도:</strong> {recipe.difficulty || "알 수 없음"}
+  </p>
+</div>
+
+        
         <div className="recommendation-detail">🥕 필요한 재료</div>
         <ul className="ingredient-list">
           {recipe.ingredients.split(", ").map((ingredient, index) => (
             <li key={index}>{ingredient}</li>
           ))}
         </ul>
-        <div className="recommendation-detail">👨‍🍳 조리 방법</div>
+        <div className="recommendation-step-detail">👨‍🍳 조리 방법</div>
         <ol className="cooking-steps">
           {Array.isArray(recipe.steps) ? (
             recipe.steps.map((step, index) => <li key={index}>{step}</li>)

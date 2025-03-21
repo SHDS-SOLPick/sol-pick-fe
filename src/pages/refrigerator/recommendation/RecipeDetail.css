@@ -7,6 +7,7 @@
   width: 100%;
   max-width: 600px;
   margin: 20px auto;
+  padding-bottom: 100px;
 }
 
 .recipe-detail-image {
@@ -14,14 +15,20 @@
   max-width: 400px;
   border-radius: 12px;
   margin-bottom: 16px;
+  margin-top: -20px;
   align-self: center;
 }
 
 .recipe-info {
   font-size: 18px;
   margin-bottom: 20px;
+  
 }
-
+.recipe-level-info {
+  font-size: 18px;
+  margin-top: 10px;
+  
+}
 .ingredient-list {
   list-style: none;
   padding: 0;
@@ -53,6 +60,11 @@
 .recommendation-detail {
   text-align: left;
   width: 100%;
+  margin-top: 0px; /* ✅ 위쪽 여백 추가 */
+}
+.recommendation-step-detail {
+  text-align: left;
+  width: 100%;
   margin-top: 24px; /* ✅ 위쪽 여백 추가 */
 }
 .has-ingredient {
@@ -65,51 +77,3 @@
   background: #f0f0f0;
   color: #808080;
 }
-
-/* .recipe-detail-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 16px;
-    text-align: left;
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.recipe-detail-image {
-    width: 80%;
-    max-width: 400px;
-    border-radius: 12px;
-    margin-bottom: 16px;
-    align-self: center;
-}
-
-.recipe-info {
-    text-align: left;
-    font-size: 18px;
-    margin-bottom: 20px;
-    width: 100%;
-}
-
-.ingredient-list,
-.cooking-steps {
-    list-style: none;
-    padding: 0;
-    width: 100%;
-}
-
-.ingredient-list li,
-.cooking-steps li {
-    background: #f9f9f9;
-    margin: 5px 0;
-    padding: 8px;
-    border-radius: 8px;
-    width: 100%;
-}
-
-h3 {
-    text-align: left;
-    width: 100%;
-    margin-top: 20px;
-} */

@@ -4,12 +4,16 @@ import "./AllergyManagement.css";
 import Menu from "../../components/common/menu/Menu";
 import MainHeader from "../../components/common/header/MainHeader";
 import { authApi } from "../../api/AuthApi";
+import Header from "../../components/common/header/Header";
+import backArrow from "../../assets/backArrow.svg";
+import {  useNavigate } from "react-router-dom";
 const AllergyManagement = () => {
   const [allergies, setAllergies] = useState([]); // 🔹 저장된 알러지 식재료 목록
   const [newAllergy, setNewAllergy] = useState(""); // 🔹 새로 입력할 식재료
   const [error, setError] = useState(null); // 🔹 오류 메시지 상태
   const currentUser = authApi.getCurrentUser();
   const userId = currentUser.memberId; // 🔹 실제 로그인된 사용자 ID로 대체 필요
+  const navigate = useNavigate();
   // ✅ 알러지 데이터 불러오기 (DB에서 조회)
   useEffect(() => {
     fetchAllergies();
@@ -77,10 +81,13 @@ const AllergyManagement = () => {
 
   return (
     <>
-      <MainHeader />
-
+      {/* <MainHeader /> */}
+      <Header
+        leftIcon={backArrow}
+        title="알러지 관리" // ✅ 레시피 제목
+        onLeftClick={() => navigate(-1)}
+      />
       <div className="allergy-container">
-        <h2>🥜 알러지 관리</h2>
 
         {/* 🔹 알러지 입력 필드 */}
         <div className="input-group">

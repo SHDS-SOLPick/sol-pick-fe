@@ -232,7 +232,7 @@
   transform: translateY(-50%);
   width: 5px;
   height: 14px;
-  background-color: #ff9e7d;
+  /* background-color: #ff9e7d; */
   border-radius: 2px;
 }
 

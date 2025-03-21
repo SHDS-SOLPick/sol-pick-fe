@@ -8,15 +8,6 @@
   /* box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); */
   text-align: center;
 }
-
-/* 제목 */
-h2 {
-  color: #000;
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 15px;
-}
-
 /* 입력 필드 + 버튼 그룹 */
 .input-group {
   display: flex;
@@ -24,6 +15,7 @@ h2 {
   gap: 8px;
   justify-content: center;
   margin-bottom: 15px;
+  margin-top: -30px;
 }
 
 /* 입력 필드 */
@@ -35,7 +27,7 @@ h2 {
   border-radius: 6px;
   outline: none;
   width: 80%;
-  height: 14px;
+  height: 40px;
   transition: border 0.2s ease-in-out;
 }
 

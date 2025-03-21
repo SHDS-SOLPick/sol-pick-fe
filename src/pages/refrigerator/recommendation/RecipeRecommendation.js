@@ -154,7 +154,7 @@ const RecipeRecommendation = () => {
 
   return (
     <>
-      <MainHeader />
+      {/* <MainHeader /> */}
       <Header
         leftIcon={backArrow}
         title="🍽️ 추천 레시피"
