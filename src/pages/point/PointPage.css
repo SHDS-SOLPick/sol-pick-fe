@@ -64,9 +64,9 @@
 }
 
 .round-game-button {
-  position: absolute;
-  bottom: 100px; /* 메뉴바 위에 위치하도록 조정 */
-  right: 20px;
+  position: fixed;
+  right: calc(50% - (375px / 2) + 20px); /* 뷰포트 중앙에서 오른쪽으로 20px */
+  bottom: calc((100vh - 812px) / 2 + 100px); /* 뷰포트 중앙에서 아래로 100px */
   width: 56px;
   height: 56px;
   border-radius: 50%;
@@ -80,10 +80,31 @@
   justify-content: center;
   align-items: center;
   z-index: 100; /* 높은 z-index로 설정 */
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.3s ease;
 }
 
-.round-game-button:hover {
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.round-game-button-pulse {
+  animation: pulse 2s infinite ease-in-out;
+}
+
+.game-icon {
+  width: 32px;
+  height: 32px;
+}
+
+/* .round-game-button:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
@@ -91,4 +112,4 @@
 .round-game-button:active {
   transform: translateY(0);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
+} */
