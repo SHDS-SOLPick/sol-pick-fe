@@ -43,7 +43,7 @@
 
 .ingredient-add-row-button:hover {
   background-color: #007be5;
-  transform: scale(1.02);
+  transform: scale(1.01);
   box-shadow: 0 3px 5px rgba(10, 132, 255, 0.2);
 }
 
