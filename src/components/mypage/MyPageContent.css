@@ -2,8 +2,7 @@
   padding: 16px;
   /* display: flex; */
   flex-direction: column;
-  height: auto;
-  min-height: calc(100vh - 232px); /* 헤더 + 하단 메뉴 높이 고려 */
+  height: calc(100% - 56px);
   overflow-y: auto;
   /* margin-bottom: 88px; */
   position: relative; /* 상대적 위치 설정을 위해 필요 */
@@ -105,8 +104,7 @@
   position: relative;
   display: flex;
   justify-content: center;
-  margin-top: 159px;
-  margin-bottom: 16px;
+  margin-top: 12px;
 }
 
 /* MyPageContent.css에 추가할 스타일 */
@@ -117,7 +115,6 @@
   background: linear-gradient(135deg, #e6f0ff 0%, #d1e6ff 100%);
   border-radius: 16px;
   padding: 16px 20px;
-  margin-bottom: 24px;
   box-shadow: 0 2px 8px rgba(10, 132, 255, 0.1);
   position: relative;
   overflow: hidden;
