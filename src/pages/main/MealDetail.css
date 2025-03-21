@@ -1,80 +1,90 @@
 .meal-detail-container {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  padding: 16px;
-  padding-bottom: 80px;
-  overflow-y: auto;
-  -ms-overflow-style: none; /* IE 및 Edge용 스크롤바 숨김 */
-  scrollbar-width: none; /* Firefox용 스크롤바 숨김 */
-}
-
-.meal-no-data {
-  color: #888;
-  font-size: 14px;
-  margin: 8px 0;
-}
-
-/* Chrome, Safari용 스크롤바 숨김 */
-.meal-detail-container::-webkit-scrollbar {
-  display: none;
+  padding: 20px 16px;
+  background-color: #fff;
+  color: #333;
 }
 
 .meal-title {
   font-size: 22px;
   font-weight: 700;
   margin-bottom: 8px;
-  color: #000000;
+  color: #333;
 }
 
 .meal-calories {
   font-size: 16px;
-  color: #0A84FF;
+  color: #0a84ff;
+  font-weight: 600;
   margin-bottom: 24px;
 }
 
 .meal-section-title {
+  align-self: flex-start;
   font-size: 18px;
   font-weight: 700;
-  margin-top: 24px;
-  margin-bottom: 16px;
-  color: #000000;
+  margin: 0 0 12px 0;
+  padding-left: 10px;
+  border-left: 3px solid #0a84ff;
+  color: #333;
 }
 
-.ingredient-list,
-.cooking-steps {
+.meal-ingredient-list {
   list-style: none;
   padding: 0;
+  width: 100%;
   margin-bottom: 24px;
 }
 
-.ingredient-list li {
-  background: #FFFFFF;
-  padding: 12px 16px;
-  margin-bottom: 8px;
+.meal-ingredient-list li {
+  background: #f8f9fa;
+  margin: 8px 0;
+  padding: 14px;
   border-radius: 10px;
-  font-size: 14px;
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.cooking-steps li {
-  background: #FFFFFF;
-  padding: 16px;
-  margin-bottom: 8px;
-  border-radius: 10px;
-  font-size: 14px;
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
+  font-size: 15px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   position: relative;
-  padding-left: 36px;
+  padding-left: 20px;
 }
 
-.cooking-steps li::before {
+.meal-ingredient-list li::before {
+  content: "•";
+  color: #0a84ff;
+  font-weight: bold;
+  position: absolute;
+  left: 8px;
+}
+
+.meal-cooking-steps {
+  padding-left: 0;
+  width: 100%;
+  counter-reset: step;
+}
+
+.meal-cooking-steps li {
+  background: #f8f9fa;
+  margin: 8px 0;
+  padding: 14px;
+  padding-left: 40px;
+  border-radius: 10px;
+  font-size: 15px;
+  line-height: 1.5;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  list-style-type: none;
+  position: relative;
+}
+
+.meal-cooking-steps li::before {
   content: counter(step);
   counter-increment: step;
   position: absolute;
   left: 12px;
-  top: 16px;
+  top: 14px;
   width: 20px;
   height: 20px;
-  background-color: #0A84FF;
+  background-color: #0a84ff;
   color: white;
   border-radius: 50%;
   display: flex;
@@ -84,6 +94,18 @@
   font-weight: bold;
 }
 
-.cooking-steps {
-  counter-reset: step;
+.meal-no-data {
+  color: #888;
+  font-size: 14px;
+  background: #f8f9fa;
+  padding: 14px;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* 반응형 스타일 */
+@media (max-width: 375px) {
+  .meal-detail-container {
+    padding: 12px;
+  }
 }

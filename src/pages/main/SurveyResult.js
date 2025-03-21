@@ -4,7 +4,7 @@ import axios from "axios";
 import "./SurveyResult.css";
 import backArrow from "../../assets/backArrow.svg";
 import Header from "../../components/common/header/Header";
-import Menu from "../../components/common/menu/Menu";
+import { authApi } from "../../api/AuthApi";
 
 const SurveyResult = () => {
   const location = useLocation();
@@ -13,6 +13,7 @@ const SurveyResult = () => {
   const [mealPlan, setMealPlan] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const currentUser = authApi.getCurrentUser();
 
   useEffect(() => {
     // sessionStorage에서 기존 식단 데이터 가져오기
@@ -82,8 +83,10 @@ const SurveyResult = () => {
       <div className="survey-result-container">
         {loading ? (
           <div className="survey-loading-container">
-            <p className="survey-loading-text">
-              사용자님의 권장 영양소를 AI가 분석 중입니다...
+            <p className="survey-loading-text bold">
+              {currentUser.name}님의 권장 영양소를
+              <br />
+              AI가 분석 중입니다...
             </p>
             <div className="survey-loading-bar">
               <div className="survey-loading-progress"></div>
@@ -137,7 +140,9 @@ const SurveyResult = () => {
               })}
           </div>
         ) : (
-          <p className="survey-error">식단 데이터를 불러오는 데 실패했습니다.</p>
+          <p className="survey-error">
+            식단 데이터를 불러오는 데 실패했습니다.
+          </p>
         )}
       </div>
     </>

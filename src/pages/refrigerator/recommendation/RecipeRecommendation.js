@@ -3,12 +3,10 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./RecipeRecommendation.css";
 import RecipeLoading from "./RecipeLoading";
-import Menu from "../../../components/common/menu/Menu";
 import backArrow from "../../../assets/backArrow.svg";
 import "../list/IngredientDetailList.css";
 import Header from "../../../components/common/header/Header";
 import { authApi } from "../../../api/AuthApi";
-import MainHeader from "../../../components/common/header/MainHeader";
 import ButtonL from "../../../components/common/button/ButtonL";
 const RecipeRecommendation = () => {
   const [recipes, setRecipes] = useState([]);

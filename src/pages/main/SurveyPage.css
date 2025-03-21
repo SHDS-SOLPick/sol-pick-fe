@@ -1,12 +1,13 @@
 .survey-container {
   width: 100%;
-  padding: 16px;
+  padding: 20px 16px;
   margin: 0 auto;
   overflow-y: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
-
-  padding-bottom: 100px; 
+  height: calc(100% - 56px);
+  display: flex;
+  flex-direction: column;
 }
 
 .survey-container::-webkit-scrollbar {
@@ -15,117 +16,164 @@
 
 .survey-step {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 1;
 }
 
 .survey-step-title {
   font-size: 20px;
   font-weight: 700;
-  color: #000;
+  color: #333;
   text-align: center;
-  margin-bottom: 24px;
+  margin-bottom: 36px;
+  line-height: 1.3;
+  position: relative;
+  padding-bottom: 12px;
+}
+
+.survey-step-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 3px;
+  background-color: #0a84ff;
+  border-radius: 2px;
 }
 
 .survey-button-group {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: 30px;
+  width: 100%;
+  max-width: 320px;
 }
 
 .survey-button {
   width: 100%;
-  padding: 14px;
-  border: 1px solid #CECECE;
-  background-color: #FFFFFF;
-  border-radius: 10px;
+  padding: 16px;
+  border: 1px solid #e0e0e0;
+  background-color: #ffffff;
+  border-radius: 14px;
   font-size: 16px;
   font-weight: 500;
-  color: #000000;
+  color: #333;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-.survey-button:hover, .survey-button:active {
-  border-color: #0A84FF;
-  /* background-color: #F5F5F5; */
-  transform: scale(1.02);
-  box-shadow: 0 2px 4px rgba(10, 132, 255, 0.15);
+.survey-button:hover,
+.survey-button:active {
+  border-color: #0a84ff;
+  background-color: #f8fbff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(10, 132, 255, 0.15);
 }
 
 .survey-button.selected {
-  background-color: #0A84FF;
-  border-color: #0A84FF;
+  background-color: #0a84ff;
+  border-color: #0a84ff;
   color: white;
+  box-shadow: 0 4px 10px rgba(10, 132, 255, 0.25);
 }
 
 .survey-next-button {
   width: 100%;
   max-width: 343px;
-  height: 48px;
+  height: 52px;
   border: none;
-  background-color: #0A84FF;
+  background-color: #0a84ff;
   color: white;
-  border-radius: 6px;
+  border-radius: 12px;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s ease;
   margin-top: 40px;
+  box-shadow: 0 4px 10px rgba(10, 132, 255, 0.2);
 }
 
 .survey-next-button:hover {
-  background-color: #007AEE;
+  background-color: #007aee;
 }
 
 .survey-next-button:disabled {
-  background-color: #CECECE;
+  background-color: #cecece;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
 .gender-group {
   display: flex;
   justify-content: center;
-  gap: 24px;
   margin: 8px 0 40px;
+  width: 100%;
+  max-width: 320px;
 }
 
 .gender-option {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   cursor: pointer;
+  padding: 14px 24px;
+  border-radius: 12px;
+  transition: color 0.25s ease;
+  flex: 1;
+  justify-content: center;
 }
 
 .gender-label {
   font-size: 16px;
+  font-weight: 500;
+  color: #333;
 }
 
 .gender-option input[type="radio"] {
   width: 18px;
   height: 18px;
-  accent-color: #0A84FF;
+  accent-color: #0a84ff;
+}
+
+/* 선택된 성별 옵션 */
+.gender-option input[type="radio"]:checked + .gender-label {
+  color: #0a84ff;
+  font-weight: 600;
+}
+
+.gender-option input[type="radio"]:checked {
+  accent-color: #0a84ff;
 }
 
 /* 입력 필드 그룹 */
 .survey-input-container {
-  margin-bottom: 24px;
+  margin-bottom: 28px;
   text-align: left;
+  width: 100%;
+  max-width: 320px;
 }
 
 /* 입력 필드 라벨 */
 .survey-field-label {
-  font-size: 14px;
-  font-weight: 500;
-  color: #000;
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   text-align: left;
 }
 
 .survey-button-wrapper {
-  position: absolute;
-  bottom: 50px;
+  position: fixed;
+  bottom: calc((100vh - 812px) / 2 + 36px);
   left: 0;
   right: 0;
   display: flex;
@@ -135,4 +183,11 @@
   z-index: 10;
   max-width: 375px;
   margin: 0 auto;
+}
+
+/* 모바일 환경 최적화 */
+@media (max-width: 375px) {
+  .survey-button-wrapper {
+    bottom: 36px;
+  }
 }

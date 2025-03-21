@@ -7,11 +7,12 @@ import Header from "../../components/common/header/Header";
 import Input from "../../components/common/input/Input";
 import ButtonL from "../../components/common/button/ButtonL";
 import { useToast } from "../../context/ToastContext";
+import { authApi } from "../../api/AuthApi";
 
 const SurveyPage = () => {
   const navigate = useNavigate();
   const { showToast } = useToast();
-  
+
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     height: "",
@@ -24,6 +25,8 @@ const SurveyPage = () => {
     activityLevel: "",
     exercise: "",
   });
+
+  const currentUser = authApi.getCurrentUser();
 
   useEffect(() => {
     sessionStorage.removeItem("mealPlan");
@@ -86,7 +89,7 @@ const SurveyPage = () => {
 
   // 현재 단계의 입력이 완료되었는지 확인
   const isStepComplete = () => {
-    switch(step) {
+    switch (step) {
       case 1:
         return formData.height && formData.weight && formData.gender;
       case 3:
@@ -112,8 +115,10 @@ const SurveyPage = () => {
         {/* (1) 사용자 정보 입력 */}
         {step === 1 && (
           <div className="survey-step">
-            <h2 className="survey-step-title">사용자의 정보를 설정해주세요</h2>
-            
+            <h2 className="survey-step-title">
+              {currentUser.name}님의 정보를 입력해주세요
+            </h2>
+
             <div className="survey-input-container">
               <label className="survey-field-label">신장 (cm)</label>
               <Input
@@ -124,7 +129,7 @@ const SurveyPage = () => {
                 width="100%"
               />
             </div>
-            
+
             <div className="survey-input-container">
               <label className="survey-field-label">몸무게 (kg)</label>
               <Input
@@ -135,7 +140,7 @@ const SurveyPage = () => {
                 width="100%"
               />
             </div>
-            
+
             <div className="survey-input-container">
               <label className="survey-field-label">성별</label>
               <div className="gender-group">
@@ -161,12 +166,9 @@ const SurveyPage = () => {
                 </label>
               </div>
             </div>
-            
+
             <div className="survey-button-wrapper">
-            <ButtonL
-              text="다음"
-              onClick={handleNextStep}
-            />
+              <ButtonL text="다음" onClick={handleNextStep} />
             </div>
           </div>
         )}
@@ -174,22 +176,30 @@ const SurveyPage = () => {
         {/* (2) 식단 목표 설정 */}
         {step === 2 && (
           <div className="survey-step">
-            <h2 className="survey-step-title">식단으로 이루고 싶은 목표를 알려주세요</h2>
+            <h2 className="survey-step-title">
+              식단으로 이루고 싶은 목표를 알려주세요
+            </h2>
             <div className="survey-button-group">
               <button
-                className={`survey-button ${formData.goal === "체중 감량" ? "selected" : ""}`}
+                className={`survey-button ${
+                  formData.goal === "체중 감량" ? "selected" : ""
+                }`}
                 onClick={() => handleChange("goal", "체중 감량")}
               >
                 체중 감량
               </button>
               <button
-                className={`survey-button ${formData.goal === "체중 증량" ? "selected" : ""}`}
+                className={`survey-button ${
+                  formData.goal === "체중 증량" ? "selected" : ""
+                }`}
                 onClick={() => handleChange("goal", "체중 증량")}
               >
                 체중 증량
               </button>
               <button
-                className={`survey-button ${formData.goal === "건강한 삶 유지" ? "selected" : ""}`}
+                className={`survey-button ${
+                  formData.goal === "건강한 삶 유지" ? "selected" : ""
+                }`}
                 onClick={() => handleChange("goal", "건강한 삶 유지")}
               >
                 건강한 삶 유지
@@ -197,10 +207,7 @@ const SurveyPage = () => {
             </div>
 
             <div className="survey-button-wrapper">
-            <ButtonL
-              text="다음"
-              onClick={handleNextStep}
-            />
+              <ButtonL text="다음" onClick={handleNextStep} />
             </div>
           </div>
         )}
@@ -221,10 +228,7 @@ const SurveyPage = () => {
             </div>
 
             <div className="survey-button-wrapper">
-            <ButtonL
-              text="다음"
-              onClick={handleNextStep}
-            />
+              <ButtonL text="다음" onClick={handleNextStep} />
             </div>
           </div>
         )}
@@ -232,7 +236,9 @@ const SurveyPage = () => {
         {/* (4) 추천받고 싶은 끼니 선택 */}
         {step === 4 && (
           <div className="survey-step">
-            <h2 className="survey-step-title">하루 중 추천받고 싶은 끼니를 골라주세요</h2>
+            <h2 className="survey-step-title">
+              하루 중 추천받고 싶은 끼니를 골라주세요
+            </h2>
             <div className="survey-button-group">
               {["아침", "점심", "저녁"].map((meal) => (
                 <button
@@ -248,10 +254,7 @@ const SurveyPage = () => {
             </div>
 
             <div className="survey-button-wrapper">
-            <ButtonL
-              text="다음"
-              onClick={handleNextStep}
-            />
+              <ButtonL text="다음" onClick={handleNextStep} />
             </div>
           </div>
         )}
@@ -259,12 +262,16 @@ const SurveyPage = () => {
         {/* (5) 평균 수면시간 선택 */}
         {step === 5 && (
           <div className="survey-step">
-            <h2 className="survey-step-title">하루 평균 수면시간을 알려주세요</h2>
+            <h2 className="survey-step-title">
+              하루 평균 수면시간을 알려주세요
+            </h2>
             <div className="survey-button-group">
               {["4시간 이하", "5~6시간", "7~8시간", "9시간 이상"].map(
                 (option) => (
                   <button
-                    className={`survey-button ${formData.sleepHours === option ? "selected" : ""}`}
+                    className={`survey-button ${
+                      formData.sleepHours === option ? "selected" : ""
+                    }`}
                     key={option}
                     onClick={() => handleChange("sleepHours", option)}
                   >
@@ -275,10 +282,7 @@ const SurveyPage = () => {
             </div>
 
             <div className="survey-button-wrapper">
-            <ButtonL
-              text="다음"
-              onClick={handleNextStep}
-            />
+              <ButtonL text="다음" onClick={handleNextStep} />
             </div>
           </div>
         )}
@@ -286,7 +290,9 @@ const SurveyPage = () => {
         {/* (6) 생활 패턴 선택 */}
         {step === 6 && (
           <div className="survey-step">
-            <h2 className="survey-step-title">하루 생활 패턴이 어떻게 되나요?</h2>
+            <h2 className="survey-step-title">
+              하루 생활 패턴이 어떻게 되나요?
+            </h2>
             <div className="survey-button-group">
               {[
                 "활동적인 일을 하고 있어요",
@@ -294,7 +300,9 @@ const SurveyPage = () => {
                 "현재는 쉬고 있어요",
               ].map((option) => (
                 <button
-                  className={`survey-button ${formData.activityLevel === option ? "selected" : ""}`}
+                  className={`survey-button ${
+                    formData.activityLevel === option ? "selected" : ""
+                  }`}
                   key={option}
                   onClick={() => handleChange("activityLevel", option)}
                 >
@@ -304,10 +312,7 @@ const SurveyPage = () => {
             </div>
 
             <div className="survey-button-wrapper">
-            <ButtonL
-              text="다음"
-              onClick={handleNextStep}
-            />
+              <ButtonL text="다음" onClick={handleNextStep} />
             </div>
           </div>
         )}
@@ -315,7 +320,9 @@ const SurveyPage = () => {
         {/* (7) 운동 여부 선택 */}
         {step === 7 && (
           <div className="survey-step">
-            <h2 className="survey-step-title">주 3회 이상 꾸준히 운동하나요?</h2>
+            <h2 className="survey-step-title">
+              주 3회 이상 꾸준히 운동하나요?
+            </h2>
             <div className="survey-button-group">
               {["예", "아니오"].map((option) => (
                 <button
@@ -331,10 +338,7 @@ const SurveyPage = () => {
             </div>
 
             <div className="survey-button-wrapper">
-            <ButtonL
-              text="식단 추천받기"
-              onClick={handleFormSubmit}
-            />
+              <ButtonL text="식단 추천받기" onClick={handleFormSubmit} />
             </div>
           </div>
         )}

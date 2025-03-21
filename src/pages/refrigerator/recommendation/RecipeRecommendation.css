@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: space-between;
   background-color: white;
-  padding: 24px 16px;
+  padding: 20px 16px;
   margin-top: 0; /* 변경: -130px에서 0으로 */
   position: relative; /* 추가: 포지셔닝 컨텍스트 설정 */
   height: calc(100% - 56px);
@@ -48,5 +48,5 @@
 }
 
 .refresh-button {
-  margin-bottom: 26px;
+  margin-bottom: 16px;
 }

@@ -4,7 +4,6 @@ import "./RecipeDetail.css";
 import backArrow from "../../../assets/backArrow.svg";
 import Header from "../../../components/common/header/Header";
 import Menu from "../../../components/common/menu/Menu";
-import { useState, useEffect } from "react";
 
 const RecipeDetail = () => {
   const location = useLocation();
@@ -62,15 +61,15 @@ const RecipeDetail = () => {
           </div>
         </div>
 
-        <h2 className="section-title">🥕 필요한 재료</h2>
-        <ul className="ingredient-list">
+        <h2 className="recipe-section-title">🥕 필요한 재료</h2>
+        <ul className="recipe-ingredient-list">
           {recipe.ingredients.split(", ").map((ingredient, index) => (
             <li key={index}>{ingredient}</li>
           ))}
         </ul>
 
-        <h2 className="section-title">👨‍🍳 조리 방법</h2>
-        <ol className="cooking-steps">
+        <h2 className="recipe-section-title">👨‍🍳 조리 방법</h2>
+        <ol className="recipe-cooking-steps">
           {Array.isArray(recipe.steps) ? (
             recipe.steps.map((step, index) => <li key={index}>{step}</li>)
           ) : (

@@ -1,33 +1,26 @@
-/* 하단바 색상에 맞춘 테마 */
 .recipe-detail-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 20px;
   width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
-  padding-bottom: 80px;
-  font-family: "Pretendard", sans-serif;
+  padding: 20px 16px;
   background-color: #fff;
   color: #333;
 }
 
 .recipe-detail-image {
   width: 100%;
-  max-width: 500px;
-  height: 300px;
+  height: 230px;
   object-fit: cover;
   border-radius: 16px;
-  margin-bottom: 24px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .recipe-info-container {
   display: flex;
-  justify-content: center;
-  width: 90%;
-  margin-bottom: 32px;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 24px;
 }
 
 .recipe-info-box {
@@ -37,119 +30,113 @@
   justify-content: center;
   background-color: #f0f7ff;
   border-radius: 12px;
-  padding: 16px;
-  margin: 0 10px;
-  width: 140px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 14px;
+  width: 48%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .recipe-info-icon {
-  font-size: 24px;
-  margin-bottom: 8px;
-  color: #4285f4; /* 하단바 파란색과 비슷한 색상 */
+  font-size: 22px;
+  margin-bottom: 6px;
+  color: #0a84ff;
 }
 
 .recipe-info-label {
-  font-size: 14px;
-  color: #5f6368;
+  font-size: 13px;
+  color: #666;
   margin-bottom: 4px;
 }
 
 .recipe-info-value {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
-  color: #1a73e8; /* 하단바 파란색보다 약간 진한 색상 */
+  color: #0a84ff;
 }
 
-.section-title {
+.recipe-section-title {
   align-self: flex-start;
-  font-size: 20px;
-  font-weight: 600;
-  margin: 16px 0 12px 5%;
-  padding-left: 12px;
-  border-left: 4px solid #4285f4; /* 하단바 파란색과 비슷한 색상 */
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  padding-left: 10px;
+  border-left: 3px solid #0a84ff;
   color: #333;
 }
 
-.ingredient-list {
+.recipe-ingredient-list {
   list-style: none;
   padding: 0;
-  width: 90%;
-  margin: 0 auto 24px auto;
+  width: 100%;
+  margin-bottom: 24px;
 }
 
-.ingredient-list li {
-  background: #f0f7ff;
+.recipe-ingredient-list li {
+  background: #f8f9fa;
   margin: 8px 0;
-  padding: 14px 18px;
+  padding: 14px;
   border-radius: 10px;
-  font-size: 16px;
+  font-size: 15px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  display: flex;
-  align-items: center;
+  position: relative;
+  padding-left: 20px;
 }
 
-.ingredient-list li::before {
+.recipe-ingredient-list li::before {
   content: "•";
-  color: #4285f4; /* 하단바 파란색과 비슷한 색상 */
+  color: #0a84ff;
   font-weight: bold;
-  margin-right: 10px;
-  font-size: 20px;
+  position: absolute;
+  left: 8px;
 }
 
-.cooking-steps {
+.recipe-cooking-steps {
   padding-left: 0;
-  width: 90%;
+  width: 100%;
+  counter-reset: step;
 }
 
-.cooking-steps li {
-  background: #f0f7ff;
-  margin: 12px 0;
-  padding: 16px 20px;
+.recipe-cooking-steps li {
+  background: #f8f9fa;
+  margin: 8px 0;
+  padding: 14px;
+  padding-left: 40px;
   border-radius: 10px;
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: 15px;
+  line-height: 1.5;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   list-style-type: none;
+  position: relative;
 }
 
-.has-ingredient {
-  background: #e3f2fd !important; /* 파란색 계열로 변경 */
-  color: #0d47a1 !important;
-  font-weight: 500;
-}
-
-.has-ingredient::before {
-  color: #0d47a1 !important;
-}
-
-.missing-ingredient {
-  background: #f1f3f5 !important;
-  color: #868e96 !important;
-}
-
-/* 하단 네비게이션 활성화된 아이콘 색상과 일치 */
-/* 현재 활성화된 '홈' 메뉴는 #4285f4 색상으로 보임 */
-.active-icon {
-  color: #4285f4;
+.recipe-cooking-steps li::before {
+  content: counter(step);
+  counter-increment: step;
+  position: absolute;
+  left: 12px;
+  top: 14px;
+  width: 20px;
+  height: 20px;
+  background-color: #0a84ff;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
 }
 
 /* 반응형 스타일 */
-@media (max-width: 600px) {
+@media (max-width: 375px) {
   .recipe-detail-container {
-    padding: 16px;
-  }
-
-  .recipe-info-container {
-    flex-wrap: wrap;
-  }
-
-  .recipe-info-box {
-    width: calc(50% - 20px);
-    margin-bottom: 10px;
+    padding: 12px;
   }
 
   .recipe-detail-image {
-    height: 220px;
+    height: 200px;
+  }
+
+  .recipe-info-box {
+    padding: 10px;
   }
 }

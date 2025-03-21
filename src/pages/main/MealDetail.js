@@ -19,7 +19,7 @@ const MealDetail = () => {
           onLeftClick={() => navigate(-1)}
         />
         <div className="meal-detail-container">
-          <p>식단 정보를 불러올 수 없습니다.</p>
+          <p className="meal-no-data">식단 정보를 불러올 수 없습니다.</p>
         </div>
         <Menu />
       </>
@@ -38,7 +38,7 @@ const MealDetail = () => {
         <p className="meal-calories">칼로리: {meal.calories} kcal</p>
 
         <h2 className="meal-section-title">🥕 필요한 재료</h2>
-        <ul className="ingredient-list">
+        <ul className="meal-ingredient-list">
           {meal.ingredients && meal.ingredients.length > 0 ? (
             meal.ingredients.map((ingredient, index) => (
               <li key={index}>{ingredient}</li>
@@ -49,7 +49,7 @@ const MealDetail = () => {
         </ul>
 
         <h2 className="meal-section-title">👨‍🍳 조리 방법</h2>
-        <ol className="cooking-steps">
+        <ol className="meal-cooking-steps">
           {meal.steps && meal.steps.length > 0 ? (
             meal.steps.map((step, index) => <li key={index}>{step}</li>)
           ) : (
