@@ -1,49 +1,89 @@
 .meal-detail-container {
-  max-width: 600px;
-  margin: 20px auto;
-  padding: 20px;
-  border-radius: 10px;
-  background-color: #fff;
+  width: 100%;
+  padding: 16px;
   padding-bottom: 80px;
-  /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); */
-  text-align: left;
+  overflow-y: auto;
+  -ms-overflow-style: none; /* IE 및 Edge용 스크롤바 숨김 */
+  scrollbar-width: none; /* Firefox용 스크롤바 숨김 */
 }
 
-.back-button {
-  background: none;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-  color: #007bff;
-  margin-bottom: 10px;
+.meal-no-data {
+  color: #888;
+  font-size: 14px;
+  margin: 8px 0;
+}
+
+/* Chrome, Safari용 스크롤바 숨김 */
+.meal-detail-container::-webkit-scrollbar {
+  display: none;
 }
 
 .meal-title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #000000;
 }
 
 .meal-calories {
+  font-size: 16px;
+  color: #0A84FF;
+  margin-bottom: 24px;
+}
+
+.meal-section-title {
   font-size: 18px;
-  color: black;
-  margin-bottom: 20px;
+  font-weight: 700;
+  margin-top: 24px;
+  margin-bottom: 16px;
+  color: #000000;
 }
 
 .ingredient-list,
 .cooking-steps {
   list-style: none;
-  padding: 100;
+  padding: 0;
+  margin-bottom: 24px;
 }
 
-.ingredient-list li,
+.ingredient-list li {
+  background: #FFFFFF;
+  padding: 12px 16px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  font-size: 14px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
+}
+
 .cooking-steps li {
-  background: #f9f9f9;
-  padding: 10px;
-  margin-bottom: 5px;
-  border-radius: 5px;
+  background: #FFFFFF;
+  padding: 16px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  font-size: 14px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
+  position: relative;
+  padding-left: 36px;
+}
+
+.cooking-steps li::before {
+  content: counter(step);
+  counter-increment: step;
+  position: absolute;
+  left: 12px;
+  top: 16px;
+  width: 20px;
+  height: 20px;
+  background-color: #0A84FF;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
 }
 
 .cooking-steps {
-  list-style-type: decimal;
+  counter-reset: step;
 }
