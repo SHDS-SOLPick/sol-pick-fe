@@ -4,9 +4,8 @@ import "./RecipeDetail.css";
 import backArrow from "../../../assets/backArrow.svg";
 import Header from "../../../components/common/header/Header";
 import Menu from "../../../components/common/menu/Menu";
-import axios from "axios";
-import MainHeader from "../../../components/common/header/MainHeader";
 import { useState, useEffect } from "react";
+
 const RecipeDetail = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -16,12 +15,25 @@ const RecipeDetail = () => {
     return <p>레시피 정보를 불러올 수 없습니다.</p>;
   }
 
+  // 난이도 표시를 한글로 변환
+  const getDifficultyText = (difficulty) => {
+    switch (difficulty?.toLowerCase()) {
+      case "easy":
+        return "쉬움";
+      case "medium":
+        return "보통";
+      case "hard":
+        return "어려움";
+      default:
+        return difficulty || "알 수 없음";
+    }
+  };
+
   return (
     <>
-      {/* <MainHeader /> */}
       <Header
         leftIcon={backArrow}
-        title={recipe.name} // ✅ 레시피 제목
+        title={recipe.name}
         onLeftClick={() => navigate(-1)}
       />
       <div className="recipe-detail-container">
@@ -30,24 +42,30 @@ const RecipeDetail = () => {
           alt={recipe.name}
           className="recipe-detail-image"
         />
-        {/* ✅ 조리 정보 */}
-        <div className="recipe-info">
-  <p>
-    <strong>⏳ 조리 시간:</strong> {recipe.cooking_time || "알 수 없음"}
-  </p>
-  <p className="recipe-level-info">
-    <strong>🔥 난이도:</strong> {recipe.difficulty || "알 수 없음"}
-  </p>
-</div>
 
-        
-        <div className="recommendation-detail">🥕 필요한 재료</div>
+        {/* 조리 정보 박스형 UI */}
+        <div className="recipe-info-container">
+          <div className="recipe-info-box">
+            <div className="recipe-info-icon">⏳</div>
+            <div className="recipe-info-label">조리 시간</div>
+            <div className="recipe-info-value">{recipe.cooking_time || "알 수 없음"}</div>
+          </div>
+
+          <div className="recipe-info-box">
+            <div className="recipe-info-icon">🔥</div>
+            <div className="recipe-info-label">난이도</div>
+            <div className="recipe-info-value">{getDifficultyText(recipe.difficulty)}</div>
+          </div>
+        </div>
+
+        <h2 className="section-title">🥕 필요한 재료</h2>
         <ul className="ingredient-list">
           {recipe.ingredients.split(", ").map((ingredient, index) => (
             <li key={index}>{ingredient}</li>
           ))}
         </ul>
-        <div className="recommendation-step-detail">👨‍🍳 조리 방법</div>
+
+        <h2 className="section-title">👨‍🍳 조리 방법</h2>
         <ol className="cooking-steps">
           {Array.isArray(recipe.steps) ? (
             recipe.steps.map((step, index) => <li key={index}>{step}</li>)
