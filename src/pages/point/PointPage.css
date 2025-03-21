@@ -8,20 +8,26 @@
 .point-page-container {
   flex: 1;
   padding: 0;
-  margin-bottom: 80px; /* 메뉴바 높이만큼 여백 */
+  margin-bottom: 88px; /* 메뉴바 높이만큼 여백 */
   background-color: #f9fafb;
   display: flex;
   flex-direction: column;
   overflow-y: auto; /* 스크롤 가능하도록 설정 */
-  height: calc(100vh - 60px - 80px); /* 헤더(60px)와 메뉴바(80px) 높이 제외 */
-  max-height: calc(100vh - 60px - 80px); /* 최대 높이 설정 */
+  /* 헤더(60px)와 메뉴바(80px) 높이 제외 */
+  /* height: calc(100vh - 60px - 80px); */
+  /* 최대 높이 설정 */
+  /* max-height: calc(100vh - 60px - 80px); */
+  /* 스크롤바 숨김 처리 */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 /* 스크롤 가능한 내역 섹션 */
 .point-history-section {
   margin-top: 16px;
   flex: 1;
-  overflow-y: auto; /* 이 섹션 내에서만 스크롤 가능하도록 */
+  /* 이 섹션 내에서만 스크롤 가능하도록 */
+  /* overflow-y: auto; */
   display: flex;
   flex-direction: column;
 }
@@ -29,6 +35,9 @@
 .point-list {
   flex: 1;
   overflow-y: auto;
+  /* 스크롤바 숨김 처리 */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 .point-history-title {
