@@ -9,6 +9,7 @@ import "../list/IngredientDetailList.css";
 import Header from "../../../components/common/header/Header";
 import { authApi } from "../../../api/AuthApi";
 import MainHeader from "../../../components/common/header/MainHeader";
+import ButtonL from "../../../components/common/button/ButtonL";
 const RecipeRecommendation = () => {
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -168,7 +169,7 @@ const RecipeRecommendation = () => {
           <p className="error-message">❌ {error}</p>
         ) : (
           <>
-            <div className="recipe-grid">
+            <div className="recipe-recommendation-grid">
               {recipes.map((recipe) => (
                 <div
                   key={recipe.id}
@@ -185,7 +186,7 @@ const RecipeRecommendation = () => {
               ))}
             </div>
 
-            <button
+            {/* <button
               className="refresh-button"
               onClick={() => {
                 sessionStorage.removeItem("recommendedRecipes"); // ✅ 기존 데이터 삭제
@@ -193,10 +194,17 @@ const RecipeRecommendation = () => {
               }}
             >
               다른 레시피 추천받기
-            </button>
+            </button> */}
+            <ButtonL
+              className="refresh-button"
+              onClick={() => {
+                sessionStorage.removeItem("recommendedRecipes"); // ✅ 기존 데이터 삭제
+                fetchRecommendedRecipes(); // ✅ 새로운 레시피 가져오기
+              }}
+              text="다른 레시피 추천받기"
+            />
           </>
         )}
-        <Menu />
       </div>
     </>
   );

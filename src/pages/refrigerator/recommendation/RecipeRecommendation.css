@@ -3,17 +3,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* 변경: center에서 flex-start로 */
-  min-height: calc(100vh - 60px); /* 변경: 헤더 높이를 고려한 계산 */
+  justify-content: space-between;
   background-color: white;
-  padding: 20px;
+  padding: 24px 16px;
   margin-top: 0; /* 변경: -130px에서 0으로 */
-  padding-bottom: 100px; /* 추가: 하단 메뉴를 위한 여백 */
   position: relative; /* 추가: 포지셔닝 컨텍스트 설정 */
+  height: calc(100% - 56px);
 }
 
 /* 나머지 스타일은 그대로 유지 */
-.recipe-grid {
+.recipe-recommendation-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 16px;
@@ -49,17 +48,5 @@
 }
 
 .refresh-button {
-  margin-top: 20px;
-  background-color: #0a84ff;
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  font-size: 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.refresh-button:hover {
-  background-color: #0a84ff;
+  margin-bottom: 26px;
 }

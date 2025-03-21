@@ -48,13 +48,17 @@ const RecipeDetail = () => {
           <div className="recipe-info-box">
             <div className="recipe-info-icon">⏳</div>
             <div className="recipe-info-label">조리 시간</div>
-            <div className="recipe-info-value">{recipe.cooking_time || "알 수 없음"}</div>
+            <div className="recipe-info-value">
+              {recipe.cooking_time || "알 수 없음"}
+            </div>
           </div>
 
           <div className="recipe-info-box">
             <div className="recipe-info-icon">🔥</div>
             <div className="recipe-info-label">난이도</div>
-            <div className="recipe-info-value">{getDifficultyText(recipe.difficulty)}</div>
+            <div className="recipe-info-value">
+              {getDifficultyText(recipe.difficulty)}
+            </div>
           </div>
         </div>
 
@@ -73,7 +77,6 @@ const RecipeDetail = () => {
             <p>❌ 조리 방법 정보가 없습니다.</p>
           )}
         </ol>
-        <Menu />
       </div>
     </>
   );
