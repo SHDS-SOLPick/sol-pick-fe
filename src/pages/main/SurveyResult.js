@@ -69,13 +69,13 @@ const SurveyResult = () => {
   };
 
   return (
-    <div className="survey-result-container">
-      <Header
+    <>
+    <Header
         leftIcon={backArrow}
         title="맞춤 식단 추천" // ✅ 레시피 제목
         onLeftClick={() => navigate(-1)}
       />
-
+    <div className="survey-result-container">
       {loading ? (
         <p className="loading">
           사용자님의 권장 영양소를 AI가 분석 중입니다...
@@ -137,7 +137,7 @@ const SurveyResult = () => {
       ) : (
         <p className="error">❌ 식단 데이터를 불러오는 데 실패했습니다.</p>
       )}
-    </div>
+    </div></>
   );
 };
 

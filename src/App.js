@@ -106,10 +106,10 @@ function App() {
           {/* 레시피 */}
           <Route path="/recipe-loading" element={<RecipeLoading />} />
           <Route
-            path="/recipe-recommendation"
+            path="/refrigerator/recipe-recommendation"
             element={<RecipeRecommendation />}
           />
-          <Route path="/recipe-detail/:id" element={<RecipeDetail />} />
+          <Route path="/refrigerator/recipe-detail/:id" element={<RecipeDetail />} />
 
           {/* 카드 신청 관련 라우트 */}
           <Route path="/card" element={<CardIssuePage />} />

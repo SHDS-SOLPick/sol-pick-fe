@@ -149,7 +149,7 @@ const RecipeRecommendation = () => {
   };
 
   const goToRecipeDetail = (recipe) => {
-    navigate(`/recipe-detail/${recipe.id}`, { state: { recipe } });
+    navigate(`/refrigerator/recipe-detail/${recipe.id}`, { state: { recipe } });
   };
 
   return (

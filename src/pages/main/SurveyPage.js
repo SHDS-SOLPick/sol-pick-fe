@@ -52,8 +52,10 @@ const SurveyPage = () => {
     nextStep();
   };
   return (
+    <>
+    <Header leftIcon={backArrow} title="AI 기반 식단 추천" onLeftClick={() => navigate("/main")} />
     <div className="survey-container">
-      <Header leftIcon={backArrow} onLeftClick={() => navigate("/main")} />
+      
       {/* ✅ (1) 사용자 정보 입력 */}
       {step === 1 && (
         <div className="survey-step">
@@ -71,25 +73,30 @@ const SurveyPage = () => {
             onChange={(e) => handleChange("weight", e.target.value)}
           />
           <label>성별</label>
-          <div>
-            <input
-              type="radio"
-              name="gender"
-              value="남성"
-              checked={formData.gender === "남성"}
-              onChange={(e) => handleChange("gender", e.target.value)}
-            />
-            남성
-            <input
-              type="radio"
-              name="gender"
-              value="여성"
-              checked={formData.gender === "여성"}
-              onChange={(e) => handleChange("gender", e.target.value)}
-            />
-            여성
+          
+          <div className="gender-group">
+            <label className="gender-option">
+              <input
+                type="radio"
+                name="gender"
+                value="남성"
+                checked={formData.gender === "남성"}
+                onChange={(e) => handleChange("gender", e.target.value)}
+              />
+              남성
+            </label>
+            <label className="gender-option">
+              <input
+                type="radio"
+                name="gender"
+                value="여성"
+                checked={formData.gender === "여성"}
+                onChange={(e) => handleChange("gender", e.target.value)}
+              />
+              여성
+            </label>
           </div>
-          <button className="survey-button" onClick={nextStep}>다음</button>
+          <button className="survey-next-button" onClick={nextStep}>다음</button>
         </div>
       )}
 
@@ -117,12 +124,13 @@ const SurveyPage = () => {
       {step === 3 && (
         <div className="survey-step">
           <h2>목표 체중을 설정해주세요</h2>
-          <input
+          <label>몸무게 (kg)</label>
+          <input className="survey-input"
             type="number"
             value={formData.targetWeight}
             onChange={(e) => handleChange("targetWeight", e.target.value)}
           />
-          <button className="survey-button" onClick={nextStep}>다음</button>
+          <button className="survey-next-button" onClick={nextStep}>다음</button>
         </div>
       )}
 
@@ -141,7 +149,7 @@ const SurveyPage = () => {
             </button>
             
             ))}
-            <button className="survey-button" onClick={nextStep}>다음</button>
+            <button className="survey-next-button" onClick={nextStep}>다음</button>
           </div>
         </div>
       )}
@@ -188,25 +196,32 @@ const SurveyPage = () => {
 
       {/* ✅ (7) 운동 여부 선택 */}
       {step === 7 && (
-        <div className="survey-step">
-          <h2>주 3회 이상 꾸준히 운동하나요?</h2>
-          <div className="button-group">
-            <button className="survey-button" onClick={() => selectAndNext("exercise", "예")}>예</button>
-            <button className="survey-button" onClick={() => selectAndNext("exercise", "아니오")}>
-              아니오
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* ✅ (8) 입력 정보 확인 및 식단 추천 요청 */}
-      {step === 8 && (
-        <div className="survey-step">
-          <button className="survey-button" onClick={handleSubmit}>식단 추천받기</button>
-        </div>
-      )}
-      <Menu />
+  <div className="survey-step">
+    <h2>주 3회 이상 꾸준히 운동하나요?</h2>
+    <div className="button-group">
+      {["예", "아니오"].map((option) => (
+        <button
+          key={option}
+          className={`survey-button ${
+            formData.exercise === option ? "selected" : ""
+          }`}
+          onClick={() => handleChange("exercise", option)}
+        >
+          {option}
+        </button>
+      ))}
     </div>
+    <button
+      className="survey-next-button"
+      onClick={handleSubmit}
+      disabled={!formData.exercise} // 선택하지 않으면 비활성화
+    >
+      식단 추천받기
+    </button>
+  </div>
+)}
+      <Menu />
+    </div></>
   );
 };
 

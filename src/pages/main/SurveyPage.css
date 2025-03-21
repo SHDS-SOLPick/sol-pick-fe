@@ -35,14 +35,49 @@
   cursor: pointer;
   transition: 0.3s;
 }
+.survey-next-button{
+  width: 90%;
+  padding: 15px;
+  border: 2px solid #0A84FF;
+  background-color: #0A84FF;
+  color: white;
+  border-radius: 30px;
+  font-size: 18px;
+  /* color: #333; */
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top:50px;
+}
 
 .survey-button:hover {
   background-color: #e0e0e0;
 }
 
 .survey-button.selected {
-  background-color: #0A84FF;
-  border: 2px solid #0a60ff;
+  background-color: #bbbbbb;
+
+} 
+ 
+.gender-group {
+  display: flex;
+  justify-content: center; /* ✅ 수평 가운데 정렬 */
+  align-items: center;
+  gap: 24px; /* 남성/여성 사이 간격 */
+  margin-top: 16px;
+  font-size: 18px; /* 전체 글자 크기 키움 */
+}
+
+.gender-option {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* 버튼과 텍스트 사이 간격 */
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.gender-option input[type="radio"] {
+  width: 20px;
+  height: 20px;
 }
 
 .next-btn,
