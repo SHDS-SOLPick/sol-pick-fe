@@ -585,8 +585,7 @@ const IngredientEditForm = () => {
         />
       </div>
 
-      <div style={{ height: "100px" }}></div>
-      <Menu />
+      <div style={{ height: "24px" }}></div>
     </>
   );
 };
