@@ -73,7 +73,7 @@ const Onboarding = () => {
             onClick={() => navigate("/login")}
             className="get-started-button"
           >
-            시작하기
+            ReciPICK 계정으로 시작하기
           </button>
         </motion.div>
       )}
