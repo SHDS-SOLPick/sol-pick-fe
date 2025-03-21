@@ -1,6 +1,6 @@
 .survey-result-container {
   width: 100%;
-  padding: 12px 16px;
+  padding: 20px 16px;
   height: calc(100% - 56px);
   overflow-y: auto;
   -ms-overflow-style: none;
@@ -30,7 +30,7 @@
   padding: 16px;
   margin-bottom: 16px;
   border-radius: 10px;
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .day-card h3 {
