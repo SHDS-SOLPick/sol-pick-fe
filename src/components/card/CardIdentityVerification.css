@@ -242,6 +242,7 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
   z-index: 1000;
   animation: slideInDown 0.3s ease-out, slideOutUp 0.3s ease-in 7.7s forwards;
+  margin-top: 37px;
 }
 
 .message-header {

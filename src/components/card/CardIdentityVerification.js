@@ -170,18 +170,17 @@ const CardIdentityVerificationPage = () => {
 
   return (
     <div className="identity-verification-container">
-      {/* 모바일 메시지 스타일 알림 */}
-      {showMessage && (
-        <div className="mobile-message">
-          <div className="message-header">
-            <span className="message-sender">SOL Pick</span>
-            <span className="message-time">방금 전</span>
-          </div>
-          <div className="message-content">{message}</div>
-        </div>
-      )}
-
       <div className="identity-verification-content">
+        {/* 모바일 메시지 스타일 알림 */}
+        {showMessage && (
+          <div className="mobile-message">
+            <div className="message-header">
+              <span className="message-sender">SOL Pick</span>
+              <span className="message-time">방금 전</span>
+            </div>
+            <div className="message-content">{message}</div>
+          </div>
+        )}
         {/* 진행 단계 표시 */}
         <div className="step-indicator">
           <div className="active"></div>
