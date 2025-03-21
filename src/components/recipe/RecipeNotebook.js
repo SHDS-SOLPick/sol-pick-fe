@@ -169,7 +169,11 @@ const RecipeNotebook = ({ recipe }) => {
             <div className="plate-container">
               <img src={forkImage} alt="Left Fork" className="fork-left" />
               <div className="plate-wrapper">
-                <img src={plateImage} alt="Plate" className="plate-image" />
+                <img
+                  src={plateImage}
+                  alt="Plate"
+                  className="postit-plate-image"
+                />
                 <div className="plate-face">
                   <img src={eyesImage} alt="Eyes" className="eyes-image" />
                   <div className="mouth-container">
