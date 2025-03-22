@@ -114,24 +114,37 @@ const Refrigerator = () => {
       return [[]];
     }
 
+    // 현재 날짜
+    const now = new Date();
+
     // 식재료 데이터 가공
-    const formattedData = data.map((ingredient, index) => ({
-      id: ingredient.id,
-      name: ingredient.name,
-      emoji: ingredient.emoji || "🍎", // 기본 이모지
-      image: getIngredientImageFromEmoji(ingredient.emoji || "🍎"), // 이모지 기반 매핑된 이미지 (냉장고 메인용)
-      originalImage: ingredient.image, // DB에 저장된 이미지 (상세 팝업 및 상세 목록용)
-      size: 50, // 고정 크기
-      x: calculateXPosition(index % 3), // x 위치 계산
-      // 추가 속성들 (상세 팝업용)
-      expiryDate: ingredient.expiryDate,
-      quantity: ingredient.quantity,
-      mainCategory: ingredient.mainCategory,
-      subCategory: ingredient.subCategory,
-      detailCategory: ingredient.detailCategory,
-      createdAt: ingredient.createdAt,
-      updatedAt: ingredient.updatedAt,
-    }));
+    const formattedData = data.map((ingredient, index) => {
+      // 등록일 확인
+      const createdDate = new Date(ingredient.createdAt);
+      const daysDiff = Math.floor((now - createdDate) / (1000 * 60 * 60 * 24));
+
+      // 3일 이내 등록된 식재료인지 여부
+      const isNew = daysDiff <= 3;
+
+      return {
+        id: ingredient.id,
+        name: ingredient.name,
+        emoji: ingredient.emoji || "🍎", // 기본 이모지
+        image: getIngredientImageFromEmoji(ingredient.emoji || "🍎"), // 이모지 기반 매핑된 이미지 (냉장고 메인용)
+        originalImage: ingredient.image, // DB에 저장된 이미지 (상세 팝업 및 상세 목록용)
+        size: 50, // 고정 크기
+        x: calculateXPosition(index % 3), // x 위치 계산
+        // 추가 속성들 (상세 팝업용)
+        expiryDate: ingredient.expiryDate,
+        quantity: ingredient.quantity,
+        mainCategory: ingredient.mainCategory,
+        subCategory: ingredient.subCategory,
+        detailCategory: ingredient.detailCategory,
+        createdAt: ingredient.createdAt,
+        updatedAt: ingredient.updatedAt,
+        isNew: isNew, // NEW 표시 여부
+      };
+    });
 
     // 냉장고 페이지 개수 계산
     const totalPages = Math.ceil(
@@ -372,6 +385,10 @@ const Refrigerator = () => {
                               cursor: "pointer",
                             }}
                           >
+                            {/* NEW 뱃지 조건부 렌더링 */}
+                            {ingredient.isNew && (
+                              <div className="new-badge bold">N</div>
+                            )}
                             <img
                               src={ingredient.image}
                               alt={ingredient.name}
