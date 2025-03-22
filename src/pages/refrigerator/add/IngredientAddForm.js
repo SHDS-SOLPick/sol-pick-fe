@@ -41,7 +41,7 @@ const IngredientAddForm = () => {
     mainCategory: "",
     subCategory: "",
     detailCategory: "",
-    weight: "",
+    quantity: "",
     image: "",
   });
 
@@ -156,13 +156,13 @@ const IngredientAddForm = () => {
     }
 
     // 중량 검증
-    if (!formData.weight) {
+    if (!formData.quantity) {
       showToast("중량을 입력해주세요.");
       return false;
     }
 
     // 중량이 정수인지 확인
-    if (formData.weight && isNaN(parseInt(formData.weight))) {
+    if (formData.quantity && isNaN(parseInt(formData.quantity))) {
       showToast("중량은 정수만 입력 가능합니다.");
       return false;
     }
@@ -208,7 +208,7 @@ const IngredientAddForm = () => {
       mainCategory: "",
       subCategory: "",
       detailCategory: "",
-      weight: "",
+      quantity: "",
       image: "",
     });
     setImagePreview(null);
@@ -248,7 +248,7 @@ const IngredientAddForm = () => {
         mainCategory: "",
         subCategory: "",
         detailCategory: "",
-        weight: "",
+        quantity: "",
       });
 
       // 이미지 미리보기 상태를 초기화
@@ -286,7 +286,7 @@ const IngredientAddForm = () => {
       // formData에 userId 추가
       const ingredientData = {
         ...formData,
-        weight: parseInt(formData.weight), // weight를 int로 변환
+        quantity: parseInt(formData.quantity), // quantity를 int로 변환
         image: formData.image || imagePreview, // image 데이터 저장
         userId: currentUser.memberId,
       };
@@ -698,8 +698,8 @@ const IngredientAddForm = () => {
           <Input
             className="add-form-input"
             placeholder="중량(g)을 입력해 주세요."
-            name="weight"
-            value={formData.weight}
+            name="quantity"
+            value={formData.quantity}
             onChange={handleInputChange}
           />
         </div>

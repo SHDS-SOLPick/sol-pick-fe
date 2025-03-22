@@ -50,12 +50,30 @@ import AllergyManagement from "./pages/mypage/AllergyManagement";
 import SurveyPage from "./pages/main/SurveyPage";
 import SurveyResult from "./pages/main/SurveyResult";
 import MealDetail from "./pages/main/MealDetail";
+import SyncTestPage from "./pages/SyncTestPage";
+import { useEffect } from "react";
+import { authApi } from "./api/AuthApi";
+import RecipickSyncApi from "./api/RecipickSyncApi";
 
 function App() {
+  useEffect(() => {
+    // 사용자가 로그인한 경우에만 동기화 시작
+    if (authApi.isAuthenticated()) {
+      // 동기화 서비스 시작
+      const stopSync = RecipickSyncApi.startPeriodicSync();
+
+      // 컴포넌트 언마운트(앱 종료) 시 동기화 중지
+      return () => {
+        stopSync();
+      };
+    }
+  }, []);
+
   return (
     <ToastProvider>
       <Routes>
         <Route element={<Layout />}>
+          <Route path="/sync-test" element={<SyncTestPage />} />
           {/* 공통 컴포넌트 */}
           <Route path="/components" element={<Components />} />
 
@@ -109,7 +127,10 @@ function App() {
             path="/refrigerator/recipe-recommendation"
             element={<RecipeRecommendation />}
           />
-          <Route path="/refrigerator/recipe-detail/:id" element={<RecipeDetail />} />
+          <Route
+            path="/refrigerator/recipe-detail/:id"
+            element={<RecipeDetail />}
+          />
 
           {/* 카드 신청 관련 라우트 */}
           <Route path="/card" element={<CardIssuePage />} />
