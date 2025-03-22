@@ -12,6 +12,7 @@ import MainHeader from "../../../components/common/header/MainHeader";
 import recipe from "../../../assets/recipe.svg";
 import { ingredientApi } from "../../../api/IngredientApi";
 import { useToast } from "../../../context/ToastContext";
+import { useRecipickSync } from "../../../api/RecipickSyncApi"; // 레시픽 주문 동기화
 
 const Refrigerator = () => {
   const navigate = useNavigate();
@@ -24,6 +25,9 @@ const Refrigerator = () => {
   // 터치(스와이프) 이벤트
   const [touchStart, setTouchStart] = useState(null);
   const { showToast } = useToast();
+
+  // 레시픽 주문 동기화
+  const { startPeriodicSync, stopPeriodicSync } = useRecipickSync();
 
   // 터치/마우스 이벤트 핸들러
   const handleSwipeStart = (clientX, e) => {
@@ -72,9 +76,18 @@ const Refrigerator = () => {
   // 한 냉장고에 표시할 최대 식재료 수
   const MAX_INGREDIENTS_PER_REFRIGERATOR = 15;
 
-  // 식재료 데이터 가져오기
+  // 식재료 데이터 가져오기만 수행
   useEffect(() => {
     fetchIngredients();
+
+    // // 주기적으로 식재료 데이터 새로고침
+    // const refreshInterval = setInterval(() => {
+    //   fetchIngredients();
+    // }, 60000); // 1분마다 새로고침
+
+    // return () => {
+    //   clearInterval(refreshInterval);
+    // };
   }, []);
 
   // 식재료 목록 불러오기 (최신순)
