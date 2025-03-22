@@ -451,7 +451,6 @@
   align-items: center;
   gap: 10px; /* 요소들 사이의 간격 */
   flex-wrap: nowrap;
-  margin-top: 16px;
 }
 .tts-button {
   background-color: #f8f8f8;
