@@ -50,7 +50,6 @@ import AllergyManagement from "./pages/mypage/AllergyManagement";
 import SurveyPage from "./pages/main/SurveyPage";
 import SurveyResult from "./pages/main/SurveyResult";
 import MealDetail from "./pages/main/MealDetail";
-import SyncTestPage from "./pages/SyncTestPage";
 import { useEffect } from "react";
 import { authApi } from "./api/AuthApi";
 import RecipickSyncApi from "./api/RecipickSyncApi";
@@ -73,7 +72,6 @@ function App() {
     <ToastProvider>
       <Routes>
         <Route element={<Layout />}>
-          <Route path="/sync-test" element={<SyncTestPage />} />
           {/* 공통 컴포넌트 */}
           <Route path="/components" element={<Components />} />
 
