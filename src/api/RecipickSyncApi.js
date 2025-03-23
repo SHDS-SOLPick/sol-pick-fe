@@ -2,6 +2,7 @@ import axios from "axios";
 import { authApi } from "./AuthApi";
 import { BASE_URL } from "../config";
 import { ingredientApi } from "./IngredientApi";
+import { notificationApi } from "./NotificationApi";
 
 // 동기화 주기
 const SYNC_INTERVAL = 10000; // 10초 (밀리초)
@@ -194,6 +195,45 @@ export const RecipickSyncApi = {
         );
 
         if (addedItems.length > 0) {
+          // 알림 생성
+          try {
+            // 알림 메시지 생성
+            let message = "";
+            if (addedItems.length === 1) {
+              // 단일 식재료
+              message = `레시픽에서 주문하신 ${addedItems[0].name}이(가) 냉장고에 등록되었습니다.`;
+            } else if (addedItems.length <= 3) {
+              // 2~3개 식재료
+              const itemNames = addedItems.map((item) => item.name).join(", ");
+              message = `레시픽에서 주문하신 ${itemNames}이(가) 냉장고에 등록되었습니다.`;
+            } else {
+              // 4개 이상 식재료
+              const firstItems = addedItems
+                .slice(0, 3)
+                .map((item) => item.name)
+                .join(", ");
+              message = `레시픽에서 주문하신 ${firstItems} 외 ${
+                addedItems.length - 3
+              }개의 식재료가 냉장고에 등록되었습니다.`;
+            }
+
+            // 알림 데이터 생성
+            const notificationData = {
+              userId: solpickUserId,
+              type: "refrigerator", // 새로운 알림 타입 추가
+              message: message,
+              isRead: false,
+              createdAt: new Date().toISOString(),
+              updatedAt: new Date().toISOString(),
+            };
+
+            // 알림 API 호출
+            await notificationApi.createNotification(notificationData);
+            console.log("동기화 알림 생성 성공");
+          } catch (error) {
+            console.error("동기화 알림 생성 실패:", error);
+          }
+
           return {
             success: true,
             count: addedItems.length,
