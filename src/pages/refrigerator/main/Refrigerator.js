@@ -12,7 +12,7 @@ import MainHeader from "../../../components/common/header/MainHeader";
 import recipe from "../../../assets/recipe.svg";
 import { ingredientApi } from "../../../api/IngredientApi";
 import { useToast } from "../../../context/ToastContext";
-import { useRecipickSync } from "../../../api/RecipickSyncApi"; // 레시픽 주문 동기화
+import RecipickSyncApi, { useRecipickSync } from "../../../api/RecipickSyncApi"; // 레시픽 주문 동기화
 
 const Refrigerator = () => {
   const navigate = useNavigate();
@@ -76,24 +76,44 @@ const Refrigerator = () => {
   // 한 냉장고에 표시할 최대 식재료 수
   const MAX_INGREDIENTS_PER_REFRIGERATOR = 15;
 
-  // 식재료 데이터 가져오기만 수행
+  // 식재료 데이터 가져오기 및 동기화 수행
   useEffect(() => {
     fetchIngredients();
 
-    // // 주기적으로 식재료 데이터 새로고침
-    // const refreshInterval = setInterval(() => {
-    //   fetchIngredients();
-    // }, 60000); // 1분마다 새로고침
+    // 냉장고 페이지 진입 시 레시픽 동기화 한 번 실행
+    const syncOnce = async () => {
+      try {
+        console.log("냉장고 페이지 진입 - 레시픽 동기화 실행");
+        const result = await RecipickSyncApi.syncRecipickOrders();
 
-    // return () => {
-    //   clearInterval(refreshInterval);
-    // };
+        // 동기화 결과 확인 (새 항목이 추가된 경우)
+        if (result.success && result.count && result.count > 0) {
+          // 새 식재료가 추가되었다면 목록 새로고침
+          console.log(`${result.count}개의 새 식재료가 동기화되었습니다.`);
+          fetchIngredients(); // 식재료 목록 다시 가져오기
+        }
+      } catch (error) {
+        console.error("동기화 중 오류 발생:", error);
+      }
+    };
+
+    // 동기화 실행
+    syncOnce();
   }, []);
 
   // 식재료 목록 불러오기 (최신순)
   const fetchIngredients = async () => {
     setLoading(true);
     try {
+      // // 먼저 동기화 실행
+      // console.log("냉장고 페이지 진입 - 레시픽 동기화 실행");
+      // const syncResult = await RecipickSyncApi.syncRecipickOrders();
+
+      // // 동기화 결과 확인 (새 항목이 추가된 경우)
+      // if (syncResult.success && syncResult.count && syncResult.count > 0) {
+      //   console.log(`${syncResult.count}개의 새 식재료가 동기화되었습니다.`);
+      // }
+
       // 최신순으로 식재료 목록 가져오기
       const response = await ingredientApi.getIngredientList("latest");
 
