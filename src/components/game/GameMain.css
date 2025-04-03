@@ -1,0 +1,84 @@
+.game-main-container {
+  width: 100%;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #f8f8f8;
+  margin: 0 auto;
+  z-index: 1;
+  position: relative;
+}
+
+.game-main-content {
+  flex: 1;
+  overflow-y: auto; /* 내부 콘텐츠가 넘칠 경우 스크롤 적용 */
+  position: relative;
+  padding-bottom: 16px;
+}
+
+/* 픽셀 폰트 적용 */
+.pixel-font {
+  font-family: "Press Start 2P", cursive !important;
+}
+
+/* 픽셀 폰트 적용 - 한글과 영문 모두 지원하는 폰트 스택 */
+.pixel-font-kr {
+  font-family: "DungGeunMo", "Press Start 2P", cursive !important;
+  letter-spacing: -0.5px; /* 한글 간격 조정 */
+  word-spacing: 1px;
+  line-height: 1.5;
+}
+
+.game-menu-group {
+  display: flex;
+  justify-content: space-between;
+  position: relative; /* 추가: 요소들이 배경 위에 표시되도록 */
+}
+
+.daily-game,
+.storage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: #fef5f0;
+  position: relative; /* 추가 */
+}
+
+.daily-game:hover,
+.storage:hover {
+  transform: scale(1.05);
+}
+
+.daily-game-icon,
+.storage-icon {
+  width: 90%;
+}
+
+.cat-playground-container {
+  display: flex;
+  justify-content: center;
+  margin: 5px 0;
+  position: relative; /* 추가 */
+  z-index: 2; /* 추가 */
+}
+
+.cat-playground {
+  width: 100%;
+  animation: float 2s ease-in-out infinite alternate;
+}
+
+/* 애니메이션 추가 (기존 코드에 누락되어 있을 수 있음) */
+@keyframes float {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-10px);
+  }
+}

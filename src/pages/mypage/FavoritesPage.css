@@ -1,0 +1,20 @@
+.favorites-page-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Chrome 브라우저용 스크롤바 숨김 */
+.favorites-page-container::-webkit-scrollbar {
+  display: none;
+}
+
+.favorites-page-content {
+  flex: 1;
+  width: 100%;
+  padding: 24px 16px;
+}

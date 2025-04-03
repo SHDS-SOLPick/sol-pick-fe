@@ -1,0 +1,44 @@
+.order-history-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow-y: auto;
+  /* 스크롤바 숨김 처리 */
+  -ms-overflow-style: none;
+}
+
+/* Chrome, Safari용 스크롤바 숨김 */
+.order-history-container::-webkit-scrollbar {
+  display: none;
+}
+
+.no-order-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: #969696;
+  font-size: 14px;
+  text-align: center;
+}
+
+.order-error-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: #ff6b6b;
+  font-size: 14px;
+  text-align: center;
+  gap: 8px;
+}
+
+.order-history-container .loading-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: #969696;
+  font-size: 14px;
+}

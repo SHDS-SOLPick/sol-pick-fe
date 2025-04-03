@@ -1,0 +1,27 @@
+.recipe-loading-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.recipe-loading-container h2 {
+  font-size: 24px;
+  color: #ff7f50;
+  margin-bottom: 12px;
+}
+
+.recipe-loading-container p {
+  font-size: 16px;
+  color: #969696;
+}
+
+.pizza-animation {
+  width: 60%;
+  height: 60%;
+  visibility: hidden;
+}
