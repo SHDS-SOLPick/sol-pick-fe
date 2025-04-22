@@ -1,75 +1,200 @@
 <div align="center">
-  <img height="150px" alt="SolPick Logo" src="./src/assets/logo/logo.png">
-  <br>
 
-  # 🥦 SolPick - 맞춤형 식재료 관리 및 레시피 추천 서비스  
-  **"당신의 냉장고를 더 스마트하게!"**  
-  <br>
+<img height="250px" alt="SolPick Logo" src="./src/assets/logo/logo.png">
 
-  ## 🛠 기술 스택
-  <img src="https://img.shields.io/badge/React-19.0.0-61DAFB?style=for-the-badge&logo=react&logoColor=black">
-  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
-  <img src="https://img.shields.io/badge/Axios-671DDF?style=for-the-badge&logo=axios&logoColor=white">
-  <img src="https://img.shields.io/badge/GSAP-88CE02?style=for-the-badge&logo=greensock&logoColor=white">
-  <img src="https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white">
-  <br>
+# 💳 SOL Pick Frontend
 
-  ## 📌 프로젝트 소개  
-  **SolPick**은 사용자의 **냉장고 속 식재료를 관리**하고, **맞춤형 레시피를 추천**하는 서비스입니다.  
-  또한 **게임화(Gamification)** 요소를 적용하여 포인트 적립 및 **SolPick 전용 카드 서비스**를 제공합니다.  
-  <br>
+SOL Pick 프로젝트의 **프론트엔드** 리포지토리입니다.
 
-  ## 🚀 주요 기능  
+프로젝트 소개 및 공통 문서는 [👉 여기서](https://shds-solpick.github.io/) 확인하실 수 있습니다.
 
-  ### 🛍️ 플랫폼 연동  
-  **ReciPICK & SOL Pick 크로스 인증**  
-  **주문 결제 및 포인트 연동**  
+<p>
+  <a href="#-역할-분담">👩‍💻 역할 분담</a> •
+  <a href="#-주요-기능">✨ 주요 기능</a> •
+  <a href="#-기술-스택">🛠 기술 스택</a> •
+  <a href="#-설치-및-실행">🔧 설치 및 실행</a> •
+  <a href="#-환경-변수-설정">🌐 환경 변수 설정</a> •
+  <a href="#-폴더-구조">📂 폴더 구조</a> •
+  <a href="#-컨벤션">📝 컨벤션</a>
+</p>
 
-  ### 💳 SolPick 카드 서비스  
-  **SolPick 신용카드 발급**  
-  **커스터마이징 디자인 적용**  
-  **사용 실적 기반 포인트 적립**  
+</div>
 
-  ### 🎮 포인트 적립형 미니게임  
-  **고양이 밥 주기 🐱**  
-  **식재료 탐색 🔍**  
-  **카드 뒤집기 게임 🎴 (사료 획득)**  
+## 👩‍💻 역할 분담
 
-  ### ❄️ 스마트 냉장고  
-  **직관적인 냉장고 UI**  
-  **OCR 기반 영수증 등록 📸**  
-  **자동 유통기한 알림 ⏳**  
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/jrkim-kr.png" width="120px" height="120px" style="border-radius: 50%"/><br/>
+    </td>
+    <td align="center">
+      <img src="https://github.com/eko147.png" width="120px" height="120px" style="border-radius: 50%"/><br/>
+    </td>
+    <td align="center">
+      <img src="https://github.com/jinyoung1221.png" width="120px" height="120px" style="border-radius: 50%"/><br/>
+    </td>
+    <td align="center">
+      <img src="https://github.com/ayeooong.png" width="120px" height="120px" style="border-radius: 50%"/><br/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center"><b>김정란</b><br/></td>
+    <td align="center"><b>고은지</b><br/></td>
+    <td align="center"><b>양진영</b><br/></td>
+    <td align="center"><b>임아영</b><br/></td>
+  </tr>
+  <tr>
+    <td align="center">
+      카드 발급 및 커스터마이징 관련 화면, 미니게임 관련 화면<br/>
+    </td>
+    <td align="center">
+      마이페이지 결제 내역 화면, 함께 요리 관련 화면<br/>
+    </td>
+    <td align="center">
+      AI 레시피&식단 추천 관련 화면<br/>
+    </td>
+    <td align="center">
+      온보딩 화면, 로그인 화면, 홈 화면, 냉장고 관련 화면, 유통기한 알림 관련 화면<br/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/jrkim-kr">GitHub</a></td>
+    <td align="center"><a href="https://github.com/eko147">GitHub</a></td>
+    <td align="center"><a href="https://github.com/jinyoung1221">GitHub</a></td>
+    <td align="center"><a href="https://github.com/ayeooong">GitHub</a></td>
+  </tr>
+</table>
 
-  ### 🍽️ 레시피 서비스  
-  **알러지 정보 & 보유 식재료 기반 AI 레시피 추천**  
-  **AI 기반 1주일 식단 자동 생성 📅**  
-  **함께 요리하기 👩‍🍳👨‍🍳**  
-  <br>
+## ✨ 주요 기능
 
-  ## 🔧 설치 및 실행  
+### 1. 👥 사용자 상태 기반 맞춤형 UI
+- 사용자 인증 흐름에 따른 동적 라우팅
+- 시간 기반 다이나믹 콘텐츠 <br/>
 
-  ### 💻 시스템 요구사항  
-  **☑️ Node.js 16.0.0 이상**  
-  **☑️ npm 7.0.0 이상**  
 
-  ### 📥 설치  
-  ```bash
-  git clone https://github.com/SHDS-SOLPick/sol-pick-fe.git
-  cd sol-pick-fe
-  npm install
-  ```
+### 2. 🔗 플랫폼 연동
+- ReciPICK ↔ SOL Pick 통합 인증 시스템
+- 주문 및 결제 시스템 연계
+- ReciPICK 포인트 통합 적립
 
-  ### 🚀 실행  
-  ```bash
-  npm run start
-  ```
+  <a href="https://drive.google.com/file/d/1ilDyvP5XAKyYKD8VeopQ2gZLcXBTNzlI/view?usp=sharing">👉 플랫폼 연동 시연 영상</a>
 
-  ## 🌐 환경 변수 설정  
-  ```plaintext
-  REACT_APP_API_URL=백엔드 API URL
-  REACT_APP_IMAGE_URL=이미지 서버 URL
-  ```
-  ## 공통 컴포넌트 (`src\components\common`)
+### 3. 💳 카드 서비스
+- Sol Pick 신용카드 발급 기능
+- 사용자 맞춤 카드 디자인
+- 실사용 기반 포인트 적립 <br/>
+  
+  <a href="https://drive.google.com/file/d/1sxSV9yMUW_lTljGChQpi8jeh2GN2ifM7/view?usp=drive_link">👉 카드 서비스 기능 시연 영상</a>
+
+
+### 4. 🎮 포인트 적립형 미니게임
+- 고양이 밥주기 기능
+- 식재료 탐색하기 기능
+- 카드 뒤집기 게임을 통해 사료 받기
+- 선택한 레시피 완성 시 포인트 획득
+- 보관함에서 완성한 레시피 목록 확인 <br/>
+  
+  <a href="https://drive.google.com/file/d/1Oru9-WeEDpvq2OFOO7qzkbP3Xs4HDrFm/view?usp=drive_link">👉 미니게임 기능 시연 영상</a>
+
+
+### 5. 🧊 스마트 냉장고
+- 직관적 냉장고 UI
+- 영수증 OCR 등록
+- 유통기한 알림 기능 <br/>
+
+  <a href="https://drive.google.com/file/d/1TOSVVdFOkwOXKyjnoctatur3Ix-r34ZW/view?usp=sharing">👉 스마트 냉장고 기능 시연 영상</a>
+  
+
+### 6. 🍽 레시피 서비스
+- 알러지/식재료 기반 **AI 레시피 추천**
+- 일주일 식단 구성 자동 제안
+- 친구와 함께 요리하기
+
+  <a href="https://drive.google.com/file/d/10qNuGThDgfvXtx1HB24DlqSMhwFgRrLi/view?usp=sharing">👉 레시피 서비스 시연 영상</a>
+
+
+## 🛠 기술 스택
+
+#### 언어
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+
+#### 프레임워크
+<img src="https://img.shields.io/badge/React-19.0.0-61DAFB?style=for-the-badge&logo=react&logoColor=black">
+
+#### 라이브러리
+- **Axios** (HTTP 요청을 위한 Promise 기반 클라이언트)
+- **GSAP** (고성능 애니메이션 라이브러리)
+- **Framer Motion** (React 애플리케이션에 선언적 애니메이션을 추가하는 라이브러리)
+
+#### 스타일링
+- **CSS** (기본 스타일링)
+- **CSS Modules** (컴포넌트 스코프 스타일링)
+
+#### 코드 포매터 및 검사 도구
+<img src="https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E">
+
+#### 협업툴
+<img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"> <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white"> <img src="https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white"> <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white">
+
+## 🔧 설치 및 실행
+
+### 💻 시스템 요구사항
+
+**☑️ Node.js 16.0.0 이상**  
+**☑️ npm 7.0.0 이상**
+
+### 📥 설치
+
+```bash
+git clone https://github.com/SHDS-SOLPick/sol-pick-fe.git
+cd sol-pick-fe
+npm install
+```
+
+### 🚀 실행
+
+```bash
+npm run start
+```
+
+## 🌐 환경 변수 설정
+
+프로젝트 루트에 `.env` 파일을 생성하고 다음 변수들을 설정하세요:
+
+```plaintext
+REACT_APP_API_URL=백엔드 API URL
+REACT_APP_IMAGE_URL=이미지 서버 URL
+```
+
+## 📂 폴더 구조
+
+```
+src/
+├── api/               # API 관련 함수 및 설정
+├── assets/            # 이미지, 폰트 등 정적 리소스
+├── components/        # 재사용 가능한 컴포넌트들
+│   ├── card/          # 카드 관련 컴포넌트
+│   ├── common/        # 공통으로 사용되는 컴포넌트
+│   ├── game/          # 게임 관련 컴포넌트
+│   ├── login/         # 로그인 관련 컴포넌트
+│   ├── main/          # 메인 페이지 컴포넌트
+│   ├── mypage/        # 마이페이지 컴포넌트
+│   ├── noti/          # 알림 관련 컴포넌트
+│   ├── point/         # 포인트 관련 컴포넌트
+│   ├── recipe/        # 레시피 관련 컴포넌트
+│   └── refrigerator/  # 냉장고 관련 컴포넌트
+├── context/           # React Context 관련 파일들
+├── layout/            # 레이아웃 관련 컴포넌트
+├── pages/             # 페이지 컴포넌트
+├── utils/             # 유틸리티 함수들
+├── App.css            # 앱 전체 스타일
+├── App.js             # 앱의 메인 컴포넌트
+├── config.js          # 환경 설정 파일
+├── index.css          # 글로벌 스타일
+└── index.js           # 앱의 진입점
+```
+
+## 📚 공통 컴포넌트 (`src/components/common`)
 
 ![컴포넌트](https://github.com/user-attachments/assets/fd8f237e-8130-46d0-a6c5-048960ccd945)<svg width="1800" height="1146" viewBox="0 0 1800 1146" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect width="1800" height="1146" fill="#D9D9D9"/>
@@ -287,13 +412,76 @@
 </defs>
 </svg>
 
+## 📝 컨벤션
 
-  ## 👥 팀 정보  
-  | 성명  | 역할 | 기능 | Github |
-  |--------|------|-------------------|---------|
-  | **김정란** | 팀장 / Frontend&Backend | 가드 서비스, 미니게임 | [GitHub](https://github.com/jrkim-kr) |
-  | **고은지** | 팀원 / Frontend&Backend | API 통신 및 인증, 함께 요리 | [GitHub](https://github.com/eko147) |
-  | **양진영** | 팀원 / Frontend&Backend | 레시피 및 식단 추천 | [GitHub](https://github.com/jinyoung1221) |
-  | **임아영** | 팀원 / Frontend&Backend | React 공통 컴포넌트 개발, 냉장고 CRUD, 유통기한 알림 | [GitHub](https://github.com/ayeooong) |
-  
+### 🔄 Git Commit Convention
+
+#### 📋 기본 형식
+
+```
+<type>(<optional scope>): <description> <issue>
+<빈 줄>
+<optional body>
+<빈 줄>
+<optional footer>
+```
+
+#### 🏷️ Type
+
+| Type | 설명 |
+| ------------ | ----------------------------------------------------------------------- |
+| **feat** | 새로운 기능을 추가 |
+| **fix** | 버그 수정 |
+| **docs** | 문서 수정 |
+| **style** | 코드 변경이 없는 경우 (공백, 포맷팅, 세미콜론 추가 등) |
+| **design** | CSS 등 UI 디자인 변경 |
+| **refactor** | 코드 구조를 변경하되, 동작에는 영향을 주지 않는 리팩토링 |
+| **test** | 테스트 코드 추가 |
+| **chore** | 빌드 업무 수정, 패키지 매니저 수정, production code와 무관한 부분들 |
+| **comment** | 주석 추가 및 변경 |
+| **rename** | 파일, 폴더명 수정 |
+| **remove** | 파일, 폴더 삭제 |
+| **ops** | 인프라, 배포, 백업, 복구 등 운영 관련 변경 |
+| **build** | 빌드 도구, CI 파이프라인, 의존성, 프로젝트 버전 등에 영향을 미치는 변경 |
+
+#### 📝 예시
+```
+feat(shopping cart): add the amazing button #1 #2
+```
+
+### ⚛️ React Convention
+
+#### 🔠 함수명
+- 화살표 함수 형식 (`rafce` 스니펫 활용)
+```javascript
+const printHello = () => {
+  console.log("Hello");
+};
+```
+- 이벤트 핸들링 함수는 `handle + 이벤트` 형식으로 작성
+  - ex) `handleEmailLogin`
+- 함수 위에 주석으로 기능 설명 추가
+- 카멜케이스로 작성
+  - ex) `isLoggedIn`
+
+#### 📂 파일명
+- 컴포넌트명: 파스칼케이스
+  - ex) `Login.js`
+- CSS 파일명: 파스칼케이스 (해당 컴포넌트와 동일하게)
+  - ex) `Login.css`
+- 기타 파일명: 카멜케이스
+  - ex) `selectArrow.svg`
+- 폴더명: 케밥케이스
+  - ex) `not-found`
+- 클래스명: 케밥케이스
+  - ex) `className="input-container"`
+
+#### 🧩 공통 컴포넌트
+- 수정이 필요한 경우 공통 컴포넌트 코드를 직접 수정하지 않고, 사용하는 페이지에서 수정
+- 공통적으로 수정이 필요한 부분이 있는 경우, 팀원들과 상의 후 수정 진행
+
+---
+
+<div align="center">
+  <sub>ⓒ 2025 SOL Pick Team. All rights reserved.</sub>
 </div>
